@@ -169,7 +169,11 @@ If s/he “only” crack your user account, s/he will be sandboxed (and can do l
    $ curl -O https://raw.githubusercontent.com/ilkkamtk/wop-starters/week2-1/tables.txt
    ```
    (or upload with any FTP tool the ``tables.txt`` to your home folder ``/home/wantedUsername``\
-       (or use ``scp`` from your local machine, navigate with terminal to the folder and run ``$ scp tables.txt <wantedUsername>@<ip-address>:~``))
+       (or use ``scp`` from your local machine, navigate with terminal to the folder and run 
+       ```console
+       $ scp tables.txt <wantedUsername>@<ip-address>:~
+       ```
+       ))
    1. Import the tables and insert the data:
       ```console
       $ mysql -u dbuser -p catdb < tables.txt

@@ -8,7 +8,7 @@
        (use your metropolia username and password)\
        ``$ ssh -Nf -D 8888 <your-metropolia-username>@shell.metropolia.fi``
    1.  For the terminal access to your server, use double ssh, first from your local machine to shell.metropolia.fi (with your metropolia username/password):\
-        ``$ ssh <your-metropolia-username>@shell.metropolia.fi``<br><br>
+        ``$ ssh <your-metropolia-username>@shell.metropolia.fi``<br>
        once connected to metropolia shell, you can connect to your server:\
        ``$ ssh <your-server-username>@<your-server-IP>``
 
@@ -27,7 +27,7 @@
    1.  You will receive an email with the IP address of the server and the root password (root is default administrator on any linux/unix operating system)
 3. Open a terminal (CLI). On windows computer, install [bash shell](https://docs.microsoft.com/en-us/windows/wsl/install-win10) or [Git Bash](https://gitforwindows.org/). Mac/Linux already have a terminal to start with (e.g. on Mac under Applications/Utilities, on gnome/mate linux desktop with ``ALT + CTRL + T`` shortcut)
 4. From terminal, use ssh protocol to connect to your virtual server
-   1.  If you are not in metropolia network, use VPN or double ssh (check first section)
+   1.  If you are not in metropolia network, use VPN or double ssh (check [first section](#working-from-outside-metropolia-network))
    1.  Run the following command:\
         ``$ ssh root@IPaddress``
    1.  substitute IPaddress with the address of your server (you got in the mail), root is the username (keep it as it is). After pressing enter, it will ask for password (copy/paste from the mail). Note, blind typing password (the cursor will not move nor show stars nor nothing while you type); it a security measure: if anyone look over your shoulders, they cannot guess the length of your password.

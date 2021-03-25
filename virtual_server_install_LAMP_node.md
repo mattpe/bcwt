@@ -254,6 +254,7 @@ If s/he “only” crack your user account, s/he will be sandboxed (and can do l
         ```console
         $ node app.js &
         ```
+        Note, on MS Windows computer, make sure to exit your session ``$ exit`` (or ``CTRL + D`` shortcut) before closing your power shell (bash shell, git bash,...) application as it may kill your session which will kill your running processes including background tasks 😃.
    1.  and if you want to stop your background app:
         ```console
         $ pkill node

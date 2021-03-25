@@ -102,25 +102,30 @@ If s/he “only” crack your user account, s/he will be sandboxed (and can do l
 2.  The CentOS package manager (to install/update applications and operating system)
     is YUM. For example, to maintain the operating system with the latest bug and security fixes, run the following command about every weeks:\
     ```console
-    $ sudo yum update```
+    $ sudo yum update
+    ```
 
 ## Install and configure Apache web server
 
 1.  Install apache web server:
     ```console
-    $ sudo yum install httpd```
+    $ sudo yum install httpd
+    ```
     1.  start it:
         ```console
-        $ sudo systemctl start httpd```
+        $ sudo systemctl start httpd
+        ```
     2.  make sure that the web server will always start (e.g. if server reboot):
         ```console
-        $ sudo systemctl enable httpd```
+        $ sudo systemctl enable httpd
+        ```
 4. Open the firewall to allow web traffic through http (port 80) and https (port 443):
         ```console
         $ sudo firewall-cmd --permanent --zone=public --add-service=http --add-service=https```
         And reload the firewall
         ```console
-        $ sudo firewall-cmd --reload```
+        $ sudo firewall-cmd --reload
+        ```
 5. In your browser, open the URL: ``http://<ip-address>/`` (substitute with your IP address). You should see your Apache web server welcome page.
 
 1. (Optional) The root of your web server is on following path: ``/var/www/html``; but it require root privileges to add/edit/delete files. to create a public_html-folder for your user:
@@ -132,18 +137,22 @@ If s/he “only” crack your user account, s/he will be sandboxed (and can do l
 
 1. Install MariaDB server:
    ```console
-   $ sudo yum install mariadb-server```
+   $ sudo yum install mariadb-server
+   ```
    1. Start and enable it:
       ```console
       $ sudo systemctl start mariadb
-      $ sudo systemctl enable mariadb```
+      $ sudo systemctl enable mariadb
+      ```
    1. Secure it:
       ```console
-      $ mysql_secure_installation```
+      $ mysql_secure_installation
+      ```
       Note: database root user is not operating system root user! Avoid same password!
    1. Connect to your database:
       ```console
-      $ mysql -u root -p```
+      $ mysql -u root -p
+      ```
       and create a database and a user with privileges on it:
         ```sql
         > CREATE DATABASE catdb;
@@ -162,10 +171,12 @@ If s/he “only” crack your user account, s/he will be sandboxed (and can do l
        (or use ``scp`` from your local machine, navigate with terminal to the folder and run ``$ scp tables.txt <wantedUsername>@<ip-address>:~``))
    1. Import the tables and insert the data:
       ```console
-$ mysql -u dbuser -p catdb < tables.txt```
+      $ mysql -u dbuser -p catdb < tables.txt
+      ```
    1. Eventually check:
       ```console
-$ mysql -u dbuser -p catdb```
+      $ mysql -u dbuser -p catdb
+      ```
       ```sql
       > SHOW TABLES;
       > SELECT * FROM wop_cat;
@@ -179,11 +190,13 @@ $ mysql -u dbuser -p catdb```
     use the ``# No root privileges`` version, so something like:
     ```console
     $ curl -fsSL https://rpm.nodesource.com/setup_14.x | sudo bash -
-    $ sudo yum install -y nodejs```
+    $ sudo yum install -y nodejs
+    ```
 1. Configure Apache httpd server as a reverse proxy to node server:
    1.  create/edit an apache configuration file:
         ```console
-        $ sudo vi /etc/httpd/conf.d/node.conf```
+        $ sudo vi /etc/httpd/conf.d/node.conf
+        ```
    1.  add the following content:
        ```apacheconf
        <VirtualHost *:80>
@@ -194,25 +207,31 @@ $ mysql -u dbuser -p catdb```
        ```
 1.   save and restart apache server
         ```console
-        $ sudo systemctl restart httpd```
+        $ sudo systemctl restart httpd
+        ```
 1.  give permission to apache server to visit URL
         ```console
-        $ sudo setsebool -P httpd_can_network_connect 1```
+        $ sudo setsebool -P httpd_can_network_connect 1
+        ```
 2. Install and run your node application:
    1.  make sure you are in your home folder:
         ```console
-        $ cd```
+        $ cd
+        ```
    1.  clone your app (choose HTTPS)
         ```console
-        $ git clone https://gitlab.metropolia.fi/<your-repo>```
+        $ git clone https://gitlab.metropolia.fi/<your-repo>
+        ```
    1.  go to the cloned repo
         ```console
-        $ cd <your-repo>```
+        $ cd <your-repo>
+        ```
    1.  eventually, check that you are in the right branch (checkout if
         not)
    1.  install dependencies
         ```console
-        $ npm i```
+        $ npm i
+        ```
    1. create/edit ``.env`` file with your db credentials (you set in [MariaDB](#install-and-configure-mariadb-database-server), step iii)
        ```apacheconf
         DB_HOST=127.0.0.1
@@ -222,15 +241,18 @@ $ mysql -u dbuser -p catdb```
         ```
    1.  run your application
         ```console
-        $ node app.js```
+        $ node app.js
+        ```
    1.  test, open a browser and visit ``http://<ip-address>/app/``
    1.  if you want to let your app running forever, run it as a
         background task (note the ampstamp & at the end)
         ```console
-        $ node app.js &```
+        $ node app.js &
+        ```
    1.  and if you want to stop your background app:
         ```console
-        $ pkill node```
+        $ pkill node
+        ```
 
 ## Extra and resources
 - [Unix/linux command](https://centoshelp.org/resources/commands/linux-system-commands/)

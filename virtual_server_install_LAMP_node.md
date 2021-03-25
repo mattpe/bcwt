@@ -218,7 +218,7 @@ If s/he “only” crack your user account, s/he will be sandboxed (and can do l
    ```console
    $ sudo setsebool -P httpd_can_network_connect 1
    ```
-2. Install and run your node application:
+1. Install and run your node application:
    1.  make sure you are in your home folder:
         ```console
         $ cd

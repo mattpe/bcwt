@@ -60,7 +60,7 @@ If s/he “only” crack your user account, s/he will be sandboxed (and can do l
         ## Allow root to run any commands anywhere
         root ALL=(ALL) ALL
         ```
-        To move in the text, use arrow keys or ``hjkl`` keys (e.g. to move 92 lines down, press ``92j``).
+        To move in the text, use arrow keys or ``hjkl$0^`` keys (e.g. to move 92 lines down, press ``92j``).
    1.  Add a new line and enter in insert mode by typing ``o``-key (notice the INSERT on the last line).
         Type
        ```apacheconf

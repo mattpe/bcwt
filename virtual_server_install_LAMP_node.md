@@ -169,7 +169,7 @@ If s/he “only” crack your user account, s/he will be sandboxed (and can do l
    $ curl -O https://raw.githubusercontent.com/ilkkamtk/wop-starters/week2-1/tables.txt
    ```
    (or upload with any FTP tool the ``tables.txt`` to your home folder ``/home/wantedUsername``\
-   (or use ``scp`` from your local machine, navigate with terminal to the folder and run 
+   (or use ``scp`` from your local machine, navigate with terminal to the folder and run
    ```console
    $ scp tables.txt <wantedUsername>@<ip-address>:~
    ```
@@ -210,14 +210,14 @@ If s/he “only” crack your user account, s/he will be sandboxed (and can do l
          ProxyPassReverse /app/ http//:127.0.0.1:3000/
        </VirtualHost>
        ```
-1.   save and restart apache server
-        ```console
-        $ sudo systemctl restart httpd
-        ```
+1. save and restart apache server
+   ```console
+   $ sudo systemctl restart httpd
+   ```
 1.  give permission to apache server to visit URL
-        ```console
-        $ sudo setsebool -P httpd_can_network_connect 1
-        ```
+   ```console
+   $ sudo setsebool -P httpd_can_network_connect 1
+   ```
 2. Install and run your node application:
    1.  make sure you are in your home folder:
         ```console

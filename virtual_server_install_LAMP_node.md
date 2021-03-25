@@ -121,7 +121,8 @@ If s/he “only” crack your user account, s/he will be sandboxed (and can do l
         ```
 4. Open the firewall to allow web traffic through http (port 80) and https (port 443):
         ```console
-        $ sudo firewall-cmd --permanent --zone=public --add-service=http --add-service=https```
+        $ sudo firewall-cmd --permanent --zone=public --add-service=http --add-service=https
+        ```
         And reload the firewall
         ```console
         $ sudo firewall-cmd --reload

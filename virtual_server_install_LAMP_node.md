@@ -4,7 +4,7 @@
 
 1. Configure [Metropolia VPN](https://wiki.metropolia.fi/display/itservices/Install+and+Use+VPN+Utility+Program+Installation+on+Your+Own+Computer)
 2. Other options (e.g. during zoom session to reduce vpn bandwidth)
-   1.  to test your app/webpages, create a [ssh tunnel and configure one of your browsers through it](https://tietohallinto.metropolia.fi/display/itservices/SSH+Tunnelling).
+   1.  to test your app/webpages, create a [ssh tunnel and configure one of your browsers through it](https://tietohallinto.metropolia.fi/display/itservices/SSH+Tunneling).
        (use your metropolia username and password)
        ```console
        $ ssh -Nf -D 8888 <your-metropolia-username>@shell.metropolia.fi

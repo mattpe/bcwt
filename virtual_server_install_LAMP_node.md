@@ -67,7 +67,7 @@ If s/he “only” crack your user account, s/he will be sandboxed (and can do l
         wantedUsername ALL=(ALL) ALL
         ```
    1.  To escape from insert mode, type ``esc``-key. Save and quit the editor by typing ``:wq``
-   1.  Give your user the permission to ssh to the server by editing ssh deamon configuration:\
+   1.  Give your user the permission to ssh to the server by editing ssh deamon configuration:
         ```console
         # vi /etc/ssh/sshd_config
         ```
@@ -100,7 +100,7 @@ If s/he “only” crack your user account, s/he will be sandboxed (and can do l
         $ sudo systemctl restart sshd
         ```
 2.  The CentOS package manager (to install/update applications and operating system)
-    is YUM. For example, to maintain the operating system with the latest bug and security fixes, run the following command about every weeks:\
+    is YUM. For example, to maintain the operating system with the latest bug and security fixes, run the following command about every weeks:
     ```console
     $ sudo yum update
     ```

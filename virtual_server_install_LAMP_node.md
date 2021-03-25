@@ -214,11 +214,11 @@ If s/he “only” crack your user account, s/he will be sandboxed (and can do l
    ```console
    $ sudo systemctl restart httpd
    ```
-1.  give permission to apache server to visit URL
+1. give permission to apache server to visit URL
    ```console
    $ sudo setsebool -P httpd_can_network_connect 1
    ```
-1. Install and run your node application:
+5. install and run your node application:
    1.  make sure you are in your home folder:
         ```console
         $ cd

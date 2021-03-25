@@ -120,13 +120,13 @@ If s/he “only” crack your user account, s/he will be sandboxed (and can do l
         $ sudo systemctl enable httpd
         ```
 4. Open the firewall to allow web traffic through http (port 80) and https (port 443):
-        ```console
-        $ sudo firewall-cmd --permanent --zone=public --add-service=http --add-service=https
-        ```
-        And reload the firewall
-        ```console
-        $ sudo firewall-cmd --reload
-        ```
+   ```console
+   $ sudo firewall-cmd --permanent --zone=public --add-service=http --add-service=https
+   ```
+   And reload the firewall
+   ```console
+   $ sudo firewall-cmd --reload
+   ```
 5. In your browser, open the URL: ``http://<ip-address>/`` (substitute with your IP address). You should see your Apache web server welcome page.
 
 1. (Optional) The root of your web server is on following path: ``/var/www/html``; but it require root privileges to add/edit/delete files. to create a public_html-folder for your user:

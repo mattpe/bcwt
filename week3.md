@@ -4,7 +4,13 @@
 * Read this article about [server-side data validation](https://medium.com/@BaYinMin/application-security-what-is-server-side-input-validation-why-is-it-needed-anyway-e0613c733548)
    * code in the article is not important but the principles are
 * Read this article about [data sanitization](https://medium.com/@abderrahman.hamila/what-sanitize-mean-and-why-sanitize-in-code-data-5c68c9f76164)
-
+* Regular Expressions
+   * [Wikipedia](https://en.wikipedia.org/wiki/Regular_expression)
+   * [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions)
+   * [HTML](https://html.com/attributes/input-pattern/)  
+   * [RegEx Lesson](https://regexone.com/)
+   * [Online tester](https://regex101.com/)
+    
 1. HTML5 Built-in form validation
    * Continue last week's exercise. Make sure you have committed previous git branch then create new branch `week3`
    * In index2.html there are three forms: Add user, Add cat, Modify cat

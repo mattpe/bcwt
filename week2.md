@@ -1,5 +1,6 @@
 # Week 2
 ## Routing
+1. Study [REST](https://en.wikipedia.org/wiki/Representational_state_transfer)
 1. Setup
    * Navigate to your course folder in terminal or Git Bash
    * Create `week2` folder to your course folder: `mkdir week2`
@@ -261,9 +262,3 @@
    ```
 
 1. Commit changes and push to GitLab or GitHub
-
-
-
-
-
-

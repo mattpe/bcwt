@@ -1,7 +1,7 @@
 # Week 1
 1. Install tools
     * [Webstorm](https://www.jetbrains.com/student/) or
-    * [VSCode](https://code.visualstudio.com/) (or Atom, Brackets, Vim, Emacs, etc...)
+    * [VSCode](https://code.visualstudio.com/) or without Microsoft telemetry [VSCodium](https://vscodium.com/) (or Atom, Brackets, Vim, Emacs, etc...)
        * Install extensions for VSCode:
           * Press ctrl-shift-x or click extensions icon on the left panel.
           * Search and install:

@@ -1,3 +1,6 @@
+<!-- TODO: process.env.HTTP_PORT = process.env.HTTP_PORT || 300; -->
+<!-- TODO: move localhost.js and prod.js to utils/ -->
+<!-- TODO: async/await bcrypt.genSalt and bcrypt.hash -->
 # Week 5
 
 ## HTTPS

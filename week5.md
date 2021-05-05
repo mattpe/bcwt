@@ -1,6 +1,7 @@
 <!-- TODO: process.env.HTTP_PORT = process.env.HTTP_PORT || 300; -->
 <!-- TODO: move localhost.js and prod.js to utils/ -->
 <!-- TODO: async/await bcrypt.genSalt and bcrypt.hash -->
+<!-- TODO: exif, console.error(error) but resolve([0,0]) instead of reject -->
 # Week 5
 
 ## HTTPS

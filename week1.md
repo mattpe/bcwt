@@ -11,6 +11,7 @@
              * Prettier
     * Some file transfer app like WinSCP, FileZilla or Cyberduck
     * App for testing REST API: [Postman](https://www.postman.com/downloads/) or [Insomnia](https://insomnia.rest/download)
+      * thre is also a [VSCode Plugin](https://blog.bitsrc.io/vs-codes-rest-client-plugin-is-all-you-need-to-make-api-calls-e9e95fcfd85a)
     * [Node.js](https://nodejs.org/en/) LTS version
        * MacOS no sudo for Mac users!!
          - [instructions](https://johnpapa.net/node-and-npm-without-sudo/)

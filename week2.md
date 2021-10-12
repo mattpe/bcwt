@@ -201,7 +201,7 @@
    ...
    ```
    * More on [async/await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function)
-   * Why does the server hang if there is an error with database query? How to prevent that?
+   * Why does the server hang if there is an error with database query? How to prevent that? [Error handling](https://www.youtube.com/watch?v=deZP3Z33DJ4)?
 
 1. [Prepared statements](https://github.com/sidorares/node-mysql2#using-prepared-statements)
    * Create a function getCat to `./models/catModel.js`
@@ -237,10 +237,10 @@
 
 1. Better UX
    * These files provide better UX
-      * [index2.html](https://raw.githubusercontent.com/ilkkamtk/wop-starters/week2-1/week2_public_html/index2.html)
-      * [main2.js to /js](https://raw.githubusercontent.com/ilkkamtk/wop-starters/week2-1/week2_public_html/js/main2.js)
-      * [serialize.js to /js](https://raw.githubusercontent.com/ilkkamtk/wop-starters/week2-1/week2_public_html/js/serialize.js)
-      * [style2.css to /css](https://raw.githubusercontent.com/ilkkamtk/wop-starters/week2-1/week2_public_html/css/syle2.css)
+      * [index2.html](https://raw.githubusercontent.com/ilkkamtk/wop-starters/week2-1/public/index2.html)
+      * [main2.js to /js](https://raw.githubusercontent.com/ilkkamtk/wop-starters/week2-1/public/js/main2.js)
+      * [serialize.js to /js](https://raw.githubusercontent.com/ilkkamtk/wop-starters/week2-1/public/js/serialize.js)
+      * [style2.css to /css](https://raw.githubusercontent.com/ilkkamtk/wop-starters/week2-1/public/css/syle2.css)
    * open index2.html in your browser and test (see also browser's console)
 
 1. Use the `/` route for PUT method in `./routes/catRoute.js` to update cats in database

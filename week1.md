@@ -53,7 +53,7 @@
    app.get('/catinfo', (req, res) => {
      const cat = {
        name: 'Frank',
-       birhdate: '2010-12-25',
+       birthdate: '2010-12-25',
        weight: 5,
      };
      res.json(cat);

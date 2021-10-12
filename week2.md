@@ -103,10 +103,11 @@
 ## Middleware
 1. Study [writing middleware](https://expressjs.com/en/guide/writing-middleware.html) and [using middleware](https://expressjs.com/en/guide/using-middleware.html)
 
-1. Earlier you moved front end files (html, css etc.) to public_html. If you test the index.html in public_html, you'll get [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) errors in your browser's console. To fix cross-origin issue, you need te enable CORS in your Express app with [these instructions](https://expressjs.com/en/resources/middleware/cors.html).
-   * Test that `index.html` works when you run it locally and from public_html
+1. Earlier you moved front end files (public folder) to your server. If you test the index.html from any other server than your express server, you'll get [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) errors in your browser's console. To fix cross-origin issue, you need te enable CORS in your Express app with [these instructions](https://expressjs.com/en/resources/middleware/cors.html).
+   * Test that `index.html` works when you run it locally and from your server (users.metropolia.fi or virtual server)
 
-1. Study [req.body](https://expressjs.com/en/4x/api.html#req.body) and [body-parser](https://github.com/expressjs/body-parser#readme) (note that the body-parser is "included" in express) on receiving and using data sent by e.g. html form
+1. Study [req.body](https://expressjs.com/en/4x/api.html#req.body) on receiving and using data sent by e.g. html form
+   * Note that the earlier versions of Express required the use of body-parser middleware. [More info here](https://medium.com/@mmajdanski/express-body-parser-and-why-may-not-need-it-335803cd048c).
    * `index.html` contains a form that sends userdata with POST method to `http://localhost:3000/user` endpoint.
    * Modify `/` route for post method in `./routes/userRoutes.js`. The route should log the user data sent by the form to the console. Test with Postman and with the form in `index.html`
 

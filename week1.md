@@ -19,7 +19,7 @@
 2. [Command line intro](https://guide.freecodecamp.org/linux/the-command-prompt/)
 3. [GIT](https://git-scm.com/about)
    * Study [GIT material](https://github.com/mattpe/git-intro/blob/master/git-basics.md)
-     * You don't have to do the exercises (yet)
+     * Exercises are recommended but not compulsory.
    * [What files to include in repo?](git.md)
    * Common git commands:
       * Creating new local repo (first create remote repo in [GitLab](https://gitlab.metropolia.fi/) or GitHub etc.)

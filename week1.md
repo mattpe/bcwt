@@ -16,8 +16,8 @@
     * [Git](https://git-scm.com/downloads) for Windows users (or from [git for windows](https://gitforwindows.org/) which comes with git bash)
     * [Metropolia VPN](https://wiki.metropolia.fi/pages/viewpage.action?pageId=149652071)
 
-1. [Command line intro](https://guide.freecodecamp.org/linux/the-command-prompt/)
-1. [GIT](https://git-scm.com/about)
+2. [Command line intro](https://guide.freecodecamp.org/linux/the-command-prompt/)
+3. [GIT](https://git-scm.com/about)
    * Study [GIT material](https://github.com/mattpe/git-intro/blob/master/git-basics.md)
      * You don't have to do the exercises (yet)
    * [What files to include in repo?](git.md)
@@ -37,10 +37,10 @@
       Remember to make README.md, license and especially .gitignore _before_ first commit
    * Create folder `week1` for the following exercises
 
-1. [Node.js](https://nodejs.org/en/)
+4. [Node.js](https://nodejs.org/en/)
    * Study the [material](node.md) and do the exercises
 
-1. [Express.js](https://expressjs.com/)
+5. [Express.js](https://expressjs.com/)
    * Create `server-one` folder to `week1`
    * Create package.json (`npm init`) in `server-one` folder
    * Install express `npm install express --save`
@@ -61,7 +61,10 @@
    ```
    * test in browser: `localhost:3000`
 
-1. [Pug](https://expressjs.com/en/guide/using-template-engines.html)
+6. [Different Rendering Strategies](https://blog.alexandrudanpop.dev/posts/fe-jargon-you-should-know-ssg-ssr-csr-vdom-22b0/)
+   1. Note: The project needs to be done using CSR strategy. Some UI parts can be done with SSR, but check this from teacher before starting to code the project.
+7. [Pug](https://expressjs.com/en/guide/using-template-engines.html)
+   * Note: Using a template engine such as Pug or [EJS](https://ejs.co/) follows SSR strategy.
    * Duplicate `server-one` folder and rename it to `server-two`
    * Create `views` folder to `server-two`
    * Make a [pug](https://pugjs.org/api/getting-started.html) template which generates the same HTML as index.html. Rename index.html to index_old.html

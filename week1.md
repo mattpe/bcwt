@@ -10,8 +10,9 @@
              * JavaScript (ES6) Code Snippets
              * Prettier
     * Some file transfer app like WinSCP, FileZilla or Cyberduck
+    * App for testing REST API: [Postman](https://www.postman.com/downloads/) or [Insomnia](https://insomnia.rest/download)
     * [Node.js](https://nodejs.org/en/) LTS version
-       * MacOS no sudo for Mac users
+       * MacOS no sudo for Mac users!!
          - [instructions](https://johnpapa.net/node-and-npm-without-sudo/)
     * [Git](https://git-scm.com/downloads) for Windows users (or from [git for windows](https://gitforwindows.org/) which comes with git bash)
     * [Metropolia VPN](https://wiki.metropolia.fi/pages/viewpage.action?pageId=149652071)

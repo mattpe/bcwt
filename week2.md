@@ -5,9 +5,9 @@
    * Navigate to your course folder in terminal or Git Bash
    * Create `week2` folder to your course folder: `mkdir week2`
    * Start new git repository to `week2` folder
-   * Add approriate `.gitignore` to `week2` folder and commit changes to code regularly
+   * Add approriate `.gitignore` (if it does not exist) to `week2` folder and commit changes to code regularly
    * [Download starter files as zip](https://github.com/ilkkamtk/wop-starters/tree/week2-1), extract and copy all files and folders to `week2` folder
-   * Move `week2_public_html` folder to your public_html in shell.metropolia.fi or in your virtual computer. You can rename the folder if you want. (This folder is needed later.)
+   * Move `public` folder to your public_html in shell.metropolia.fi or in your virtual computer. You can rename the folder if you want. This folder is needed later in the course to check access to the REST API.
    * Run `npm install` in `week2` folder
    * Run `nodemon app.js` or `node app.js` and test in browser: `localhost:3000/cat`
 

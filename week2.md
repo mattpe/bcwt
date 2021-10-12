@@ -109,10 +109,11 @@
 1. Study [req.body](https://expressjs.com/en/4x/api.html#req.body) on receiving and using data sent by e.g. html form
    * Note that the earlier versions of Express required the use of body-parser middleware. [More info here](https://medium.com/@mmajdanski/express-body-parser-and-why-may-not-need-it-335803cd048c).
    * `index.html` contains a form that sends userdata with POST method to `http://localhost:3000/user` endpoint.
-   * Modify `/` route for post method in `./routes/userRoutes.js`. The route should log the user data sent by the form to the console. Test with Postman and with the form in `index.html`
+   * Add new function 'user_post' to `./controllers/userController.js`. The function should log the user data sent by the form to the console.
+   * Modify `/` route for post method in `./routes/userRoute.js`. The route should execute 'user_post' function. Test with Postman and with the form in `index.html`
 
 1. Files are sent in HTTP as [multipart/form-data](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST). Because Express does not handle this type by default you need to use third party middelware like [Multer](https://github.com/expressjs/multer)
-   * Add another form to `index.html` for uploading file
+   * The second form in `index.html` is for uploading a file
    * Add `uploads` folder to `week2` and put the folder in version control; but not its content, e.g.
      ```console
      $ mkdir uploads
@@ -128,6 +129,8 @@
    * Use the 'Basic usage example' in Multer's documentation as an example and add file upload functionality to `./routes/catRoutes.js`. Use `/` for POST method as route.
       * prefer relative path ('./uploads/') instead of absolute path ('/uploads/')
       * [what is the difference](https://medium.com/@colinlmcdonald/absolute-vs-relative-paths-7ffd8e31d49c)
+   * Add new function 'cat_post' to `./controllers/catController.js`. The function should log the data sent by the form (req.data) and file data (req.file) to the console. 
+   * Modify `/` route for post method in `./routes/catRoute.js`. The route should execute the multer middleware and 'cat_post' function.
    * Check `uploads` folder after uploading to see new files.
       * Filenames are automatically hashed.
       * If you want to have more control over filenames use [Diskstorage](https://github.com/expressjs/multer#diskstorage)

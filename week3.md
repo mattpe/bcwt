@@ -39,7 +39,7 @@
          * password: minimum length 8 characters, at least one capital letter
       * Add cat
          * name: required
-         * age: number, required
+         * date: date, required
          * weight: number, required
          * select owner: required
          * file: required, accept only images (jpg, gif, png)

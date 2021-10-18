@@ -226,5 +226,5 @@ Quite often one might want to have different user roles in your app such as admi
 1. Users can only delete and edit their own files and data
    * modify the SQL queries for deleting and modifying in catModel.js and userModel.js so that query will also check that  wop_cat.owner and wop_user_id match the user_id in req.user
 2. Administrator can delete and edit everyone's data
-   * now you need two SQL queries; one for reqular users that checks that user_id in req.user matches wop_cat.owner and wop_user_id (query A) the other is for admin and it does not check owner or user_id (query B). 
+   * now you need two SQL queries in your modify and delete functions: one for reqular users that checks that user_id in req.user matches wop_cat.owner and wop_user_id (query A) the other is for admin and it does not check owner or user_id (query B). 
    * add conditional statements to catModel.js and userModel.js which define whether to use query A or query B 

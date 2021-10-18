@@ -228,4 +228,4 @@ Quite often you might want to have different user roles in your app such as admi
 2. Administrator can delete and edit everyone's cats
    * now you need two SQL queries in your modify and delete functions: one for regular users that checks that user_id in req.user matches the owner (query A) the other is for admin and it does not check the owner (query B). 
    * add conditional statements to catModel.js which define whether to use query A or query B 
-3. How can you achieve similar functionality in userModel.js?
+3. How can you achieve similar functionality for users?

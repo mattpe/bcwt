@@ -125,7 +125,7 @@
    * Continue the app started on week 2. You should be now in `week3` branch. Make sure you have committed all files (`git status`) then create new branch `week4`
    * Install passport, passport-local, passport-jwt and jsonwebtoken `npm i passport passport-local passport-jwt jsonwebtoken`
    
-1. Create a function getUserLogin to `./models/userModel.js`
+2. Create a function getUserLogin to `./models/userModel.js`
    ```javascript
    ...
    const getUserLogin = async (params) => {
@@ -141,7 +141,7 @@
    };
    ...
    ```
-1. Add new file `./controllers/authController.js`
+3. Add new file `./controllers/authController.js`
    ```javascript
    'use strict';
    const jwt = require('jsonwebtoken');
@@ -156,10 +156,10 @@
    };
 
    ```
-1. Study [this](https://medium.com/front-end-weekly/learn-using-jwt-with-passport-authentication-9761539c4314#025a) example and add passport local strategy authentication to TODO section
+4. Study [this](https://medium.com/front-end-weekly/learn-using-jwt-with-passport-authentication-9761539c4314#025a) example and add passport local strategy authentication to TODO section
    * the example starts with passport.authenticate...
    
-1. Add new file `./routes/authRoute.js`
+5. Add new file `./routes/authRoute.js`
    ```javascript
    'use strict';
    const express = require('express');
@@ -170,11 +170,11 @@
    
    module.exports = router;
    ```
-1. Require `./utils/pass.js` as passport and `./routes/authRoute.js` as authRoute in `app.js`
+6. Require `./utils/pass.js` as passport and `./routes/authRoute.js` as authRoute in `app.js`
 
-1. Add `passport.authenticate('jwt', {session: false})` [middleware](https://medium.com/front-end-weekly/learn-using-jwt-with-passport-authentication-9761539c4314#dfa8) to `/cat` and `/user` routes.
+7. Add `passport.authenticate('jwt', {session: false})` [middleware](https://medium.com/front-end-weekly/learn-using-jwt-with-passport-authentication-9761539c4314#dfa8) to `/cat` and `/user` routes.
 
-1. Add new folder `utils` and create new file `./utils/pass.js`
+8. Add new folder `utils` and create new file `./utils/pass.js`
    ```javascript
    'use strict';
    const passport = require('passport');
@@ -206,19 +206,20 @@
    
    module.exports = passport;
    ```
-1. Study [this](https://medium.com/front-end-weekly/learn-using-jwt-with-passport-authentication-9761539c4314#fcdf) example and add JWT strategy to TODO section
+9. Study [this](https://medium.com/front-end-weekly/learn-using-jwt-with-passport-authentication-9761539c4314#fcdf) example and add JWT strategy to TODO section
    * use arrow functions
    * instead of `cb`, use `done` as the name for the callback function
    * use the local strategy for username password login in the code above as an example
 
-1. Test with postman
-   * start with login: POST, localhost:3000/auth/login
-   * after login is succesful, copy the token from response
-   * test token with GET, localhost:3000/cat and localhost:3000/user
-      * add token to Authorization tab, choose TYPE/Bearer Token
-   * updated UI
-      * [index3.html](https://raw.githubusercontent.com/ilkkamtk/wop-starters/week2-1/week2_public_html/index3.html)
-      * [main3.js to /js](https://raw.githubusercontent.com/ilkkamtk/wop-starters/week2-1/week2_public_html/js/main3.js)
+10. Test with postman
+    * start with login: POST, localhost:3000/auth/login
+    * after login is succesful, copy the token from response
+    * test token with GET, localhost:3000/cat and localhost:3000/user
+       * add token to Authorization tab, choose TYPE/Bearer Token
+    * updated UI
+       * [index3.html](https://raw.githubusercontent.com/ilkkamtk/wop-starters/week2-1/week2_public_html/index3.html)
+       * [main3.js to /js](https://raw.githubusercontent.com/ilkkamtk/wop-starters/week2-1/week2_public_html/js/main3.js)
+11. Now that we have login etc. it's better not to send the owner id from the front end. Modify catRoute.js, catController.js and catModel.js so that you get owner's id from req.user
            
 ### User Roles
 Quite often you might want to have different user roles in your app such as administrator and regular user. One way to achieve this is to add one column to the user table in your database. In our wop_user table there is already a column 'role' of type integer. The idea is that administrator role is 0 and regular user is 1. Other roles would be 2, 3 etc. Of course the role column could also be a string like 'admin', 'user', 'moderator' etc.

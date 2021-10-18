@@ -221,10 +221,11 @@
       * [main3.js to /js](https://raw.githubusercontent.com/ilkkamtk/wop-starters/week2-1/week2_public_html/js/main3.js)
            
 ### User Roles
-Quite often one might want to have different user roles in your app such as administrator and regular user. One way to achieve this is to add one column to user table in your database. In our wop_user table there is already a column 'role' of type integer. The idea is that administrator role is 0 and regular user is 1. Other roles would be 2, 3 etc. Of course the role column could also be a string like 'admin', 'user', 'moderator' etc.
+Quite often you might want to have different user roles in your app such as administrator and regular user. One way to achieve this is to add one column to the user table in your database. In our wop_user table there is already a column 'role' of type integer. The idea is that administrator role is 0 and regular user is 1. Other roles would be 2, 3 etc. Of course the role column could also be a string like 'admin', 'user', 'moderator' etc.
 #### Tasks
-1. Users can only delete and edit their own files and data
-   * modify the SQL queries for deleting and modifying in catModel.js and userModel.js so that query will also check that  wop_cat.owner and wop_user_id match the user_id in req.user
-2. Administrator can delete and edit everyone's data
-   * now you need two SQL queries in your modify and delete functions: one for regular users that checks that user_id in req.user matches wop_cat.owner and wop_user_id (query A) the other is for admin and it does not check owner or user_id (query B). 
-   * add conditional statements to catModel.js and userModel.js which define whether to use query A or query B 
+1. Users can only delete and edit their own cats
+   * modify the SQL queries for deleting and modifying in catModel.js so that queries will also check that  owner matches the user_id in req.user. req.user needs to come as a parameter from catController.js.
+2. Administrator can delete and edit everyone's cats
+   * now you need two SQL queries in your modify and delete functions: one for regular users that checks that user_id in req.user matches the owner (query A) the other is for admin and it does not check the owner (query B). 
+   * add conditional statements to catModel.js which define whether to use query A or query B 
+3. How can you achieve similar functionality in userModel.js?

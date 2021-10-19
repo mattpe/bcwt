@@ -1,4 +1,8 @@
-## API Reference
+# WOP REST API
+
+Example API for WOP and BCWT courses
+
+## API Reference v.0.1
 
 #### Get all cats
 

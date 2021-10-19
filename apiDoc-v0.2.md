@@ -16,8 +16,8 @@ Example API for WOP and BCWT courses
 
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
-| `username` | `email` | **Required, email** |
-| `password`    | `string` | **Required, min length 8 characters at least one capital letter** |
+| `username` | `email` | **Required** |
+| `password`    | `string` | **Required** |
 
 Response:
 
@@ -47,7 +47,7 @@ Response:
 | :-------- | :------- | :-------------------------------- |
 | `name`     | `string` | **Required, min length 3** |
 | `email` | `email` | **Required, email** |
-| `passwd`    | `string` | **Required, min length 8 characters at least one capital letter** |
+| `passwd`    | `string` | **Required, min length 8 characters, at least one capital letter** |
 
 Response:
 
@@ -262,7 +262,7 @@ Response:
 | `id`     | `int` | **Required**, user_id of the user|
 | `name`     | `string` | **Optional, min length 3** |
 | `email` | `email` | **Optional, email**  |
-| `passwd`    | `number` | **Optional, min length 8 characters at least one capital letter** |
+| `passwd`    | `number` | **Optional, min length 8 characters, at least one capital letter** |
 
 Response:
 

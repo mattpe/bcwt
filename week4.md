@@ -1,4 +1,5 @@
 # Week 4
+Now we start to make our REST API to follow the [second version of the API Documentation](apiDoc-v0.2.md)
 ## Authentication with [passport.js](http://www.passportjs.org/docs/downloads/html/)
 1. Setup
    * Continue last week's `state-management` exercise. Make sure you have committed all files (`git status`) then create new branch `passport`

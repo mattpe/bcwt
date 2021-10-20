@@ -29,12 +29,12 @@ Response:
 #### Get one cat
 
 ```http
-  GET /cat/:id
+  GET /cat/:cat_id
 ```
 
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
-| `id`      | `int` | **Required**. Id of cat to fetch |
+| `cat_id`      | `int` | **Required**. cat_id of cat to fetch |
 
 Response:
 
@@ -73,7 +73,7 @@ Response:
 ```json
 {
   "message": "cat added",
-  "id": 3
+  "cat_id": 3
 }
 ```
 
@@ -106,12 +106,12 @@ Response:
 #### Delete cat
 
 ```http
-  DELETE /cat/:id
+  DELETE /cat/:cat_id
 ```
 
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
-| `id`      | `int` | **Required**. Id of cat to delete |
+| `cat_id`      | `int` | **Required**. cat_id of cat to delete |
 
 Response:
 
@@ -143,12 +143,12 @@ Response:
 #### Get one user
 
 ```http
-  GET /user/:id
+  GET /user/:user_id
 ```
 
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
-| `cat_id`      | `int` | **Required**. cat_id of user to fetch |
+| `user_id`      | `int` | **Required**. user_id of user to fetch |
 
 Response:
 
@@ -182,7 +182,7 @@ Response:
 ```json
 {
   "message": "user added",
-  "id": 3
+  "user_id": 3
 }
 ```
 
@@ -214,7 +214,7 @@ Response:
 #### Delete user
 
 ```http
-  DELETE /user/:id
+  DELETE /user/:user_id
 ```
 
 | Parameter | Type     | Description                       |

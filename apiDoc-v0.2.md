@@ -54,7 +54,7 @@ Response:
 ```json
 {
   "message": "user added",
-  "id": 3
+  "user_id": 3
 }
 ```
 
@@ -291,5 +291,26 @@ Response:
 ```json
 {
   "message": "user deleted"
+}
+```
+
+#### Check token
+
+```http
+  GET /user/token
+```
+
+```http
+  Authorization: Bearer token
+```
+
+Response:
+
+```json
+{
+  "user_id": 3,
+  "name": "John Doe",
+  "email": "john@metropolia.fi",
+  "role": 1
 }
 ```

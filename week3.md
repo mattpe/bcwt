@@ -21,7 +21,7 @@
          * password: minimum length 8 characters, at least one capital letter
       * Add cat
          * name: required
-         * age: number, required
+         * birthdate: date, required
          * weight: number, required
          * select owner: required
          * file: required, accept only images (jpg, gif, png)
@@ -39,10 +39,11 @@
          * password: minimum length 8 characters, at least one capital letter
       * Add cat
          * name: required
-         * age: number, required
+         * birthdate: date, required
          * weight: number, required
          * select owner: required
          * file: required, accept only images (jpg, gif, png)
+            * file needs to be validated wiht Multer's [fileFilter](https://github.com/expressjs/multer#filefilter) 
       * Modify cat:
          * same as Add cat
 1. Server side data sanitization

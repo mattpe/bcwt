@@ -167,13 +167,13 @@ app.get('/', (req, res) => {
 
 ### Login
 
-1. Modify local strategy in `utils/pass.js`:
+1.  `utils/pass.js` should be currently something like this:
    ```javascript
    passport.use(new Strategy(
        async (username, password, done) => {
          const params = [username];
          try {
-           const [user] = await userModel.getUserLogin(params);
+           const [user] = await getUserLogin(params);
            console.log('Local strategy', user); // result is binary row
            if (user === undefined) { // user not found
              return done(null, false);
@@ -183,7 +183,7 @@ app.get('/', (req, res) => {
              console.log('here');
              return done(null, false);
            }
-           delete user.password; // remove password propety from user object
+           // delete user.password; // remove password propety from user object if it's still there
            return done(null, {...user}); // use spread syntax to create shallow copy to get rid of binary row type
          } catch (err) { // general error
            return done(err);
@@ -191,7 +191,7 @@ app.get('/', (req, res) => {
        }));
    ```
 
-1. Modify `getUserLogin` function in `models/userModel.js`:
+1. `getUserLogin` function in `models/userModel.js` should be something like this:
    ```javascript
    const getUserLogin = async (params) => {
      try {
@@ -241,8 +241,7 @@ app.get('/', (req, res) => {
              matches('(?=.*[A-Z]).{8,}'),
          sanitizeBody('name').escape(),
        ],
-       authController.user_create_post,
-       authController.login,
+       authController.user_create_post
    );
 
    module.exports = router;
@@ -266,9 +265,10 @@ app.get('/', (req, res) => {
          req.body.username,
          req.body.password, // TODO: save hash instead of the actual password
        ];
-
-       if (await userModel.addUser(params)) {
-         next();
+        
+       const result = await addUser(params);
+       if (result.insertId) {
+         res.json({ message: `User added`, user_id: result.insertId });
        } else {
          res.status(400).json({error: 'register error'});
        }

@@ -1,6 +1,5 @@
 <!--
-TODO: pm2 or systemd? https://nodesource.com/blog/running-your-node-js-app-with-systemd-part-1/ 
-TODO: merge from orientation
+TODO: pm2 or systemd? https://nodesource.com/blog/running-your-node-js-app-with-systemd-part-1/
 -->
 # Metropolia Educloud virtual computer (CentOS server)
 
@@ -34,8 +33,8 @@ TODO: merge from orientation
    1.  Lease time 4 months, size doesn't matter much (medium or large will have more cpu/memory)
    1.  ([Helpdesk page](https://tietohallinto.metropolia.fi/display/itservices/Educational+educloud+virtual+services))
 2. Wait for 10-15 minutes for the server to be created
-   1.  You will receive an email with the IP address of the server and the root password (root is default administrator on any linux/unix operating system)
-3. Open a terminal (CLI). On windows computer, install [bash shell](https://docs.microsoft.com/en-us/windows/wsl/install-win10) or [Git Bash](https://gitforwindows.org/). Mac/Linux already have a terminal to start with (e.g. on Mac under Applications/Utilities, on gnome/mate linux desktop with ``ALT + CTRL + T`` shortcut)
+   1.  You will receive an email with the IP address of the server and the root password (root is default administrator on any Linux/Unix operating system)
+3. Open a terminal (CLI). On windows computer, install [bash shell](https://docs.microsoft.com/en-us/windows/wsl/install-win10) or [Git Bash](https://gitforwindows.org/). Mac/Linux already have a terminal to start with (e.g. on Mac under Applications/Utilities, on gnome/mate Linux desktop with ``ALT + CTRL + T`` shortcut)
 4. From terminal, use ssh protocol to connect to your virtual server
    1.  If you are not in metropolia network, use VPN or double ssh (check [first section](#working-from-outside-metropolia-network))
    1.  Run the following command:
@@ -55,9 +54,17 @@ If s/he “only” crack your user account, s/he will be sandboxed (and can do l
         # useradd wantedUsername
         # passwd wantedUsername
         ```
+   1.  Optional, install bash completion (to type commands with arguments faster) and vim (improved vi editor with e.g. syntax highlight,...):
+       ```console
+       # yum install bash-completion bash-completion-extras vim
+       ```
    1.  Give that user sudo (super user do) privileges:
         ```console
         # visudo
+        ```
+        or if you installed vim:
+        ```console
+        # EDITOR=vim visudo
         ```
    1.  Navigate to the line that shows:
        ```apacheconf
@@ -71,9 +78,17 @@ If s/he “only” crack your user account, s/he will be sandboxed (and can do l
         wantedUsername ALL=(ALL) ALL
         ```
    1.  To escape from insert mode, type ``esc``-key. Save and quit the editor by typing ``:wq``
+   1.  Switch user to test your account:
+        ```console
+        # su wantedUsername
+        ```
    1.  Give your user the permission to ssh to the server by editing ssh deamon configuration:
         ```console
-        # vi /etc/ssh/sshd_config
+        $ sudo vi /etc/ssh/sshd_config
+        ```
+        or if you installed vim:
+        ```console
+        $ sudo vim /etc/ssh/sshd_config
         ```
    1.  Navigate to the end of the file (e.g. with ``G``-key (capital g)) and add the following line:
        ```apacheconf
@@ -86,9 +101,10 @@ If s/he “only” crack your user account, s/he will be sandboxed (and can do l
         ```
    1.  Test that you can login with the new account:
         ```console
+        $ exit
         # logout
         ```
-        (alternative to logout is to use ``CTRL+D`` shortcut).
+        (alternative to exit/logout is to use ``CTRL+D`` shortcut).
         ```console
         $ ssh wantedUsername@IPaddress
         ```
@@ -111,7 +127,7 @@ If s/he “only” crack your user account, s/he will be sandboxed (and can do l
 
 ## Install and configure Apache web server
 
-1.  Install apache web server:
+1.  Install Apache web server:
     ```console
     $ sudo yum install httpd
     ```
@@ -204,7 +220,7 @@ If s/he “only” crack your user account, s/he will be sandboxed (and can do l
 1. Configure Apache httpd server as a reverse proxy to node server:
    1.  create/edit an apache configuration file:
         ```console
-        $ sudo vi /etc/httpd/conf.d/node.conf
+        $ sudo vim /etc/httpd/conf.d/node.conf
         ```
    1.  add the following content:
        ```apacheconf
@@ -253,7 +269,15 @@ If s/he “only” crack your user account, s/he will be sandboxed (and can do l
         $ node app.js
         ```
    1.  test, open a browser and visit ``http://<ip-address>/app/``
-   1.  if you want to let your app running forever, run it as a
+   1.  to kill the app, use `CTRL`+`C`.
+   1.  to have your app running forever, including restart on crash, use e.g. [pm2](https://pm2.keymetrics.io/)
+       ```console
+       $ sudo npm install -g pm2
+       $ pm2 start app.js
+       ```
+   1.  if you want that the app reload on change (e.g. on next `git pull`), use the `--watch` flag.
+   1.  other "pure" linux option could use [systemd](https://nodesource.com/blog/running-your-node-js-app-with-systemd-part-1/) (`systemctl`).
+<!--   1.  if you want to let your app running forever, run it as a
         background task (note the ampstamp & at the end)
         ```console
         $ node app.js &
@@ -263,6 +287,7 @@ If s/he “only” crack your user account, s/he will be sandboxed (and can do l
         ```console
         $ pkill node
         ```
+-->
 
 ## Extra and resources
 - [Unix/linux command](https://centoshelp.org/resources/commands/linux-system-commands/)

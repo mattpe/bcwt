@@ -16,13 +16,13 @@
        * MacOS no sudo for Mac users!!
          - [instructions](https://johnpapa.net/node-and-npm-without-sudo/)
     * [Git](https://git-scm.com/downloads) for Windows users (or from [git for windows](https://gitforwindows.org/) which comes with git bash)
-    * [Metropolia VPN](https://wiki.metropolia.fi/pages/viewpage.action?pageId=149652071)
+    * [Metropolia VPN](https://wiki.metropolia.fi/display/itservices/VPN+Remote+Connections)
 
 2. [Command line intro](https://guide.freecodecamp.org/linux/the-command-prompt/)
 3. [GIT](https://git-scm.com/about)
    * Study [GIT material](https://github.com/mattpe/git-intro/blob/master/git-basics.md)
      * Exercises are recommended but not compulsory.
-   * [What files to include in repo?](git.md)
+   * [What files to include in repo?](git.md), gitlab/github have nice default template to start with.
    * Common git commands:
       * Creating new local repo (first create remote repo in [GitLab](https://gitlab.metropolia.fi/) or GitHub etc.)
           * `git init` and `git remote add origin https://gitlab.metropolia.fi/user/repo-name.git`

@@ -103,6 +103,8 @@
       * _extra:_ delete password poperty from user's data before sending.
   * Test with Postman.
 
+10. Remeber git add/commit/...
+
 ## Middleware
 1. Study [writing middleware](https://expressjs.com/en/guide/writing-middleware.html) and [using middleware](https://expressjs.com/en/guide/using-middleware.html)
 
@@ -132,7 +134,7 @@
    * Use the 'Basic usage example' in Multer's documentation as an example and add file upload functionality to `./routes/catRoutes.js`. Use `/` for POST method as route.
       * prefer relative path ('./uploads/') instead of absolute path ('/uploads/')
       * [what is the difference](https://medium.com/@colinlmcdonald/absolute-vs-relative-paths-7ffd8e31d49c)
-   * Add new function 'cat_post' to `./controllers/catController.js`. The function should log the data sent by the form (req.data) and file data (req.file) to the console. 
+   * Add new function 'cat_post' to `./controllers/catController.js`. The function should log the data sent by the form (req.data) and file data (req.file) to the console.
    * Modify `/` route for post method in `./routes/catRoute.js`. The route should execute the multer middleware and 'cat_post' function.
    * Check `uploads` folder after uploading to see new files.
       * Filenames are automatically hashed.
@@ -280,4 +282,4 @@
 
    ```
 
-1. Commit changes and push to GitLab or GitHub
+1. Commit changes and push to GitLab or GitHub (all branches)

@@ -1,4 +1,7 @@
-<!-- TODO: pm2 -->
+<!--
+TODO: pm2 or systemd? https://nodesource.com/blog/running-your-node-js-app-with-systemd-part-1/ 
+TODO: merge from orientation
+-->
 # Metropolia Educloud virtual computer (CentOS server)
 
 ## Working from outside metropolia network

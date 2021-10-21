@@ -217,9 +217,7 @@ Now we start to make our REST API to follow the [second version of the API Docum
     * after login is succesful, copy the token from response
     * test token with GET, localhost:3000/cat and localhost:3000/user
        * add token to Authorization tab, choose TYPE/Bearer Token
-    * updated UI
-       * [index3.html](https://raw.githubusercontent.com/ilkkamtk/wop-starters/week2-1/week2_public_html/index3.html)
-       * [main3.js to /js](https://raw.githubusercontent.com/ilkkamtk/wop-starters/week2-1/week2_public_html/js/main3.js)
+    * Test also with the UI in folder `wop-ui/ui3`
        * Logout by deleting the token from browser's session storage (developer tools/application)
 
 11. Now that we have login etc. it's better not to send the owner id from the front end. Modify catRoute.js, catController.js and catModel.js so that you get owner's id from req.user

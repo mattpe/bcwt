@@ -310,7 +310,7 @@ app.get('/', (req, res) => {
    };
    ```
 1. Complete TODO in the code above. Call `makeThumbnail` function in `catController` before you add the cat to database.
-1. Upload a new cat in index5.html
+1. Use UI in `wop-ui/ui4` and upload a new cat
 
 ## Metadata from image
 1. Study [Creating a Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise#Creating_a_Promise)
@@ -395,11 +395,11 @@ app.get('/', (req, res) => {
    ```
 1. Require `utils/imageMeta.js` as `imageMeta` in `catController.js`
 1. Complete TODO in `utils/imageMeta.js`
-1. Upload cat in index5.html to test
+1. Use UI in `wop-ui/ui4` and upload a new cat
 
 ### Upload to virtual server and run
 1. Deploy final app to your virtual server
-   * once your app works on your localhost machine, remember to update `main5.js` in `whatever_public/js/` around line 2 to `const url = 'https://your_ip/app/';`
+   * once your app works on your localhost machine, remember to update `ui4.js` in `whatever_public/js/` around line 2 to `const url = 'https://your_ip/app/';`
    * git commit/push on your local machine and pull on server, make sure to be in right folder, e.g.
      ```console
      $ cd week2
@@ -408,10 +408,13 @@ app.get('/', (req, res) => {
    * don't upload node_modules (should normally be in `.gitignore`)
    * after pulling (if any conflict, just delete the conflicting files (e.g. `$ rm pacakge-lock.js`) and pull again), run `$ npm install`
    * check that `thumbnails` folder got created with the git pull (in case it is in `.gitignore`, then create it `$ mkdir thumbnails`)
-   * make sure that databaes is up to date (`$ mysql -u dbuser -p catdb` (adapt your database user and database name))
+   * make sure that database is up to date (`$ mysql -u dbuser -p catdb` (adapt your database user and database name))
      ```sql
      ALTER TABLE wop_cat ADD coords text;
      UPDATE wop_user SET password = 'SomeHashOfThePassword...' WHERE user_id = 1; # and same for jane (user_id = 2)
      ```
    * edit .env if neccessary and run `node app.js` or `nodemon app.js` or with [pm2](https://www.npmjs.com/package/pm2)
    * visit `http://your_IP/app/index5.html`, test that it redirects to https and that you can login and add cats
+
+### Single Page App
+There is a [Sinlge Page App (or SPA)](https://medium.com/@NeotericEU/single-page-application-vs-multiple-page-application-2591588efe58) version of the UI in `wop-ui/ui5`. You can also test that and study the code.

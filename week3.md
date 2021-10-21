@@ -13,7 +13,7 @@
     
 1. HTML5 Built-in form validation
    * Continue last week's exercise. Make sure you have committed previous git branch then create new branch `week3`
-   * In index2.html there are three forms: Add user, Add cat, Modify cat
+   * In `wop-ui/ui2` there are HTML files with forms for adding user, adding cat and modifying cat
    * Add the following validation properties:
       * Add user
          * name: minimum length 3 characters, required

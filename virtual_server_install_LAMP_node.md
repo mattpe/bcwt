@@ -325,7 +325,7 @@ If s/he “only” crack your user account, s/he will be sandboxed (and can do l
         $ cd
         ```
    1.  clone your app (choose (or [generate keys for SSH](https://docs.gitlab.com/ee/ssh/#generate-an-ssh-key-pair))):
-   ```console
+        ```console
         $ git clone https://gitlab.metropolia.fi/<your-repo>
         ```
    1.  go to the cloned repo:
@@ -350,7 +350,7 @@ If s/he “only” crack your user account, s/he will be sandboxed (and can do l
         $ node app.js
         ```
    1.  test, open a browser and visit ``http://<ip-address>/app/``
-   1.  to kill the app, use `CTRL`+`C`, or if no more hanging your terminal session, try `$ pkill node` or use `$ top`
+   1.  to kill the app, use `CTRL+C`, or if no more hanging your terminal session, try `$ pkill node` or use `$ top`
    1.  to have your app running forever, including restart on crash, use e.g. [pm2](https://pm2.keymetrics.io/):
        ```console
        $ sudo npm install -g pm2

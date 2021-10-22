@@ -7,10 +7,10 @@
 * Regular Expressions
    * [Wikipedia](https://en.wikipedia.org/wiki/Regular_expression)
    * [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions)
-   * [HTML](https://html.com/attributes/input-pattern/)  
+   * [HTML](https://html.com/attributes/input-pattern/)
    * [RegEx Lesson](https://regexone.com/)
    * [Online tester](https://regex101.com/)
-    
+
 1. HTML5 Built-in form validation
    * Continue last week's exercise. Make sure you have committed previous git branch then create new branch `week3`
    * In `wop-ui/ui2` there are HTML files with forms for adding user, adding cat and modifying cat
@@ -43,7 +43,7 @@
          * weight: number, required
          * select owner: required
          * file: required, accept only images (jpg, gif, png)
-            * file needs to be validated wiht Multer's [fileFilter](https://github.com/expressjs/multer#filefilter) 
+            * file needs to be validated wiht Multer's [fileFilter](https://github.com/expressjs/multer#filefilter)
       * Modify cat:
          * same as Add cat
 1. Server side data sanitization

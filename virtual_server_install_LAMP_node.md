@@ -1,6 +1,3 @@
-<!--
-TODO: pm2 or systemd? https://nodesource.com/blog/running-your-node-js-app-with-systemd-part-1/
--->
 # Metropolia Educloud virtual computer (CentOS server)
 
 ## Working from outside metropolia network
@@ -29,7 +26,7 @@ TODO: pm2 or systemd? https://nodesource.com/blog/running-your-node-js-app-with-
    1.  visit [https://educloud.metropolia.fi/](https://educloud.metropolia.fi/)
    1.  login with your metropolia credentials
    1.  navigate to Services/Catalogs
-   1.  choose Centos 7 x64 - Basic Install with IP address setup done
+   1.  choose CentOS 7 x64 - Basic Install with IP address setup done
    1.  Lease time 4 months, size doesn't matter much (medium or large will have more cpu/memory)
    1.  ([Helpdesk page](https://tietohallinto.metropolia.fi/display/itservices/Educational+educloud+virtual+services))
 2. Wait for 10-15 minutes for the server to be created
@@ -147,12 +144,96 @@ If s/he “only” crack your user account, s/he will be sandboxed (and can do l
    ```console
    $ sudo firewall-cmd --reload
    ```
-5. In your browser, open the URL: ``http://<ip-address>/`` (substitute with your IP address). You should see your Apache web server welcome page.
+5. In your browser, open the URL: ``http://<ip-address>/`` (substitute with your IP address). You should see your Apache web server welcome page. Follow the instructions to hide that welcome page.
 
-1. (Optional) The root of your web server is on following path: ``/var/www/html``; but it require root privileges to add/edit/delete files. to create a public_html-folder for your user:
-   1.  Follow these steps '[Enable Apache Userdirs](https://www.unixmen.com/linux-basics-enable-apache-userdir-centos-7rhel-7/)'.
-        Substitue the "unixmenuser" with your username "wantedUsername".
-   1.  visit: ``http://<ip-address>/~<wantedUsername>/``
+1. The root of your web server is on following path: ``/var/www/html``; but it require root privileges to add/edit/delete files. to create a public_html-folder for your user:
+   1.  Edit the configuration file:
+       ```console
+       $ sudo vim /etc/httpd/conf.d/userdir.conf
+       ```
+      1. Change the line `UserDir disabled` to `UserDir enabled wantedUsername`
+      1. Uncomment the line (delete the hash `#`) `UserDir public_html`, so the file should looks like:
+      ```apache
+      #
+      # UserDir: The name of the directory that is appended onto a user's home
+      # directory if a ~user request is received.
+      #
+      # The path to the end user account 'public_html' directory must be
+      # accessible to the webserver userid.  This usually means that ~userid
+      # must have permissions of 711, ~userid/public_html must have permissions
+      # of 755, and documents contained therein must be world-readable.
+      # Otherwise, the client will only receive a "403 Forbidden" message.
+      #
+      <IfModule mod_userdir.c>
+          #
+          # UserDir is disabled by default since it can confirm the presence
+          # of a username on the system (depending on home directory
+          # permissions).
+          #
+          UserDir enabled wantedUsername
+
+          #
+          # To enable requests to /~user/ to serve the user's public_html
+          # directory, remove the "UserDir disabled" line above, and uncomment
+          # the following line instead:
+          #
+          UserDir public_html
+      </IfModule>
+
+      #
+      # Control access to UserDir directories.  The following is an example
+      # for a site where these directories are restricted to read-only.
+      #
+      <Directory "/home/*/public_html">
+          AllowOverride FileInfo AuthConfig Limit Indexes
+          Options MultiViews Indexes SymLinksIfOwnerMatch IncludesNoExec
+          Require method GET POST OPTIONS
+      </Directory>
+      ```
+   1.  Restart the server
+       ```console
+       $ sudo systemctl restart httpd
+       ```
+   1.  Create your personal public_html folder. Make sure you are in your `/home/wantedUsername` directory (check e.g. with `pwd` command):
+       ```console
+       $ mkdir public_html
+       ```
+   1. Change your home folder visibility (so Apache can access it):
+      ```console
+      $ chmod 711 .
+      $ chmod 755 public_html
+      ```
+   1. Set the special CentOS/RedHat SELinux security:
+      ```console
+      $ sudo setsebool -P httpd_enable_homedirs true
+      $ sudo chcon -R -t httpd_sys_content_t public_html
+      ```
+   1.  Visit: ``http://<ip-address>/~<wantedUsername>/``
+
+### Deploy your UI (HTML/CSS/JS/imgages/...) from your git repository
+
+1. Change directory to your public_html:
+   ```console
+   $ cd public_html
+   ```
+1. Clone your UI (choose HTTPS (or [generate keys for SSH](https://docs.gitlab.com/ee/ssh/#generate-an-ssh-key-pair))):
+   ```console
+   $ git clone https://gitlab.metropolia.fi/<your-repo>
+   ```
+   (substitute your git remote repository URL)
+1. Create a `.htacess` file in order to hide `.git` folder and `.gitignore` file:
+   ```console
+   $ vim .htaccess
+   ```
+   with the following content:
+   ```apache
+   # never deliver .git folders, .gitIgnore
+   RewriteEngine On
+   RewriteRule ^(.*/)?\.git+ - [R=404,L]
+   ```
+   Escape, save and quit.
+1.  Visit/refresh: ``http://<ip-address>/~<wantedUsername>/``, you should see now your folder. In case you see the `.git` folder, restart the apache httpd server.
+
 
 ## Install and configure MariaDB database server
 
@@ -230,11 +311,11 @@ If s/he “only” crack your user account, s/he will be sandboxed (and can do l
          ProxyPassReverse /app/ http//:127.0.0.1:3000/
        </VirtualHost>
        ```
-1. save and restart apache server
+1. save and restart apache server:
    ```console
    $ sudo systemctl restart httpd
    ```
-1. give permission to apache server to visit URL
+1. give permission to apache server to visit URL:
    ```console
    $ sudo setsebool -P httpd_can_network_connect 1
    ```
@@ -243,34 +324,34 @@ If s/he “only” crack your user account, s/he will be sandboxed (and can do l
         ```console
         $ cd
         ```
-   1.  clone your app (choose HTTPS)
-        ```console
+   1.  clone your app (choose (or [generate keys for SSH](https://docs.gitlab.com/ee/ssh/#generate-an-ssh-key-pair))):
+   ```console
         $ git clone https://gitlab.metropolia.fi/<your-repo>
         ```
-   1.  go to the cloned repo
+   1.  go to the cloned repo:
         ```console
         $ cd <your-repo>
         ```
    1.  eventually, check that you are in the right branch (checkout if
         not)
-   1.  install dependencies
+   1.  install dependencies:
         ```console
         $ npm i
         ```
-   1. create/edit ``.env`` file with your db credentials (you set in [MariaDB](#install-and-configure-mariadb-database-server), step iii)
+   1. create/edit ``.env`` file with your db credentials (you set in [MariaDB](#install-and-configure-mariadb-database-server), step iii):
        ```apacheconf
         DB_HOST=127.0.0.1
         DB_USER=<your-db-user>
         DB_PASS=<your-db-user_password>
         DB_NAME=<your-db-name>
         ```
-   1.  run your application
+   1.  run your application:
         ```console
         $ node app.js
         ```
    1.  test, open a browser and visit ``http://<ip-address>/app/``
-   1.  to kill the app, use `CTRL`+`C`.
-   1.  to have your app running forever, including restart on crash, use e.g. [pm2](https://pm2.keymetrics.io/)
+   1.  to kill the app, use `CTRL`+`C`, or if no more hanging your terminal session, try `$ pkill node` or use `$ top`
+   1.  to have your app running forever, including restart on crash, use e.g. [pm2](https://pm2.keymetrics.io/):
        ```console
        $ sudo npm install -g pm2
        $ pm2 start app.js

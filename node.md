@@ -52,6 +52,7 @@ Local packages
 ### Exercise
 #### Global package
 Install [nodemon](https://nodemon.io/) globally (package name: nodemon) and use it to automatically reload previously created `script.js` every time you update the file. Modify the text that you log to console and save changes of `script.js` to see the automatic reload.
+   * Windows might give 'running scripts is disabled...' error. To fix open Windows PowerShell as admin then run `Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 
 #### Local package
 Install [lodash](https://lodash.com/) locally and use it to convert 'Foo Bar' to camel case. Modify `script.js` and log the result to console.

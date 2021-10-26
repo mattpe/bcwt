@@ -5,8 +5,7 @@
        * Install extensions for VSCode:
           * Press ctrl-shift-x or click extensions icon on the left panel.
           * Search and install:
-             * EditorConfig for VS Code
-             * ESLint
+             * Live Server
              * JavaScript (ES6) Code Snippets
              * Prettier
     * Some file transfer app like WinSCP, FileZilla or Cyberduck

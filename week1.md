@@ -13,7 +13,28 @@
       * thre is also a [VSCode Plugin](https://blog.bitsrc.io/vs-codes-rest-client-plugin-is-all-you-need-to-make-api-calls-e9e95fcfd85a)
     * [Node.js](https://nodejs.org/en/) LTS version
        * MacOS no sudo for Mac users!!
-         - [instructions](https://johnpapa.net/node-and-npm-without-sudo/)
+         * Older MacOS (bash terminal) 
+         ```
+            mkdir ~/.npm-packages
+            npm config set prefix ~/.npm-packages
+            echo NPM_PACKAGES="${HOME}/.npm-packages" >> ${HOME}/.bashrc
+            echo prefix=${HOME}/.npm-packages >> ${HOME}/.npmrc
+            echo NODE_PATH=\"\$NPM_PACKAGES/lib/node_modules:\$NODE_PATH\" >> ${HOME}/.bashrc
+            echo PATH=\"\$NPM_PACKAGES/bin:\$PATH\" >> ${HOME}/.bashrc
+            echo source "~/.bashrc" >> ${HOME}/.bash_profile
+            source ~/.bashrc
+         ```
+         * Newer MacOS (zsh terminal) 
+         ```
+            mkdir ~/.npm-packages
+            npm config set prefix ~/.npm-packages
+            echo NPM_PACKAGES="${HOME}/.npm-packages" >> ${HOME}/.zshrc
+            echo prefix=${HOME}/.npm-packages >> ${HOME}/.npmrc
+            echo NODE_PATH=\"\$NPM_PACKAGES/lib/node_modules:\$NODE_PATH\" >> ${HOME}/.zshrc
+            echo PATH=\"\$NPM_PACKAGES/bin:\$PATH\" >> ${HOME}/.zshrc
+            echo source "~/.zshrc" >> ${HOME}/.zsh_profile
+            source ~/.zshrc
+         ```
     * [Git](https://git-scm.com/downloads) for Windows users (or from [git for windows](https://gitforwindows.org/) which comes with git bash)
     * [Metropolia VPN](https://wiki.metropolia.fi/display/itservices/VPN+Remote+Connections)
 

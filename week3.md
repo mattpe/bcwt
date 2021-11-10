@@ -66,6 +66,8 @@
       * `/setCookie`
          * recieves a path variable `clr`
          * sets a new cookie `color` which gets the value of `clr` path variable
+      * `/getCookie`
+         * reads the value of `color` cookie and sends it to the client
       * `/deleteCookie`
          * delete `color` cookie
    * Open 'Application' tab in Developer Tools to see cookies in browser

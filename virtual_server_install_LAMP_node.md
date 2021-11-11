@@ -107,7 +107,7 @@ If s/he “only” crack your user account, s/he will be sandboxed (and can do l
         ```
    1.  If and only if the login is successful with your new account, disable the root login
         ```console
-        $ sudo vi /etc/ssh/sshd_config
+        $ sudo vim /etc/ssh/sshd_config
         ```
    1.  Search the line ``#PermitRootLogin`` (to search with vi, type ``/``-key, then your search pattern and enter). Once found, remove the #-mark (e.g. use ``x``-key to delete the character under the cursor).
         And replace yes with ``no``.\
@@ -210,7 +210,7 @@ If s/he “only” crack your user account, s/he will be sandboxed (and can do l
       ```
    1.  Visit: ``http://<ip-address>/~<wantedUsername>/``
 
-### Deploy your UI (HTML/CSS/JS/imgages/...) from your git repository
+### Deploy your UI (HTML/CSS/JS/images/...) from your git repository
 
 1. Change directory to your public_html:
    ```console

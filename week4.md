@@ -173,6 +173,8 @@ Now we start to make our REST API to follow the [second version of the API Docum
    ```
 6. Require `./utils/pass.js` as passport and `./routes/authRoute.js` as authRoute in `app.js`
 
+7. Add `app.use(passport.initialize());` and `app.use('/auth', authRoute);` before cat and user routes.
+
 7. Add `passport.authenticate('jwt', {session: false})` [middleware](https://medium.com/front-end-weekly/learn-using-jwt-with-passport-authentication-9761539c4314#dfa8) to `/cat` and `/user` routes.
 
 8. Add new folder `utils` and create new file `./utils/pass.js`
@@ -217,8 +219,23 @@ Now we start to make our REST API to follow the [second version of the API Docum
     * after login is succesful, copy the token from response
     * test token with GET, localhost:3000/cat and localhost:3000/user
        * add token to Authorization tab, choose TYPE/Bearer Token
-    * Test also with the UI in folder `wop-ui/ui3`
-       * Logout by deleting the token from browser's session storage (developer tools/application)
+ 
+11. Test also with the UI in folder `wop-ui/ui3`
+   * UI3 checks the token so add the following to userRoute and userController
+   ```
+   // userController.js
+   const checkToken = (req, res, next) => {
+    if (!req.user) {
+      next(new Error('token not valid'));
+    } else {
+      res.json({ user: req.user });
+    }
+  };
+   
+   // userRoute.js
+   router.get('/token', checkToken);
+   ```
+   * Logout by deleting the token from browser's session storage (developer tools/application)
 
 11. Now that we have login etc. it's better not to send the owner id from the front end. Modify catRoute.js, catController.js and catModel.js so that you get owner's id from req.user
            

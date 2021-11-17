@@ -245,7 +245,7 @@ Response:
 #### Modify user
 
 ```http
-  PUT /user/:id
+  PUT /user
 ```
 
 ```http
@@ -258,7 +258,7 @@ Response:
 
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
-| `id`     | `int` | **Required**, user_id of the user|
+| `id`     | `int` | **Optional**, user_id of the user, admin only|
 | `name`     | `string` | **Optional, min length 3** |
 | `email` | `email` | **Optional, email**  |
 | `passwd`    | `number` | **Optional, min length 8 characters, at least one capital letter** |
@@ -274,7 +274,7 @@ Response:
 #### Delete user
 
 ```http
-  DELETE /user/:id
+  DELETE /user
 ```
 
 ```http
@@ -283,7 +283,7 @@ Response:
 
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
-| `user_id`      | `int` | **Required**. user_id of the user to delete |
+| `user_id`      | `int` | **Optional**, user_id of the user, admin only |
 
 Response:
 

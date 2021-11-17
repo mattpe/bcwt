@@ -131,7 +131,6 @@ Response:
 | `name`     | `string` | **Required, min length 3** |
 | `birthdate` | `date` | **Required, YYYY-MM-DD** |
 | `weight`    | `number` | **Required** |
-| `owner`     | `int` | **Required**, user_id of the owner|
 | `cat`       | `file` | **Required, jpg, png, gif** |
 
 Response:

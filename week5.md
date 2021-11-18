@@ -71,7 +71,7 @@ Notes:
 ### express (production server)
 
 1. Generate a self-signed certificate for [CentOS](https://wiki.centos.org/HowTos/Https)
-1. configure apache httpd proxy for https: ``sudo nano /etc/httpd/conf.d/https-node.conf`` (or any .conf file)
+1. configure apache httpd proxy for https: ``sudo vim /etc/httpd/conf.d/https-node.conf`` (or any .conf file)
     ```apacheconf
     <VirtualHost *:443>
         ServerName tunnus-numero.metropolia.fi
@@ -128,7 +128,7 @@ app.listen(3000);
 
 ### consider separating development and production code
 
-* create node modules for localhost (development) and remote (production) server
+* create node modules for localhost (development) and remote (production) server, e.g in `utils` folder
   * cut/paste corresponding code and use node export e.g. for localhost.js
 
  ```javascript
@@ -145,9 +145,9 @@ module.exports = (app, httpsPort, httpPort) => {
 ```javascript
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 if (process.env.NODE_ENV === 'production') {
-  require('./production')(app, process.env.PORT);
+  require('./utils/production')(app, process.env.PORT);
 } else {
-  require('./localhost')(app, process.env.HTTPS_PORT, process.env.HTTP_PORT);
+  require('./utils/localhost')(app, process.env.HTTPS_PORT, process.env.HTTP_PORT);
 }
 app.get('/', (req, res) => {
   res.send('Hello Secure World!');
@@ -265,7 +265,7 @@ app.get('/', (req, res) => {
          req.body.username,
          req.body.password, // TODO: save hash instead of the actual password
        ];
-        
+
        const result = await addUser(params);
        if (result.insertId) {
          res.json({ message: `User added`, user_id: result.insertId });

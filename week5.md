@@ -163,7 +163,7 @@ app.get('/', (req, res) => {
    * Continue the app started on week 2. You should be now in `week4` branch. Make sure you have committed all files (`git status`) then create new branch `week5`
    * Install [bcryptjs](https://github.com/dcodeIO/bcrypt.js#bcryptjs): `npm i bcryptjs`
 
-1. Use [index4.html](https://raw.githubusercontent.com/ilkkamtk/wop-starters/week2-1/week2_public_html/index4.html) and [main4.js](https://raw.githubusercontent.com/ilkkamtk/wop-starters/week2-1/week2_public_html/js/main4.js) as front-end
+1. Use `wop-ui/ui4` as front-end
 
 ### Login
 
@@ -206,7 +206,7 @@ app.get('/', (req, res) => {
    };
    ```
 
-1. Test login with index4.html
+1. Test login with `wop-ui/ui4`
 
 1. Logout by deleting the token from browser's session storage (developer tools/application)
 
@@ -218,7 +218,7 @@ app.get('/', (req, res) => {
 
 1. Require bcryptjs in `utils/pass.js` and modify the if statement under TODO to use [compareSync](https://github.com/dcodeIO/bcrypt.js#comparesyncs-hash) or better ``await compare(...)`` to check password
 
-1. Test login with index4.html
+1. Test login with `wop-ui/ui4`
 
 ### Register
 
@@ -284,11 +284,11 @@ app.get('/', (req, res) => {
    * remember to update the requires and exports of both files
    * now users can be added (registered) without logging in first
    * Complete the TODOs in the code above
-   * Create a new user by using the register form in index4.html
+   * Create a new user by using the register form in `wop-ui/ui4`
    * Test logout button and login again
 
 ## Create thumbnails
-1. Use [index5.html](https://raw.githubusercontent.com/ilkkamtk/wop-starters/week2-1/week2_public_html/index5.html), [main5.js](https://raw.githubusercontent.com/ilkkamtk/wop-starters/week2-1/week2_public_html/js/main5.js), [mapbox.js](https://raw.githubusercontent.com/ilkkamtk/wop-starters/week2-1/week2_public_html/js/mapbox.js) and [style5.css](https://raw.githubusercontent.com/ilkkamtk/wop-starters/week2-1/week2_public_html/css/style5.css) as front-end for testing
+1. Use `wop-ui/ui4` as front-end for testing
    * ask mapbox key from the teacher or create your own
 1. Add new folder `thumbnails`, put it in version control; but not its content as you did with [uploads folder](week2.md#middleware)
 1. Add to `app.js`:
@@ -414,7 +414,7 @@ app.get('/', (req, res) => {
      UPDATE wop_user SET password = 'SomeHashOfThePassword...' WHERE user_id = 1; # and same for jane (user_id = 2)
      ```
    * edit .env if neccessary and run `node app.js` or `nodemon app.js` or with [pm2](https://www.npmjs.com/package/pm2)
-   * visit `http://your_IP/app/index5.html`, test that it redirects to https and that you can login and add cats
+   * visit `wop-ui/ui4`, test that it redirects to https and that you can login and add cats
 
 ### Single Page App
 There is a [Sinlge Page App (or SPA)](https://medium.com/@NeotericEU/single-page-application-vs-multiple-page-application-2591588efe58) version of the UI in `wop-ui/ui5`. You can also test that and study the code.

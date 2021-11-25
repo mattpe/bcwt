@@ -57,11 +57,17 @@ app.get('/', (req, res) => {
 
 ```javascript
 const http = require('http');
+// ...
 
 http.createServer((req, res) => {
       res.writeHead(301, { 'Location': 'https://localhost:8000' + req.url });
       res.end();
 }).listen(3000);
+
+// Make sure to redirect BEFORE any middleware/routers/...!
+app.use(express.static('uploads'));
+app.use('/cat', passport.authenticate('jwt', { session: false }), require('./routes/catRoute'));
+//app.use(....);
 ```
 
 Notes:
@@ -145,9 +151,9 @@ module.exports = (app, httpsPort, httpPort) => {
 ```javascript
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 if (process.env.NODE_ENV === 'production') {
-  require('./utils/production')(app, process.env.PORT);
+  require('./utils/production')(app, process.env.PORT || 3000);
 } else {
-  require('./utils/localhost')(app, process.env.HTTPS_PORT, process.env.HTTP_PORT);
+  require('./utils/localhost')(app, process.env.HTTPS_PORT || 8000, process.env.HTTP_PORT || 3000);
 }
 app.get('/', (req, res) => {
   res.send('Hello Secure World!');

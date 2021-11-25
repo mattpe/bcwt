@@ -40,8 +40,8 @@ const sslkey = fs.readFileSync('ssl-key.pem');
 const sslcert = fs.readFileSync('ssl-cert.pem')
 
 const options = {
-      key: sslkey,
-      cert: sslcert
+  key: sslkey,
+  cert: sslcert
 };
 
 const app = express();
@@ -49,7 +49,11 @@ const app = express();
 https.createServer(options, app).listen(8000);
 
 app.get('/', (req, res) => {
-  res.send('Hello Secure World!');
+  if (req.secure) {
+    res.send('Hello Secure World!');
+  } else {
+    res.send('not secured?');
+  }
 });
 ```
 
@@ -60,8 +64,8 @@ const http = require('http');
 // ...
 
 http.createServer((req, res) => {
-      res.writeHead(301, { 'Location': 'https://localhost:8000' + req.url });
-      res.end();
+  res.writeHead(301, { 'Location': 'https://localhost:8000' + req.url });
+  res.end();
 }).listen(3000);
 
 // Make sure to redirect BEFORE any middleware/routers/...!

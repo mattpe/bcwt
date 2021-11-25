@@ -171,7 +171,7 @@ app.get('/', (req, res) => {
 ### Bcrypt
 1. Setup
    * Continue the app started on week 2. You should be now in `week4` branch. Make sure you have committed all files (`git status`) then create new branch `week5`
-   * Install [bcryptjs](https://github.com/dcodeIO/bcrypt.js#bcryptjs): `npm i bcryptjs`
+   * Install [bcryptjs](https://www.npmjs.com/package/bcryptjs): `npm i bcryptjs` ([bcrypt](https://www.npmjs.com/package/bcrypt) is another option)
 
 1. Use `wop-ui/ui4` as front-end
 

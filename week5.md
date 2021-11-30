@@ -78,6 +78,7 @@ app.use('/cat', passport.authenticate('jwt', { session: false }), require('./rou
 Notes:
 * about [HTTP status code](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html), the 3XX codes are redirect, 301 means Moved Permanently.
 * when testing with your browser, because of self-signed certificate, it will show a warning page instead of your app. In Chrome, click [details and proceed unsafe](https://support.google.com/chrome/answer/99020?co=GENIE.Platform%3DDesktop&hl=en-GB). In Firefox, click [Advanced and Accept the Risk and Continue](https://support.mozilla.org/en-US/kb/what-does-your-connection-is-not-secure-mean).
+* if/when you run https in port 8000 in localhost, you need to change `const url = 'http://localhost:3000';` in `wop-ui` JavaScript files to `const url = 'https://localhost:8000';`
 
 ### express (production server)
 

@@ -1,5 +1,3 @@
-<!-- TODO: process.env.HTTP_PORT = process.env.HTTP_PORT || 300; -->
-<!-- TODO: move localhost.js and prod.js to utils/ -->
 <!-- TODO: async/await bcrypt.genSalt and bcrypt.hash -->
 <!-- TODO: exif, console.error(error) but resolve([0,0]) instead of reject -->
 # Week 5
@@ -306,7 +304,7 @@ app.get('/', (req, res) => {
 1. Add to `app.js`:
    ```javascript
    app.use('/thumbnails', express.static('thumbnails'));
-
+   ```
 1. Install [sharp](https://github.com/lovell/sharp): `npm i sharp`
 1. Add new file `utils/resize.js`:
    ```javascript
@@ -411,22 +409,22 @@ app.get('/', (req, res) => {
 
 ### Upload to virtual server and run
 1. Deploy final app to your virtual server
-   * once your app works on your localhost machine, remember to update `ui4.js` in `whatever_public/js/` around line 2 to `const url = 'https://your_ip/app/';`
+   * once your app works on your localhost machine, remember to update all `.js` files in `whatever_public/js/` around line 2 to `const url = 'https://your_ip/app/';`
    * git commit/push on your local machine and pull on server, make sure to be in right folder, e.g.
      ```console
      $ cd week2
      $ git status
      ```
    * don't upload node_modules (should normally be in `.gitignore`)
-   * after pulling (if any conflict, just delete the conflicting files (e.g. `$ rm pacakge-lock.js`) and pull again), run `$ npm install`
+   * after pulling (if any conflict, just delete the conflicting files (e.g. `$ rm pacakge-lock.js`) and pull again), make sure to be in right branch (`$ git branch`), checkout if not, then run `$ npm install`
    * check that `thumbnails` folder got created with the git pull (in case it is in `.gitignore`, then create it `$ mkdir thumbnails`)
    * make sure that database is up to date (`$ mysql -u dbuser -p catdb` (adapt your database user and database name))
      ```sql
      ALTER TABLE wop_cat ADD coords text;
-     UPDATE wop_user SET password = 'SomeHashOfThePassword...' WHERE user_id = 1; # and same for jane (user_id = 2)
+     UPDATE wop_user SET password = 'SomeHashOfThePassword...' WHERE user_id = 2; # and same for jane (user_id = 3)
      ```
-   * edit .env if neccessary and run `node app.js` or `nodemon app.js` or with [pm2](https://www.npmjs.com/package/pm2)
-   * visit `wop-ui/ui4`, test that it redirects to https and that you can login and add cats
+   * edit .env (add the `PROXY_PASS` and `NODE_ENV`) and run `node app.js` or with [pm2](https://www.npmjs.com/package/pm2) `pm2 restart app.js`
+   * visit `http://your_ip/~wantedUsername/wop-ui/ui4`, test that it redirects to https and that you can login and add cats
 
 ### Single Page App
 There is a [Sinlge Page App (or SPA)](https://medium.com/@NeotericEU/single-page-application-vs-multiple-page-application-2591588efe58) version of the UI in `wop-ui/ui5`. You can also test that and study the code.

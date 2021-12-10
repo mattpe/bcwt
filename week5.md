@@ -222,9 +222,9 @@ app.get('/', (req, res) => {
 
 1. You should have at least two users in your database. Change the passwords in the database to these:
    * $2a$10$5RzpyimIeuzNqW7G8seBiOzBiWBvrSWroDomxMa0HzU6K2ddSgixS
-      * this is a hashed version of qwer
-   * $2a$10$H7bXhRqd68DjwFIVkw3G1OpfIdRWIRb735GvvzCBeuMhac/ZniGba
       * this is a hashed version of 1234
+   * $2a$10$H7bXhRqd68DjwFIVkw3G1OpfIdRWIRb735GvvzCBeuMhac/ZniGba
+       * this is a hashed version of qwer
 
 1. Require bcryptjs in `utils/pass.js` and modify the if statement under TODO to use [compareSync](https://github.com/dcodeIO/bcrypt.js#comparesyncs-hash) or better ``await compare(...)`` to check password
 

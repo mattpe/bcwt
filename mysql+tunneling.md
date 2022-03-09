@@ -17,6 +17,6 @@
          * if 3306 is not available on your system use some other port
       * replace `username` with your Oma username
    * you will be prompted for shell.metropolia.fi password (Oma password)
-   
+
 ## Connect to mysql.metropolia.fi with express
 1. Use [this repo](https://github.com/ilkkamtk/mysql-example) as an example

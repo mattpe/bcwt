@@ -267,7 +267,7 @@ If s/he “only” crack your user account, s/he will be sandboxed (and can do l
         (in case you would need outside access (e.g. during project, separate database server from app server), replace ``localhost`` with ``'%'`` in the two GRANT queries).
    1. Download the ``tables.txt`` SQL script:
    ```console
-   $ curl -O https://raw.githubusercontent.com/ilkkamtk/wop-starters/week2-1/tables.txt
+   $ curl -O https://raw.githubusercontent.com/patrick-ausderau/wop-starters/week2-1/tables.sql
    ```
    (or upload with any FTP tool the ``tables.txt`` to your home folder ``/home/wantedUsername``\
    (or use ``scp`` from your local machine, navigate with terminal to the folder and run

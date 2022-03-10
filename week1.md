@@ -1,20 +1,28 @@
-# Week 1
+# Week 1 - Setup, Node.js basics
 1. Install tools
     * [Webstorm](https://www.jetbrains.com/student/) or
-    * [VSCode](https://code.visualstudio.com/) or without Microsoft telemetry [VSCodium](https://vscodium.com/) (or Atom, Brackets, Vim, Emacs, etc...)
+    * [VSCode](https://code.visualstudio.com/) or without Microsoft telemetry [VSCodium](https://vscodium.com/)
        * Install extensions for VSCode:
           * Press ctrl-shift-x or click extensions icon on the left panel.
           * Search and install:
              * Live Server
              * JavaScript (ES6) Code Snippets
              * Prettier
-    * Some file transfer app like WinSCP, FileZilla or Cyberduck
+    * or Atom, Brackets, Vim, Emacs, etc...
+    * Some file transfer app like WinSCP, FileZilla or Cyberduck (optional)
+    * Consider mapping your metropolia [Z: drive](https://webdisk.metropolia.fi/): &bull;&bull;&bull;more &rarr; Map web folder.
+       * Linux users, in terminal (substitute `metropolia-username` with your metropolia account):
+         ```console
+            ssh metropolia-username@shell.metropolia.fi
+            pwd
+         ```
+         Then, in your file explorer open location `ssh://shell.metropolia.fi/homeX-Y/Z/metropolia-username` (where `/homeX-Y/Z/metropolia-username` is the result of `pwd`)
     * App for testing REST API: [Postman](https://www.postman.com/downloads/) or [Insomnia](https://insomnia.rest/download)
       * thre is also a [VSCode Plugin](https://blog.bitsrc.io/vs-codes-rest-client-plugin-is-all-you-need-to-make-api-calls-e9e95fcfd85a)
     * [Node.js](https://nodejs.org/en/) LTS version
        * MacOS no sudo for Mac users!!
-         * Older MacOS (bash terminal) 
-         ```
+         * Older MacOS (bash terminal)
+         ```console
             mkdir ~/.npm-packages
             npm config set prefix ~/.npm-packages
             echo NPM_PACKAGES="${HOME}/.npm-packages" >> ${HOME}/.bashrc
@@ -24,8 +32,8 @@
             echo source "~/.bashrc" >> ${HOME}/.bash_profile
             source ~/.bashrc
          ```
-         * Newer MacOS (zsh terminal) 
-         ```
+         * Newer MacOS (zsh terminal)
+         ```console
             mkdir ~/.npm-packages
             npm config set prefix ~/.npm-packages
             echo NPM_PACKAGES="${HOME}/.npm-packages" >> ${HOME}/.zshrc
@@ -63,7 +71,7 @@
    * Study the [material](node.md) and do the exercises
 
 5. [Express.js](https://expressjs.com/)
-   * Create `server-one` folder to `week1`
+   * Create `server-one` folder to `week1` (or first the remote repository in [gitlab](https://gitlab.metropolia.fi) and clone)
    * Create package.json (`npm init`) in `server-one` folder
    * Install express `npm install express --save`
    * Do the [Hello world example](https://expressjs.com/en/starter/hello-world.html) to `server-one` folder
@@ -87,7 +95,7 @@
    1. Note: The project needs to be done using CSR strategy. Some UI parts can be done with SSR, but check this from teacher before starting to code the project.
 7. [Pug](https://expressjs.com/en/guide/using-template-engines.html)
    * Note: Using a template engine such as Pug or [EJS](https://ejs.co/) follows SSR strategy.
-   * Duplicate `server-one` folder and rename it to `server-two`
+   * Duplicate `server-one` folder and rename it to `server-two` (or make a git branch)
    * Create `views` folder to `server-two`
-   * Make a [pug](https://pugjs.org/api/getting-started.html) template which generates the same HTML as index.html. Rename index.html to index_old.html
+   * Make a [pug](https://pugjs.org/api/getting-started.html) template which generates the same HTML as index.html. Delete index.html (or rename it to index_old.html)
    * test in browser: `localhost:3000`

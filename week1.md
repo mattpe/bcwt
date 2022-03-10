@@ -13,8 +13,8 @@
     * Consider mapping your metropolia [Z: drive](https://webdisk.metropolia.fi/): &bull;&bull;&bull;more &rarr; Map web folder.
        * Linux users, in terminal (substitute `metropolia-username` with your metropolia account):
          ```console
-            ssh metropolia-username@shell.metropolia.fi
-            pwd
+         $ ssh metropolia-username@shell.metropolia.fi
+         $ pwd
          ```
          Then, in your file explorer open location `ssh://shell.metropolia.fi/homeX-Y/Z/metropolia-username` (where `/homeX-Y/Z/metropolia-username` is the result of `pwd`)
     * App for testing REST API: [Postman](https://www.postman.com/downloads/) or [Insomnia](https://insomnia.rest/download)
@@ -23,25 +23,25 @@
        * MacOS no sudo for Mac users!!
          * Older MacOS (bash terminal)
          ```console
-            mkdir ~/.npm-packages
-            npm config set prefix ~/.npm-packages
-            echo NPM_PACKAGES="${HOME}/.npm-packages" >> ${HOME}/.bashrc
-            echo prefix=${HOME}/.npm-packages >> ${HOME}/.npmrc
-            echo NODE_PATH=\"\$NPM_PACKAGES/lib/node_modules:\$NODE_PATH\" >> ${HOME}/.bashrc
-            echo PATH=\"\$NPM_PACKAGES/bin:\$PATH\" >> ${HOME}/.bashrc
-            echo source "~/.bashrc" >> ${HOME}/.bash_profile
-            source ~/.bashrc
+         $ mkdir ~/.npm-packages
+         $ npm config set prefix ~/.npm-packages
+         $ echo NPM_PACKAGES="${HOME}/.npm-packages" >> ${HOME}/.bashrc
+         $ echo prefix=${HOME}/.npm-packages >> ${HOME}/.npmrc
+         $ echo NODE_PATH=\"\$NPM_PACKAGES/lib/node_modules:\$NODE_PATH\" >> ${HOME}/.bashrc
+         $ echo PATH=\"\$NPM_PACKAGES/bin:\$PATH\" >> ${HOME}/.bashrc
+         $ echo source "~/.bashrc" >> ${HOME}/.bash_profile
+         $ source ~/.bashrc
          ```
          * Newer MacOS (zsh terminal)
          ```console
-            mkdir ~/.npm-packages
-            npm config set prefix ~/.npm-packages
-            echo NPM_PACKAGES="${HOME}/.npm-packages" >> ${HOME}/.zshrc
-            echo prefix=${HOME}/.npm-packages >> ${HOME}/.npmrc
-            echo NODE_PATH=\"\$NPM_PACKAGES/lib/node_modules:\$NODE_PATH\" >> ${HOME}/.zshrc
-            echo PATH=\"\$NPM_PACKAGES/bin:\$PATH\" >> ${HOME}/.zshrc
-            echo source "~/.zshrc" >> ${HOME}/.zsh_profile
-            source ~/.zshrc
+         $ mkdir ~/.npm-packages
+         $ npm config set prefix ~/.npm-packages
+         $ echo NPM_PACKAGES="${HOME}/.npm-packages" >> ${HOME}/.zshrc
+         $ echo prefix=${HOME}/.npm-packages >> ${HOME}/.npmrc
+         $ echo NODE_PATH=\"\$NPM_PACKAGES/lib/node_modules:\$NODE_PATH\" >> ${HOME}/.zshrc
+         $ echo PATH=\"\$NPM_PACKAGES/bin:\$PATH\" >> ${HOME}/.zshrc
+         $ echo source "~/.zshrc" >> ${HOME}/.zsh_profile
+         $ source ~/.zshrc
          ```
     * [Git](https://git-scm.com/downloads) for Windows users (or from [git for windows](https://gitforwindows.org/) which comes with git bash)
     * [Metropolia VPN](https://wiki.metropolia.fi/display/itservices/VPN+Remote+Connections)

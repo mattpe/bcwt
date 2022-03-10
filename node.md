@@ -8,7 +8,7 @@
 ## Usage
 Running js script:
 ```bash
-node my-script.js
+$ node my-script.js
 ```
 
 ### Exercise
@@ -22,7 +22,7 @@ Create a folder `node` in `week1`. In the folder create file `script.js` that lo
 * [npm registry](https://www.npmjs.com/) let you [search](https://docs.npmjs.com/searching-for-and-choosing-packages-to-download) for existing package
 * Can update itself with
 ```bash
-npm install -g npm
+$ npm install -g npm
 ```
 
 ## Global v.s. local packages
@@ -32,8 +32,8 @@ Global packages:
 * Provide some command-line commands
 * e.g.
   ```bash
-  npm install -g angular-cli
-  ng new MY_PROJECT
+  $ npm install -g angular-cli
+  $ ng new MY_PROJECT
   ```
 
 Local packages
@@ -42,7 +42,7 @@ Local packages
 * Available only for the current project with require
 * e.g.
   ```bash
-  npm install underscore
+  $ npm install underscore
   ```
   ```javascript
   // in js file:
@@ -81,12 +81,12 @@ Run `npm init` and answer all the interactive questions to populate simple packa
 ## Installing dependencies
 Install all dependencies (dependencies & devDependencies):
 ```bash
-npm install
+$ npm install
 ```
 
 Install only dependencies:
 ```bash
-npm install --production
+$ npm install --production
 ```
 
 All dependencies are stored to node_modules folder.
@@ -94,7 +94,7 @@ All dependencies are stored to node_modules folder.
 ## Adding new dependencies
 To add a new dependency for your project, you can use
 ```bash
-npm install --save express
+$ npm install --save express
 ```
 which installs the new package to `node_modules` and adds it to the `package.json`
 
@@ -115,14 +115,14 @@ Using the dependencies: `const express = require('express');`
 
 To run these, use:
 ```bash
-npm run test
-npm run create-some-folder
+$ npm run test
+$ npm run create-some-folder
 ```
 
 Certain scripts (e.g. `start` and `test`) are available without the `run`, for example:
 ```bash
-npm start
-npm run start
+$ npm start
+$ npm run start
 ```
 ### Exercise
 * Initialize new project (still in `node` folder)

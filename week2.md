@@ -146,7 +146,7 @@
 ## Database connection
 1. Create new Git branch. `git checkout -b database`
 2. Goal of this task is to modify the models so that the data comes from database instead of hard coded arrays.
-3. Run the SQL from `tables.txt` in your database (phpMyAdmin in your virtual computer or [users.metropolia.fi/phpMyAdmin](http://users.metropolia.fi/phpMyAdmin))
+3. Run the SQL from `tables.sql` in your database (phpMyAdmin in your virtual computer or [users.metropolia.fi/phpMyAdmin](http://users.metropolia.fi/phpMyAdmin), if never used before, [set the password](https://tietohallinto.metropolia.fi/display/itservices/Home+Page%2C+Shell+and+MySQL+Services))
 4. Study [Node MySQL 2](https://github.com/sidorares/node-mysql2#readme)
     * install Node MySQL 2 as a dependency
     * also install [dotenv](https://github.com/motdotla/dotenv#readme) as a dependency

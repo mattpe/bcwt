@@ -265,19 +265,19 @@ If s/he “only” crack your user account, s/he will be sandboxed (and can do l
         > exit
         ```
         (in case you would need outside access (e.g. during project, separate database server from app server), replace ``localhost`` with ``'%'`` in the two GRANT queries).
-   1. Download the ``tables.txt`` SQL script:
+   1. Download the ``tables.sql`` SQL script:
    ```console
    $ curl -O https://raw.githubusercontent.com/patrick-ausderau/wop-starters/week2-1/tables.sql
    ```
-   (or upload with any FTP tool the ``tables.txt`` to your home folder ``/home/wantedUsername``\
+   (or upload with any FTP tool the ``tables.sql`` to your home folder ``/home/wantedUsername``\
    (or use ``scp`` from your local machine, navigate with terminal to the folder and run
    ```console
-   $ scp tables.txt <wantedUsername>@<ip-address>:~
+   $ scp tables.sql <wantedUsername>@<ip-address>:~
    ```
    ))
    1. Import the tables and insert the data:
       ```console
-      $ mysql -u dbuser -p catdb < tables.txt
+      $ mysql -u dbuser -p catdb < tables.sql
       ```
    1. Eventually check:
       ```console

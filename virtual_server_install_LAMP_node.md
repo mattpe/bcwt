@@ -295,7 +295,7 @@ If s/he “only” crack your user account, s/he will be sandboxed (and can do l
 1.  Install node for Centos: [https://github.com/nodesource/distributions/blob/master/README.md#rpm](https://github.com/nodesource/distributions/blob/master/README.md#rpm)
     use the ``# No root privileges`` version, so something like:
     ```console
-    $ curl -fsSL https://rpm.nodesource.com/setup_14.x | sudo bash -
+    $ curl -fsSL https://rpm.nodesource.com/setup_16.x | sudo bash -
     $ sudo yum install -y nodejs
     ```
 1. Configure Apache httpd server as a reverse proxy to node server:

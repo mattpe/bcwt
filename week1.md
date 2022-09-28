@@ -56,9 +56,9 @@
 2. [Command line intro](https://guide.freecodecamp.org/linux/the-command-prompt/)
 3. [GIT](https://git-scm.com/about)
 
-   - Study [GIT material](https://github.com/mattpe/git-intro/blob/master/git-basics.md)
+   - Study [GIT material](https://github.com/mattpe/git-intro/blob/main/git-basics.md)
      - Exercises are recommended but not compulsory.
-   - [What files to include in repo?](git.md), gitlab/github have nice default template to start with.
+   - [What files to include in repo?]([week1-git.md](https://github.com/mattpe/git-intro/blob/main/git-basics.md#git-ignore))
    - Common git commands:
      - Creating new local repo (first create remote repo in [GitLab](https://gitlab.metropolia.fi/) or GitHub etc.)
        - `git init` and `git remote add origin https://gitlab.metropolia.fi/user/repo-name.git`
@@ -77,7 +77,7 @@
 
 4. [Node.js](https://nodejs.org/en/)
 
-   - Study the [material](node.md) and do the exercises
+   - Study the [material](week1-nodejs.md) and do the exercises
 
 5. [Express.js](https://expressjs.com/)
 

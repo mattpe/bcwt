@@ -1,4 +1,5 @@
-## Maintaining state in web applications
+# Maintaining state in web applications
+
 * In any realistic interactive Web application you will come across the need of retaining information between individual pages. This is referred to as "maintaining state" or as the "persistence of data". 
    * HTTP protocol does not support this, it is a stateless protocol - every page request starts in a blank state with no knowledge of data that was available on the previous page.
 * There is an easy way to transfer data provided by the user in a HTML form to another page for processing like the hidden input filed in 'Modify cat' form in `index2.html`. But what if you need to send that data further to third page (common requirement e.g. in multi-page forms on that allow users to register or sign-up to a Web service)? Certainly you do not want to ask the user re-type some data, such as his/her username.

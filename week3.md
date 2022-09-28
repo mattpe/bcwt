@@ -1,5 +1,7 @@
-# Week 3
+# BCWT - Week 3
+
 ## Data Validation
+
 * Study [client-side form validation](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Form_validation)
 * Read this article about [server-side data validation](https://medium.com/@BaYinMin/application-security-what-is-server-side-input-validation-why-is-it-needed-anyway-e0613c733548)
    * code in the article is not important but the principles are
@@ -51,7 +53,8 @@
    * Some of the fields could be still used to perform [XSS and SQL injections](https://keirstenbrager.tech/sql-vs-xxs-injection-attacks-explained/). Think which they could be and sanitize those fields.
 
 ## Cookies and Sessions
-* Study [Maintaining state in web applications](state-management.md)
+
+- Study [Maintaining state in web applications](week3-state-management.md)
 
 1. Setup
    * Navigate to your course folder in terminal or Git Bash
@@ -93,5 +96,5 @@
       * Test in browser: `localhost:3000/form` and `localhost:3000/secret`
 
 1. Remote server
-    * [Install Educloud virtual computer](virtual_server_install_LAMP_node.md)
+    * [Install Educloud virtual computer](week3-virtual_server_install.md)
     * deploy your app on the server (note, from home, make sure to use [metropolia vpn](https://vpn.metropolia.fi))

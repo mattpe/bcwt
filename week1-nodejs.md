@@ -16,7 +16,7 @@ node my-script.js
 
 ### Exercise 1
 
-Create a folder `node` in `week1`. In the folder create file `script.js` that logs 'This is JavaScript' to console, and run it.
+Create a folder `week1-node` in your course assignments folder. In the folder create file `script.js` that logs 'This is JavaScript' to console, and run it.
 
 ## npm
 
@@ -103,7 +103,7 @@ Install all dependencies (dependencies & devDependencies):
 npm install
 ```
 
-Install only dependencies:
+Install dependencies only:
 
 ```bash
 npm install --production
@@ -154,6 +154,6 @@ npm run start
 
 ### Exercise 3
 
-- Initialize new project (still in `node` folder)
+- Initialize new project (still in `week1-node` folder)
 - Install lodash as dependency
 - Create a custom npm script `start` to `package.json`. The npm script should start `script.js` with `nodemon`. Run the script with `npm start`

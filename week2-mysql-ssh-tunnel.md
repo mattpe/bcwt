@@ -1,4 +1,4 @@
-# MySQL testing and tunnel to mysql.metropolia.fi
+# OPTIONAL: MySQL testing and tunnel to mysql.metropolia.fi
 
 ## Creating database to mysql.metropolia.fi
 

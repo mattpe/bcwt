@@ -1,22 +1,20 @@
 # Basic Concepts of Web Technology - TX00CD47
 
-Course material for backend development, Node.js & Express tasks.
+Course material for JavaScript development, Node.js & Express tasks.
 
-**NOTE**: _When executing commands in command line always make sure you are in the right folder. Especially when running_ `git init`
-
-## TOC
+## TOC & _preliminary_ schedule for JS developlement
 
 - [Week 1](week1.md)
-  - GIT
-  - NPM
-  - Express intro
+  - Development tools: IDE/Code Editor, Git
+  - Introduction to Node.js & Node Package Manager (npm)
+  - Getting started with Express.js (Node.js web application framework)
 - [Week 2](week2.md)
-  - REST
-  - Routing
-  - Middleware
-  - [Tunnel to mysql.metropolia.fi](week2-mysql-ssh-tunnel.md)
-  - Database connection, create, read, update, delete
+  - REST architecture
+  - Routing in Express.js
+  - Express.js middlewares
+  - Database connection, CRUD operations: Create, Read, Update and Delete
 - [Week 3](week3.md)
+  - (Recap:) Front-end JS
   - Remote server
   - Data validation
   - Cookies

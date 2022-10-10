@@ -60,6 +60,9 @@
    - [Metropolia VPN](https://wiki.metropolia.fi/display/itservices/VPN+Remote+Connections)
 
 2. [Command line intro](https://guide.freecodecamp.org/linux/the-command-prompt/)
+
+   - **NOTE**: _When executing commands in command line always make sure you are in the right folder. Especially when running_ `git init`
+
 3. [Get familiar with Git](https://git-scm.com/about)
 
    - Study [GIT material](https://github.com/mattpe/git-intro/blob/main/git-basics.md)
@@ -78,8 +81,9 @@
        - `git push`
 
 4. Create a folder `bcwt-assignments` or similar for all the course's JavaScript coding assignments
+
    - Create a Git repo inside the assignments folder (`git init`)
-   - Create `README.md` and `.gitignore` files  _before_ the first commit
+   - Create `README.md` and `.gitignore` files _before_ the first commit
    - Choose files for the commit: `git add .` (`.` means all files in current folder recursively)
    - Check always with `git status` that your are not going to commit anything unnecessary. Fix your `.gitignore` if needed
    - Create an initial commit: `git commit -m "Initial, add readme & .gitignore template"` (a good commit message always describes what changes you have done after the previous commit)

@@ -1,4 +1,4 @@
-# Metropolia Educloud virtual computer (CentOS server)
+# Installing Metropolia Educloud virtual computer (CentOS server)
 
 ## Working from outside metropolia network
 

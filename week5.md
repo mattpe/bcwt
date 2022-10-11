@@ -1,6 +1,6 @@
 <!-- TODO: async/await bcrypt.genSalt and bcrypt.hash -->
 <!-- TODO: exif, console.error(error) but resolve([0,0]) instead of reject -->
-# Week 5
+# BCWT - Week 5
 
 ## HTTPS
 
@@ -166,9 +166,11 @@ app.get('/', (req, res) => {
 
 
 ## Password hash
+
 * [Salted Password Hashing - Doing it Right](https://crackstation.net/hashing-security.htm)
 
 ### Bcrypt
+
 1. Setup
    * Continue the app started on week 2. You should be now in `week4` branch. Make sure you have committed all files (`git status`) then create new branch `week5`
    * Install [bcryptjs](https://www.npmjs.com/package/bcryptjs): `npm i bcryptjs` ([bcrypt](https://www.npmjs.com/package/bcrypt) is another option)

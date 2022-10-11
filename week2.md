@@ -1,20 +1,22 @@
 # BCWT - Week 2 - Rest and database
 
-## Routing
+## Routing in Express
 
 1. Study [REST](https://en.wikipedia.org/wiki/Representational_state_transfer)
 2. During the labs we are going to make our own REST API
+
     - [API Documentation](week2-apiDoc-v0.1.md) will show what kind of endpoints, responses etc. our REST API will have
     - This is the first version. Later in this couse some parts will be modified and added.
+
 3. Setup
 
     - Navigate to your course folder in terminal or Git Bash
     - Create `week2` folder to your course folder: `mkdir week2` (or create remote repo and clone)
     - Start new git repository to `week2` folder
     - Add approriate `.gitignore` (if it does not exist) to `week2` folder and commit changes to code regularly
-    - [Download starter files as zip](https://github.com/patrick-ausderau/wop-starters/tree/week2-1), extract and copy all files and folders to `week2` folder
-    - [Download UI files as zip](https://github.com/patrick-ausderau/wop-ui)
-   - Move `wop-ui` folder to your public_html in shell.metropolia.fi. You can rename the folder if you want. This folder is needed later in the course to check access to the REST API.
+    - Download Node application starter [files as zip](./week2-starter.zip) and extract all files and folders into `week2` folder
+   - Download user interface (front-end) [files as zip](./example-ui.zip)
+   - Move `example-ui` folder to your _public_html_ in _shell.metropolia.fi_. You can rename the folder if you want. This folder is used later in the course to check access to the REST API.
    - Run `npm install` in `week2` folder
    - Run `nodemon app.js` or `node app.js` and test in browser: `localhost:3000/cat`
 

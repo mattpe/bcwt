@@ -5,8 +5,9 @@ Now we start to make our REST API to follow the [second version of the API Docum
 ## Authentication with [passport.js](http://www.passportjs.org/docs/downloads/html/)
 
 1. Setup
-   * Continue last week's `state-management` exercise. Make sure you have committed all files (`git status`) then create new branch `passport`
-   * Install passport and passport-local `npm i passport passport-local`
+   
+   - Continue last week's `state-management` exercise. Make sure you have committed all files (`git status`) then create new branch `passport`
+   - Install passport and passport-local `npm i passport passport-local`
 
 ### [Local Strategy](http://www.passportjs.org/docs/username-password/)
 
@@ -41,7 +42,9 @@ Now we start to make our REST API to follow the [second version of the API Docum
      res.render('secret');
    });
    ```
+
 1. Add new folder `utils` and create new file `./utils/pass.js`
+   
    ```javascript
    'use strict';
    const passport = require('passport');
@@ -111,33 +114,36 @@ Now we start to make our REST API to follow the [second version of the API Docum
 
    module.exports = passport;
    ```
+
 1. Follow the comments in the code above to finish the task
-   * [Serialize & deserialize](http://www.passportjs.org/docs/downloads/html/#sessions)
+   - [Serialize & deserialize](http://www.passportjs.org/docs/downloads/html/#sessions)
 1. Run with nodemon and open localhost:3000 to test
-   * use foo@bar.fi and bar@foo.fi as usernames
-   * use foobar and barfoo as passwords
-   * logout by deleting session cookie in browser
+   - use foo@bar.fi and bar@foo.fi as usernames
+   - use foobar and barfoo as passwords
+   - logout by deleting session cookie in browser
 1. Add [logout](http://www.passportjs.org/docs/logout/) functionality
 1. Commit and push to git
 
 ### [JSON Web Token Strategy](http://www.passportjs.org/packages/passport-jwt/)
-* [JSON Web Tokens](https://jwt.io/)
-* [Session vs Token](https://medium.com/@sherryhsu/session-vs-token-based-authentication-11a6c5ac45e4)
 
-* The following task is based on [this](https://medium.com/front-end-weekly/learn-using-jwt-with-passport-authentication-9761539c4314) article
+- [JSON Web Tokens](https://jwt.io/)
+- [Session vs Token](https://medium.com/@sherryhsu/session-vs-token-based-authentication-11a6c5ac45e4)
+
+- The following task is based on [this](https://medium.com/front-end-weekly/learn-using-jwt-with-passport-authentication-9761539c4314) article
 
 1. Setup
-   * Continue the app started on week 2. You should be now in `week3` branch. Make sure you have committed all files (`git status`) then create new branch `week4`
-   * Install passport, passport-local, passport-jwt and jsonwebtoken `npm i passport passport-local passport-jwt jsonwebtoken`
+   - Continue the app started on week 2. You should be now in `week3` branch. Make sure you have committed all files (`git status`) then create new branch `week4`
+   - Install passport, passport-local, passport-jwt and jsonwebtoken `npm i passport passport-local passport-jwt jsonwebtoken`
 
-2. Create a function getUserLogin to `./models/userModel.js`
+1. Create a function getUserLogin to `./models/userModel.js`
+
    ```javascript
    ...
    const getUserLogin = async (params) => {
      try {
        console.log(params);
        const [rows] = await promisePool.execute(
-           'SELECT * FROM wop_user WHERE email = ?;',
+           'SELECT - FROM wop_user WHERE email = ?;',
            params);
        return rows;
      } catch (e) {
@@ -146,7 +152,9 @@ Now we start to make our REST API to follow the [second version of the API Docum
    };
    ...
    ```
-3. Add new file `./controllers/authController.js`
+
+1. Add new file `./controllers/authController.js`
+
    ```javascript
    'use strict';
    const jwt = require('jsonwebtoken');
@@ -161,10 +169,12 @@ Now we start to make our REST API to follow the [second version of the API Docum
    };
 
    ```
-4. Study [this](https://medium.com/front-end-weekly/learn-using-jwt-with-passport-authentication-9761539c4314#025a) example and add passport local strategy authentication to TODO section
-   * the example starts with passport.authenticate...
 
-5. Add new file `./routes/authRoute.js`
+1. Study [this](https://medium.com/front-end-weekly/learn-using-jwt-with-passport-authentication-9761539c4314#025a) example and add passport local strategy authentication to TODO section
+   - the example starts with passport.authenticate...
+
+1. Add new file `./routes/authRoute.js`
+
    ```javascript
    'use strict';
    const express = require('express');
@@ -175,13 +185,12 @@ Now we start to make our REST API to follow the [second version of the API Docum
 
    module.exports = router;
    ```
-6. Require `./utils/pass.js` as passport and `./routes/authRoute.js` as authRoute in `app.js`
 
-7. Add `app.use(passport.initialize());` and `app.use('/auth', authRoute);` before cat and user routes.
+1. Require `./utils/pass.js` as passport and `./routes/authRoute.js` as authRoute in `app.js`
+1. Add `app.use(passport.initialize());` and `app.use('/auth', authRoute);` before cat and user routes.
+1. Add `passport.authenticate('jwt', {session: false})` [middleware](https://medium.com/front-end-weekly/learn-using-jwt-with-passport-authentication-9761539c4314#dfa8) to `/cat` and `/user` routes.
+1. Add new folder `utils` and create new file `./utils/pass.js`
 
-7. Add `passport.authenticate('jwt', {session: false})` [middleware](https://medium.com/front-end-weekly/learn-using-jwt-with-passport-authentication-9761539c4314#dfa8) to `/cat` and `/user` routes.
-
-8. Add new folder `utils` and create new file `./utils/pass.js`
    ```javascript
    'use strict';
    const passport = require('passport');
@@ -213,19 +222,21 @@ Now we start to make our REST API to follow the [second version of the API Docum
 
    module.exports = passport;
    ```
-9. Study [this](https://medium.com/front-end-weekly/learn-using-jwt-with-passport-authentication-9761539c4314#fcdf) example and add JWT strategy to TODO section
-   * use arrow functions
-   * instead of `cb`, use `done` as the name for the callback function
-   * use the local strategy for username password login in the code above as an example
 
-10. Test with postman
-    * start with login: POST, localhost:3000/auth/login
-    * after login is succesful, copy the token from response
-    * test token with GET, localhost:3000/cat and localhost:3000/user
-       * add token to Authorization tab, choose TYPE/Bearer Token
+1. Study [this](https://medium.com/front-end-weekly/learn-using-jwt-with-passport-authentication-9761539c4314#fcdf) example and add JWT strategy to TODO section
+   - use arrow functions
+   - instead of `cb`, use `done` as the name for the callback function
+   - use the local strategy for username password login in the code above as an example
 
-11. Test also with the UI in folder `wop-ui/ui3`
-   * UI3 checks the token so add the following to userRoute and userController
+1. Test with postman
+    - start with login: POST, localhost:3000/auth/login
+    - after login is succesful, copy the token from response
+    - test token with GET, localhost:3000/cat and localhost:3000/user
+       - add token to Authorization tab, choose TYPE/Bearer Token
+
+1. Test also with the UI in folder `wop-ui/ui3`
+   - UI3 checks the token so add the following to userRoute and userController
+
    ```javascript
    // userController.js
    const checkToken = (req, res, next) => {
@@ -239,16 +250,19 @@ Now we start to make our REST API to follow the [second version of the API Docum
    // userRoute.js
    router.get('/token', checkToken);
    ```
-   * Logout by deleting the token from browser's session storage (developer tools/application)
+   - Logout by deleting the token from browser's session storage (developer tools/application)
 
-11. Now that we have login etc. it's better not to send the owner id from the front end. Modify catRoute.js, catController.js and catModel.js so that you get owner's id from req.user
+1. Now that we have login etc. it's better not to send the owner id from the front end. Modify catRoute.js, catController.js and catModel.js so that you get owner's id from req.user
 
 ### User Roles
+
 Quite often you might want to have different user roles in your app such as administrator and regular user. One way to achieve this is to add one column to the user table in your database. In our wop_user table there is already a column 'role' of type integer. The idea is that administrator role is 0 and regular user is 1. Other roles would be 2, 3 etc. Of course the role column could also be a string like 'admin', 'user', 'moderator' etc.
+
 #### Tasks
+
 1. Users can only delete and edit their own cats
-   * modify the SQL queries for deleting and modifying in catModel.js so that queries will also check that  owner matches the user_id in req.user. req.user needs to come as a parameter from catController.js.
+   - modify the SQL queries for deleting and modifying in catModel.js so that queries will also check that  owner matches the user_id in req.user. req.user needs to come as a parameter from catController.js.
 2. Administrator can delete and edit everyone's cats
-   * now you need two SQL queries in your modify and delete functions: one for regular users that checks that user_id in req.user matches the owner (query A) the other is for admin and it does not check the owner (query B).
-   * add conditional statements to catModel.js which define whether to use query A or query B
+   - now you need two SQL queries in your modify and delete functions: one for regular users that checks that user_id in req.user matches the owner (query A) the other is for admin and it does not check the owner (query B).
+   - add conditional statements to catModel.js which define whether to use query A or query B
 3. How can you achieve similar functionality for users?

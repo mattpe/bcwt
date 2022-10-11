@@ -95,6 +95,7 @@
       * Open 'Application' tab in Developer Tools to see cookies in browser
       * Test in browser: `localhost:3000/form` and `localhost:3000/secret`
 
-1. Remote server
-    * [Install Educloud virtual computer](week3-virtual_server_install.md)
-    * deploy your app on the server (note, from home, make sure to use [metropolia vpn](https://vpn.metropolia.fi))
+1. Creating a remote server
+   - Option 1 (recommended): [Create a virtual server on Azure cloud environment](week3-virtual-server-azure.md) (you need to activate a student account for this)
+   - Option 2: [Install Educloud virtual computer](week3-virtual-server-educloud.md)
+   - Deploy your app on the server (note: if using Educlouad computer from outside school's network, make sure to use [metropolia vpn](https://vpn.metropolia.fi))

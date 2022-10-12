@@ -1,10 +1,10 @@
-# WOP REST API
+# BCWT Week 2 - REST API
 
-Example API for WOP and BCWT courses
+Example API for BCWT course.
 
 ## API Reference v.0.1
 
-#### Get all cats
+### Get all cats
 
 ```http
   GET /cat
@@ -26,7 +26,7 @@ Response:
 ]
 ```
 
-#### Get one cat
+### Get one cat
 
 ```http
   GET /cat/:cat_id
@@ -50,7 +50,7 @@ Response:
 }
 ```
 
-#### Add cat
+### Add cat
 
 ```http
   POST /cat
@@ -77,7 +77,7 @@ Response:
 }
 ```
 
-#### Modify cat
+### Modify cat
 
 ```http
   PUT /cat
@@ -103,7 +103,7 @@ Response:
 }
 ```
 
-#### Delete cat
+### Delete cat
 
 ```http
   DELETE /cat/:cat_id
@@ -121,7 +121,7 @@ Response:
 }
 ```
 
-#### Get all users
+### Get all users
 
 ```http
   GET /user
@@ -140,7 +140,7 @@ Response:
 ]
 ```
 
-#### Get one user
+### Get one user
 
 ```http
   GET /user/:user_id
@@ -161,7 +161,7 @@ Response:
 }
 ```
 
-#### Add user
+### Add new user
 
 ```http
   POST /user
@@ -186,7 +186,7 @@ Response:
 }
 ```
 
-#### Modify user
+### Modify user
 
 ```http
   PUT /user
@@ -211,7 +211,7 @@ Response:
 }
 ```
 
-#### Delete user
+### Delete user
 
 ```http
   DELETE /user/:user_id

@@ -26,4 +26,5 @@ Course material for JavaScript development, Node.js & Express tasks.
   - Security
   - Other 3rd party libraries
 - Weeks 6-8
-  - Project works
+  - Project work
+  

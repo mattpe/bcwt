@@ -1,4 +1,4 @@
-# BCWT - Week 2 - Rest and database
+# BCWT - Week 2
 
 ## Routing in Express
 
@@ -126,10 +126,9 @@
 ## Middleware
 
 1. Study [writing middleware](https://expressjs.com/en/guide/writing-middleware.html) and [using middleware](https://expressjs.com/en/guide/using-middleware.html)
-<!-- TODO: fix server -> local -->
-1. Earlier you moved front-end files (example-ui) to user.metropolia.fi or your virtual server. Open `example-ui/ui1/front.html` from a/m server and check your browser's console. If the UI - in this case HTML files - originate from any other server than your express server, you'll get [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) errors in your browser's console. To fix cross-origin issue, you need te enable CORS in your Express app with [these instructions](https://expressjs.com/en/resources/middleware/cors.html).
+1. Open `example-ui/ui1/front.html` on you local computer and check your browser's console. If the UI - in this case HTML files - originate from any other server than your express server, you'll get [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) errors in your browser's console. To fix cross-origin issue, you need te enable CORS in your Express app with [these instructions](https://expressjs.com/en/resources/middleware/cors.html).
 
-   - Add CORS middleware and test that `example-ui/ui1/front.html` works when you run it locally and from your server (users.metropolia.fi or virtual server)
+   - Add CORS middleware and test that `example-ui/ui1/front.html` works when you run it locally (and later on it must work from your users.metropolia.fi or virtual server as well)
 
 1. Study [req.body](https://expressjs.com/en/4x/api.html#req.body) on receiving and using data sent by e.g. html form
 
@@ -285,14 +284,14 @@
       - add a new function user_create_post to `./controllers/userController.js`
         - the function should receive req.body and send it to addUser function of `./models/userModel.js`
       - modify `/` route for POST method in `./routes/userRoute.js` to call user_create_post function
-      - fill the Add user form in `example-ui/ui1/front.html`, send the form and check in phpMyAdmin whether a new user has been added.
+      - fill the Add user form in `example-ui/ui1/front.html`, send the form and check in database (`SELECT * FROM ......`) whether a new user has been added.
     - Adding a new cat
       - Modify the file upload form you did earlier in `example-ui/ui1/front.html`. Add text inputs for name, age, weight and owner
       - In the server code:
         - save the file with multer to `uploads` folder (this is already done earlier)
         - _next_ save name, age, weight, owner and [filename](https://github.com/expressjs/multer#file-information) to database. Modify model, controller and route the same way as in adding a new user.
       - Testing:
-        - Fill the form and send, check phpMyAdmin
+        - Fill and send the form and check that your database got updated
         - Reload `example-ui/ui1/front.html`
 
 13. Better UX
@@ -309,7 +308,7 @@
       - add a new function cat_update_put to `./controllers/catController.js`
         - the function should receive _name_, _age_, _weight_, _owner_ and _id_ in req.body and send them to updateCat function of `./models/catModel.js`
       - modify `/` route for PUT method in `./routes/catRoute.js` to call cat_update_put function
-      - click on a modify-button under the cats to fill the Modify cat form in `index2.html`, send the form and check in phpMyAdmin whether the data has been modified.
+      - click on a modify-button under the cats to fill the Modify cat form in `index2.html`, send the form and check in database whether the data has been modified.
 
 15. Use the `/` route for DELETE method in `./routes/catRoute.js` to delete cats in database
 

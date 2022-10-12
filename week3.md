@@ -15,7 +15,7 @@
 
 1. HTML5 Built-in form validation
    - Continue last week's exercise. Make sure you have committed previous git branch then create new branch `week3`
-   - In `wop-ui/ui2` there are HTML files with forms for adding user, adding cat and modifying cat
+   - In `example-ui/ui2` there are HTML files with forms for adding user, adding cat and modifying cat
    - Add the following validation properties:
      - Add user
        - name: minimum length 3 characters, required
@@ -60,8 +60,7 @@
 
    - Navigate to your course folder in terminal or Git Bash
      - Create `state-management` folder to your course folder.
-     - Start new git repository to `state-management` folder: `cd state-management`, `git init` etc...
-     - [Download starter files as zip](https://github.com/patrick-ausderau/wop-starters/tree/state-management), extract and copy all files to `state-management` folder
+     - Download [starter files as zip](./week3-state-starter.zip), extract and copy all files to `state-management` folder
      - Run `npm install` and `nodemon app.js` to test `localhost:3000`
      - Commit changes to code regularly
 

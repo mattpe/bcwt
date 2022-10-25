@@ -14,7 +14,7 @@ Running a JS file `my-script.js`:
 node my-script.js
 ```
 
-### Exercise 1
+## Exercise 1
 
 Create a folder `week1-node` in your course assignments folder. In the folder create file `script.js` that logs 'This is JavaScript' to console, and run it.
 
@@ -25,11 +25,7 @@ Create a folder `week1-node` in your course assignments folder. In the folder cr
 - Comes along with Node.js when installed
 - Available on command line with npm command
 - [npm registry](https://www.npmjs.com/) let you [search](https://docs.npmjs.com/searching-for-and-choosing-packages-to-download) for existing package
-- Can update itself with
-
-    ```bash
-    npm install -g npm
-    ```
+- Can update itself with command: `npm install -g npm`
 
 ## Global v.s. local packages
 
@@ -59,15 +55,15 @@ Local packages
     const _ = require("underscore");
     ```
 
-### Exercise 2
+## Exercise 2
 
-#### Global package
+### Global package
 
 Install [nodemon](https://nodemon.io/) globally (package name: nodemon) and use it to automatically reload previously created `script.js` every time you update the file. Modify the text that you log to console and save changes of `script.js` to see the automatic reload.
 
 - Windows might give 'running scripts is disabled...' error. Fix: open Windows PowerShell as admin then run `Set-ExecutionPolicy RemoteSigned -Scope CurrentUser`
 
-#### Local package
+### Local package
 
 Install [lodash](https://lodash.com/) locally and use it to convert 'Foo Bar' to camel case. Modify `script.js` and log the result to console.
 
@@ -152,7 +148,7 @@ npm start
 npm run start
 ```
 
-### Exercise 3
+## Exercise 3
 
 - Initialize new project (still in `week1-node` folder)
 - Install lodash as dependency

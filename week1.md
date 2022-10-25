@@ -69,16 +69,14 @@
      - Exercises are recommended but not compulsory.
    - [What files to include in repo?](<[week1-git.md](https://github.com/mattpe/git-intro/blob/main/git-basics.md#git-ignore)>)
    - Common git commands:
-     - Creating new local repo (first create remote repo in [GitLab](https://gitlab.metropolia.fi/) or GitHub etc.)
-       - `git init` and `git remote add origin https://gitlab.metropolia.fi/user/repo-name.git`
+     - Creating new local repo: `git init`
+     - For sharing your code with teacher and team members you need to setup a remote repository in GitHub too and link it to your local repository
+       - `git remote add origin https://gitlab.metropolia.fi/user/repo-name.git`
        - Or `git clone https://gitlab.metropolia.fi/user/repo-name.git` (make sure to not be in a folder that is already under version control!)
-       - `git add .` (this adds all files, to make sure what will be added check with `git status` first)
-       - `git commit -m 'some message'`
-       - `git push -u origin master`
-     - Push new changes:
-       - `git add .`
-       - `git commit -m 'some message'`
-       - `git push`
+     - Choose files to commit: `git add .` (this adds all files, to make sure what will be added check with `git status` first)
+       - if you already added files you should not, you can undo that with `git reset`  
+     - Create a new revision: `git commit -m 'some message'`
+     - Pushing your local changes to the remote repo: `git push -u origin main`
 
 4. Create a folder `bcwt-assignments` or similar for all the course's JavaScript coding assignments
 

@@ -86,6 +86,10 @@
    - Check always with `git status` that your are not going to commit anything unnecessary. Fix your `.gitignore` if needed
    - Create an initial commit: `git commit -m "Initial, add readme & .gitignore template"` (a good commit message always describes what changes you have done after the previous commit)
    - Create a new project in GitHub and push your local repo there: `git remote add origin <YOUR_URL>`, `git push -u origin [main/master]`
+   - if having problems with GitHub authentication on command line:
+     - <https://ginnyfahs.medium.com/github-error-authentication-failed-from-command-line-3a545bfd0ca8>
+     - <https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/about-authentication-to-github>
+     - <https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token> 
    - if you made your GitHub repo private, add teacher as a collaborator
 
 5. [Node.js](https://nodejs.org/en/)

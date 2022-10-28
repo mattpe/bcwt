@@ -71,8 +71,8 @@
    - Common git commands:
      - Creating new local repo: `git init`
      - For sharing your code with teacher and team members you need to setup a remote repository in GitHub too and link it to your local repository
-       - `git remote add origin https://gitlab.metropolia.fi/user/repo-name.git`
-       - Or `git clone https://gitlab.metropolia.fi/user/repo-name.git` (make sure to not be in a folder that is already under version control!)
+       - `git remote add origin <YOUR-REPO-URL>`
+       - Or `git clone <YOUR-REPO-URL>` (make sure to not be in a folder that is already under version control!)
      - Choose files to commit: `git add .` (this adds all files, to make sure what will be added check with `git status` first)
        - if you already added files you should not, you can undo that with `git reset`  
      - Create a new revision: `git commit -m 'some message'`

@@ -15,12 +15,12 @@
       - (or create a new git branch)
    - Add approriate `.gitignore` (if it does not exist) to `week2` folder and commit changes to code regularly
    - Download Node application starter [files as zip](./week2-starter.zip) and extract all files and folders into `week2` folder
-   - Download user interface (front-end) [files as zip](./example-ui.zip)
-   - Move `example-ui` folder to your _public_html_ in _shell.metropolia.fi_. You can rename the folder if you want. This folder is used later in the course to check access to the REST API.
+   - Download user interface (front-end) [files as zip](./example-ui.zip) and extract files into your project folder `example-ui`
+   - Copy `example-ui` folder also to your _public_html_ in _shell.metropolia.fi_. You can rename the folder if you want. This folder is used later in the course to check access to the REST API.
    - Run `npm install` in `week2` folder
    - Run `nodemon app.js` or `node app.js` and test in browser: `localhost:3000/cat`
 
-4. Study [Routing](https://expressjs.com/en/guide/routing.html) and [app.METHOD](https://expressjs.com/en/4x/api.html#app.METHOD)
+4. Study [Routing](https://expressjs.com/en/guide/routing.html) and [app() method](https://expressjs.com/en/4x/api.html#app.METHOD)
 
    - Add `cat` routes to `app.js` which respond to POST, PUT and DELETE methods.
      - POST response: `With this endpoint you can add cats.`

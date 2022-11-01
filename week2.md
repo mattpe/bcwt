@@ -20,7 +20,7 @@
    - Run `npm install` in `week2` folder
    - Run `nodemon app.js` or `node app.js` and test in browser: `localhost:3000/cat`
 
-4. Study [Routing](https://expressjs.com/en/guide/routing.html) and [app() method](https://expressjs.com/en/4x/api.html#app.METHOD)
+4. Study [Routing](https://expressjs.com/en/guide/routing.html) and [app.methods](https://expressjs.com/en/4x/api.html#app.METHOD)
 
    - Add `cat` routes to `app.js` which respond to POST, PUT and DELETE methods.
      - POST response: `With this endpoint you can add cats.`

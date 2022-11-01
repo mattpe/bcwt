@@ -121,7 +121,7 @@
 
 - Test with Postman.
 
-10. Remeber git add/commit/...
+10. Remember to do `git` add & commit
 
 ## Middleware
 

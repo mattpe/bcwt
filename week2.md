@@ -11,8 +11,8 @@
 3. Setup
 
    - Navigate to your course folder in terminal or Git Bash
-   - Create `week2` folder to your course folder: `mkdir week2` (or create remote repo and clone)
-   - Start new git repository to `week2` folder
+   - Create `week2` folder to your course folder: `mkdir week2`, (use the same existing GitHub remote repo from week 1)
+      - (or create a new git branch)
    - Add approriate `.gitignore` (if it does not exist) to `week2` folder and commit changes to code regularly
    - Download Node application starter [files as zip](./week2-starter.zip) and extract all files and folders into `week2` folder
    - Download user interface (front-end) [files as zip](./example-ui.zip)

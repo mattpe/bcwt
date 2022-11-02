@@ -184,7 +184,7 @@
    ```
 
 5. Download the [cat-db-starter.sql](./cat-db-starter.sql) SQL script
-6. Import the tables and insert the data: `mysql -u dbuser -p catdb < cat-db-starter.sql` or copy-paste the contents of the script with command-line client
+6. Import the tables and insert the data: `mysql -u dbuser -p catdb < cat-db-starter.sql` or copy-paste the contents of the script with command-line client (remember to change to correct database: `USE catdb;` before pasting commands from the script)
 7. Eventually check that data is there: 
 
    ```sql

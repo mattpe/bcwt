@@ -137,7 +137,7 @@
    - Add new function 'user_post' to `./controllers/userController.js`. The function should log the user data sent by the form to the console.
    - Modify `/` route for post method in `./routes/userRoute.js`. The route should execute 'user_post' function. Test with Postman and with the form in `example-ui/ui1/front.html`
 
-1. Files are sent in HTTP as [multipart/form-data](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST). Because Express does not handle this type by default you need to use third party middelware like [Multer](https://github.com/expressjs/multer)
+1. Files are sent in HTTP as [multipart/form-data](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST). Because Express does not handle this type by default you need to use third party middleware like [Multer](https://github.com/expressjs/multer)
 
    - The second form in `example-ui/ui1/front.html` is for uploading a file
    - Add `uploads` folder to `week2` and put the folder in version control; but not its content, e.g.
@@ -337,4 +337,4 @@
       .delete(/* catController... */);
     ```
 
-17. Commit changes and push to GitLab or GitHub (all branches)
+17. Commit changes and push to GitHub (all branches)

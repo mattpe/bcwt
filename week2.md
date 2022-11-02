@@ -172,7 +172,7 @@
 1. Create new Git branch. `git checkout -b database`
 2. Goal of this task is to modify the models so that the data comes from database instead of hard coded arrays.
 3. Install MariaDB or MySQL server on your local computer, [some instructions](https://gist.github.com/mattpe/b8decf207ef8df9d17d04c1361de9864)
-4. Connect to your database server as a root user: `sudo mysql -u root` and create a database and a user with privileges on it:
+4. Connect to your database server as a root user on command line: `mysql -u root -p` / `mysql -u root -p` / `mysql` (command depends on you operating system/version installed) or using the MariaDB Client application (Windows) and create a database and a user with privileges on it:
 
    ```sql
    CREATE DATABASE catdb;
@@ -184,8 +184,8 @@
    ```
 
 5. Download the [cat-db-starter.sql](./cat-db-starter.sql) SQL script
-6. Import the tables and insert the data: `mysql -u dbuser -p catdb < cat-db-starter.sql`
-7. Eventually check that data is there: `mysql -u dbuser -p catdb`
+6. Import the tables and insert the data: `mysql -u dbuser -p catdb < cat-db-starter.sql` or copy-paste the contents of the script with command-line client
+7. Eventually check that data is there: 
 
    ```sql
    SHOW TABLES;

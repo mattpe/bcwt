@@ -337,4 +337,9 @@
       .delete(/* catController... */);
     ```
 
-17. Commit changes and push to GitHub (all branches)
+17. Commit changes and push to GitHub remote repo (all branches)
+
+    - `git push` or `git push origin main` pushes the _main_ branch only
+    - `git push origin database` pushes the _database_ branch only
+    - `git push origin --all` pushes all your local branches
+   

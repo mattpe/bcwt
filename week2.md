@@ -156,11 +156,11 @@
      !uploads/.gitkeep
      ```
 
-   - Use the 'Basic usage example' in Multer's documentation as an example and add file upload functionality to `./routes/catRoutes.js`. Use `/` for POST method as route.
+   - Use the basic usage example in Multer's documentation as an example and add file upload functionality to `./routes/catRoute.js`. Use `/` for POST method as route.
      - prefer relative path ('./uploads/') instead of absolute path ('/uploads/')
      - [what is the difference](https://medium.com/@colinlmcdonald/absolute-vs-relative-paths-7ffd8e31d49c)
    - Add new function 'cat_post' to `./controllers/catController.js`. The function should log the data sent by the form (req.data) and file data (req.file) to the console.
-   - Modify `/` route for post method in `./routes/catRoute.js`. The route should execute the multer middleware and 'cat_post' function.
+   - Modify `/` route for post method in `./routes/catRoute.js`. The route should execute the multer middleware and 'createCat()' controller function.
    - Check `uploads` folder after uploading to see new files.
      - Filenames are automatically hashed.
      - If you want to have more control over filenames use [Diskstorage](https://github.com/expressjs/multer#diskstorage)

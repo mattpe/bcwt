@@ -1,5 +1,13 @@
 # BCWT - Week 3
 
+## Front-end JavaScript recap & tasks
+
+1. [Document Object Model](./front-end-1-dom.md)
+2. [AJAX](./front-end-2-ajax.md)
+3. [Events](./front-end-3-events.md)
+
+Check Oma for returning instructions.
+
 ## Data Validation
 
 - Study [client-side form validation](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Form_validation)
@@ -103,11 +111,3 @@
    - Option 1 (recommended): [Create a virtual server on Azure cloud environment](week3-virtual-server-azure.md) (you need to activate a student account for this)
    - Option 2: [Install Educloud virtual computer](week3-virtual-server-educloud.md)
    - Deploy your app on the server (note: if using Educlouad computer from outside school's network, make sure to use [metropolia vpn](https://vpn.metropolia.fi))
-
-## Front-end JavaScript exercises
-
-1. [Document Object Model](./front-end-1-dom.md)
-2. [AJAX](./front-end-2-ajax.md)
-3. [Events](./front-end-3-events.md)
-
-Check Oma for returning instructions.

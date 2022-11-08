@@ -1,4 +1,4 @@
-# BCWT - Week 3 - Installing Virtual Server on Azure
+# BCWT - Installing a Virtual Server on Azure cloud environmnent
 
 ## Materials & links
 
@@ -68,11 +68,14 @@ Browse, read, watch & study:
     sudo systemctl enable mariadb
     ```
 
-2. Secure it ??
+2. Secure it (optional)
+
+   In Ubuntu ([more info](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-22-04)) you don't necessary need root password at all. Just use sudo for root access: `sudo mysql -u root` 
    
    ```console
    mysql_secure_installation
    ```
+   
    Note: database root user is not operating system root user! Avoid same password!
 
 3. Connect to your database server as a root user: `sudo mysql -u root` and create a database and a user with privileges on it:

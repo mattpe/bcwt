@@ -3,197 +3,36 @@
 
 # BCWT - Week 5
 
-## HTTPS
+## Security
+
+### HTTPS
 
 - [HTTPS](https://en.wikipedia.org/wiki/HTTPS)
-  - HTTP over [TLS/SSL](https://en.wikipedia.org/wiki/Transport_Layer_Security)
-    - TLS is the new progression of SSL
-  - _authentication_ of the visited website
+  - HTTP over [TLS/SSL](https://en.wikipedia.org/wiki/Transport_Layer_Security) (TLS is the new progression of SSL but the term SSL is still generally used)
+  - [SSL certificate](https://www.kaspersky.com/resource-center/definitions/what-is-a-ssl-certificate) _authenticates_ a website's identity and enables an encrypted connection
   - protection of the _privacy_ and _integrity_ of the exchanged data
-- Generally better to implement TLS in reverse-proxy such as Apache or Nginx
+- Generally better to implement TLS in reverse-proxy such as Apache or Nginx, ([just like we already did after installing Apache on Ubuntu](./week3-virtual-server-azure.md))
+  - all HTTP connections (port 80) are automatically edirected to HTTPS (port 443) by using [HTTP status codes](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html), the 3XX codes are redirect, 301 means Moved Permanently.
+- for localhost development secure connections are not needed
 
-### express (localhost development)
+Note:
 
-- Generate keys and certificate with [openssl](https://www.openssl.org/) (in real life, you would need to get certified by a third party, e.g. [Let’s Encrypt](https://letsencrypt.org/))
-- If you target [modern compatibility](https://wiki.mozilla.org/Security/Server_Side_TLS#Modern_compatibility), recommendation is to use elliptic curve algorithm [ECDSA](https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm) with prime256v1, secp384r1 or secp521r1 TLS curves (e.g. [see](https://msol.io/blog/tech/create-a-self-signed-ecc-certificate/)) instead of [RSA](<https://en.wikipedia.org/wiki/RSA_(cryptosystem)>)
-  - For intermediate compatibility (IE7, Android 2.3, Java 7,...), minimum is 2048 bit RSA key; but you can safely use 4096 key
+You could create and sign the certificate for SSL by yourself. It still encrypts your web traffic but the self-signed certs are not trusted by browsers. If testing such a site, browser will show a warning page instead of your web app. In Chrome, type 'thisisunsafe' or click [details and proceed unsafe](https://support.google.com/chrome/answer/99020?co=GENIE.Platform%3DDesktop&hl=en-GB). In Firefox, click [Advanced and Accept the Risk and Continue](https://support.mozilla.org/en-US/kb/what-does-your-connection-is-not-secure-mean).
 
-```shell
-$ openssl genrsa -out ssl-key.pem 2048
-$ openssl req -new -key ssl-key.pem -out certrequest.csr
-$ openssl x509 -req -in certrequest.csr -signkey ssl-key.pem -out ssl-cert.pem
-```
-
-- Put the keys and certificate in the app folder and make sure to **add them in .gitignore** too!
-  - Alternative, put the keys and certificate outside the app folder and use relative (e.g. ../certs/) or absolute (e.g. /etc/pki/tls/certs/) path to them
-- In case missing, install file sync: `npm i fs`
-
-```javascript
-"use strict";
-
-const express = require("express");
-const https = require("https");
-const fs = require("fs");
-
-const sslkey = fs.readFileSync("ssl-key.pem");
-const sslcert = fs.readFileSync("ssl-cert.pem");
-
-const options = {
-  key: sslkey,
-  cert: sslcert,
-};
-
-const app = express();
-
-https.createServer(options, app).listen(8000);
-
-app.get("/", (req, res) => {
-  if (req.secure) {
-    res.send("Hello Secure World!");
-  } else {
-    res.send("not secured?");
-  }
-});
-```
-
-- Force redirection from HTTP to HTTPS
-
-```javascript
-const http = require("http");
-// ...
-
-http
-  .createServer((req, res) => {
-    res.writeHead(301, { Location: "https://localhost:8000" + req.url });
-    res.end();
-  })
-  .listen(3000);
-
-// Make sure to redirect BEFORE any middleware/routers/...!
-app.use(express.static("uploads"));
-app.use(
-  "/cat",
-  passport.authenticate("jwt", { session: false }),
-  require("./routes/catRoute")
-);
-//app.use(....);
-```
-
-Notes:
-
-- about [HTTP status code](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html), the 3XX codes are redirect, 301 means Moved Permanently.
-- when testing with your browser, because of self-signed certificate, it will show a warning page instead of your app. In Chrome, click [details and proceed unsafe](https://support.google.com/chrome/answer/99020?co=GENIE.Platform%3DDesktop&hl=en-GB). In Firefox, click [Advanced and Accept the Risk and Continue](https://support.mozilla.org/en-US/kb/what-does-your-connection-is-not-secure-mean).
-- if/when you run https in port 8000 in localhost, you need to change `const url = 'http://localhost:3000';` in `wop-ui` JavaScript files to `const url = 'https://localhost:8000';`
-
-### express (production server)
-
-1. Generate a self-signed certificate for [CentOS](https://wiki.centos.org/HowTos/Https)
-1. configure apache httpd proxy for https: `sudo vim /etc/httpd/conf.d/https-node.conf` (or any .conf file)
-
-   ```apacheconf
-   <VirtualHost *:443>
-       ServerName tunnus-numero.metropolia.fi
-       SSLEngine on
-       SSLCertificateFile /etc/pki/tls/certs/ca.crt
-       SSLCertificateKeyFile /etc/pki/tls/private/ca.key
-       SSLProxyCACertificateFile /etc/pki/tls/certs/ca.crt
-
-       SSLProxyEngine on
-       SSLProxyCheckPeerCN off
-       SSLProxyCheckPeerName off
-       ProxyPreserveHost On
-       RequestHeader set X-Forwarded-Proto https
-
-       ProxyPass /app/ http://127.0.0.1:3000/
-       ProxyPassReverse /app/ http://127.0.0.1:3000/
-   </VirtualHost>
-   ```
-
-   - Don't forget to restart apche server `sudo systemctl restart httpd`
-   - Note, the proxy pass to http (not https), it's the X-Forwarded-Proto that does it
-
-1. Express app need to trust the tls/ssl configuration from the proxy server
-1. Force the redirection from HTTP to HTTPS
-
-```javascript
-"use strict";
-
-require("dotenv").config();
-const express = require("express");
-const app = express();
-
-app.enable("trust proxy");
-
-// Add a handler to inspect the req.secure flag (see
-// http://expressjs.com/api#req.secure). This allows us
-// to know whether the request was via http or https.
-// https://github.com/aerwin/https-redirect-demo/blob/master/server.js
-app.use((req, res, next) => {
-  if (req.secure) {
-    // request was via https, so do no special handling
-    next();
-  } else {
-    // if express app run under proxy with sub path URL
-    // e.g. http://www.myserver.com/app/
-    // then, in your .env, set PROXY_PASS=/app
-    // Adapt to your proxy settings!
-    const proxypath = process.env.PROXY_PASS || "";
-    // request was via http, so redirect to https
-    res.redirect(301, `https://${req.headers.host}${proxypath}${req.url}`);
-  }
-});
-
-app.listen(3000);
-```
-
-### consider separating development and production code
-
-- create node modules for localhost (development) and remote (production) server, e.g in `utils` folder
-  - cut/paste corresponding code and use node export e.g. for localhost.js
-
-```javascript
-// cut-pasted code about localhost: require, tls certs, options,...
-
-module.exports = (app, httpsPort, httpPort) => {
-  https.createServer(options, app).listen(httpsPort);
-  http.createServer(httpsRedirect).listen(httpPort);
-};
-```
-
-- use .env file to choose which code to load
-
-```javascript
-process.env.NODE_ENV = process.env.NODE_ENV || "development";
-if (process.env.NODE_ENV === "production") {
-  require("./utils/production")(app, process.env.PORT || 3000);
-} else {
-  require("./utils/localhost")(
-    app,
-    process.env.HTTPS_PORT || 8000,
-    process.env.HTTP_PORT || 3000
-  );
-}
-app.get("/", (req, res) => {
-  res.send("Hello Secure World!");
-});
-```
-
-## Password hash
+### Hashing Passwords
 
 - [Salted Password Hashing - Doing it Right](https://crackstation.net/hashing-security.htm)
 
-### Bcrypt
-
-1. Setup
+1. Setup bcrypt
 
    - Continue the app started on week 2. You should be now in `week4` branch. Make sure you have committed all files (`git status`) then create new branch `week5`
    - Install [bcryptjs](https://www.npmjs.com/package/bcryptjs): `npm i bcryptjs` ([bcrypt](https://www.npmjs.com/package/bcrypt) is another option)
 
 1. Use `wop-ui/ui4` as front-end
 
-### Login
+#### Login
 
-1.  `utils/pass.js` should be currently something like this:
+1. `utils/pass.js` should be currently something like this:
 
 ```javascript
 passport.use(
@@ -254,7 +93,7 @@ passport.use(
 
 1. Test login with `wop-ui/ui4`
 
-### Register
+#### Register
 
 1. Delete `/user` route for post method in `/routes/userRoute.js`
 
@@ -327,7 +166,7 @@ passport.use(
    - Create a new user by using the register form in `wop-ui/ui4`
    - Test logout button and login again
 
-## Create thumbnails
+## Creating thumbnails
 
 1. Use `wop-ui/ui4` as front-end for testing
    - ask mapbox key from the teacher or create your own
@@ -364,6 +203,7 @@ passport.use(
 1. Add new field `coords` of type text to `wop_cat` table
 1. Add this as the value for `coords` to existing cats in the table: [24.74,60.24]
 1. Modify `addCat` function in `models/catModel.js`:
+
    ```javascript
    const addCat = async (params) => {
      try {
@@ -377,7 +217,9 @@ passport.use(
      }
    };
    ```
+
 1. Modify `cat create post` in `catController.js`:
+
    ```javascript
    const cat_create_post = async (req, res) => {
     ...
@@ -406,6 +248,7 @@ passport.use(
      ...
    };
    ```
+
 1. Install [node-exif](https://github.com/gomfunkel/node-exif#readme): `npm i exif`
 1. Add new file `utils/imageMeta.js`:
 
@@ -446,25 +289,23 @@ passport.use(
 1. Complete TODO in `utils/imageMeta.js`
 1. Use UI in `wop-ui/ui4` and upload a new cat
 
-### Upload to virtual server and run
+### Deployment to virtual server
 
 1. Deploy final app to your virtual server
    - once your app works on your localhost machine, remember to update all `.js` files in `whatever_public/js/` around line 2 to `const url = 'https://your_ip/app/';`
-   - git commit/push on your local machine and pull on server, make sure to be in right folder, e.g.
-     ```console
-     $ cd week2
-     $ git status
-     ```
+   - git commit/push on your local machine and pull on server (or copy all files excl. `node_modules/` to the server using scp), make sure to be in right folder
    - don't upload node_modules (should normally be in `.gitignore`)
-   - after pulling (if any conflict, just delete the conflicting files (e.g. `$ rm pacakge-lock.js`) and pull again), make sure to be in right branch (`$ git branch`), checkout if not, then run `$ npm install`
-   - check that `thumbnails` folder got created with the git pull (in case it is in `.gitignore`, then create it `$ mkdir thumbnails`)
-   - make sure that database is up to date (`$ mysql -u dbuser -p catdb` (adapt your database user and database name))
+   - after pulling (if any conflict, just delete the conflicting files (e.g. `$ rm pacakge-lock.js`) and pull again), make sure to be in right branch (`$ git branch`), checkout if not, then run `npm install`
+   - check that `thumbnails` folder got created with the git pull (in case it is in `.gitignore`, then create it `mkdir thumbnails`)
+   - make sure that database is up to date (`mysql -u dbuser -p catdb` (adapt your database user and database name))
+
      ```sql
      ALTER TABLE wop_cat ADD coords text;
      UPDATE wop_user SET password = 'SomeHashOfThePassword...' WHERE user_id = 2; # and same for jane (user_id = 3)
      ```
+
    - edit .env (add the `PROXY_PASS` and `NODE_ENV`) and run `node app.js` or with [pm2](https://www.npmjs.com/package/pm2) `pm2 restart app.js`
-   - visit `http://your_ip/~wantedUsername/wop-ui/ui4`, test that it redirects to https and that you can login and add cats
+   - visit `https://your_ip/~wantedUsername/wop-ui/ui4`, test that it redirects to https and that you can login and add cats
 
 ### Single Page App
 

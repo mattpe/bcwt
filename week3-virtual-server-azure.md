@@ -1,4 +1,4 @@
-# BCWT - Week 3 - Installing Virtual Server on Azure
+# BCWT - Installing a Virtual Server on Azure cloud environmnent
 
 ## Materials & links
 
@@ -51,16 +51,17 @@ Help for Linux usage:
    ```
 
 2. Check configuration files `/etc/apache2/` & start `sudo systemctl start apache2`
-3. Add write permissions to your user account for the webroot folder `/var/www/html`
-   1. todo: chgrp etc.
-4. Copy your UI files to webroot
-   1. scp or
-   2. clone/pull from github
-5. Test with browser
+3. Add write permissions to your user account for the webroot folder `/var/www/html`: `sudo chown <MYUSERNAME>.<GROUP> /var/www/html`
+4. Copy your UI files to the webroot using e.g. scp/filezilla/winscp or clone/pull from GitHub
+5. Test with browser <http://my.server.ipaddress.or.hostname/>
+6. Enable HTTPS connections using Let's encrypt & Certbot
+
+   - [Let’s Encrypt is a free, automated, and open certificate authority (CA)](https://letsencrypt.org/about/)
+   - Use [Certbot](https://certbot.eff.org/) for easy installation
 
 ### MariaDB database server
 
-1. Install MariaDB server:
+1. Install MariaDB server ([more detailed instructions](https://www.digitalocean.com/community/tutorials/how-to-install-mariadb-on-ubuntu-22-04)):
 
    ```bash
    sudo apt install mariadb-server
@@ -73,13 +74,13 @@ Help for Linux usage:
    sudo systemctl enable mariadb
    ```
 
-1. Secure it ??
+1. Secure it by running the sript:
 
    ```console
    mysql_secure_installation
    ```
 
-   Note: database root user is not operating system root user! Avoid same password!
+   Note: In Ubuntu you don't necessary need root password at all. Just use sudo for gaining root access: `sudo mysql -u root`. Skip that step when prompted.
 
 1. Connect to your database server as a root user: `sudo mysql -u root` and create a database and a user with privileges on it:
 
@@ -110,7 +111,7 @@ Help for Linux usage:
 
 1. Install _node.js_ and _npm_ (read e.g. [some instructions](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-22-04)):
 
-   ```
+   ```bash
    curl -sL https://deb.nodesource.com/setup_18.x -o /tmp/nodesource_setup.sh
    sudo bash /tmp/nodesource_setup.sh
    sudo apt install nodejs
@@ -119,63 +120,59 @@ Help for Linux usage:
    npm -v
    ```
 
-1. Configure Apache httpd server as a reverse proxy to node server:
-   1. create/edit an apache configuration file:
-      ```console
-      $ sudo vim /etc/httpd/conf.d/node.conf
+1. Configure Apache httpd server as a reverse proxy to Node server:
+
+   1. Edit the Apache configuration (Let's encrypt's default SSL configuration file):
+
+      ```bash
+      sudo nano /etc/apache2/sites-available/000-default-le-ssl.conf
       ```
-   1. add the following content:
+
+   1. Add the following content (to the bottom of `<VirtualHost *:443>` block) & save the conf file:
+
       ```apacheconf
-      <VirtualHost *:80>
+      <VirtualHost *:443>
+        # stuff ...
+        # some more stuff ...
+
         ProxyPreserveHost On
         ProxyPass /app/ http://127.0.0.1:3000/
         ProxyPassReverse /app/ http//:127.0.0.1:3000/
       </VirtualHost>
       ```
-1. save and restart apache server:
-   ```console
-   $ sudo systemctl restart httpd
-   ```
-1. give permission to apache server to visit URL:
-   ```console
-   $ sudo setsebool -P httpd_can_network_connect 1
-   ```
-1. install and run your node application:
-   1. make sure you are in your home folder:
-      ```console
-      $ cd
+
+1. When working with Ubuntu 22.04 default installation you need to enable modules `proxy` and `proxy_http` by using command `sudo a2enmod <MODULE-NAME>` and restart the web server:
+
+      ```bash
+      sudo a2enmod proxy proxy_http
+      sudo systemctl restart apache2
       ```
-   1. clone your app (choose HTTPS (or [generate keys for SSH](https://docs.gitlab.com/ee/ssh/#generate-an-ssh-key-pair))):
-      ```console
-      $ git clone https://gitlab.metropolia.fi/<your-repo>
-      ```
-   1. go to the cloned repo:
-      ```console
-      $ cd <your-repo>
-      ```
-   1. eventually, check that you are in the right branch (checkout if not)
-   1. install dependencies:
-      ```console
-      $ npm i
-      ```
-   1. create/edit `.env` file with your db credentials (you set in [MariaDB](#install-and-configure-mariadb-database-server), step iii):
+
+1. Install and run your node application:
+
+   1. make sure you are in your home folder: `cd`
+   1. clone of copy your back-end app to your home folder on the server
+   1. go to the app directory: `cd <my-app>`
+   1. if you cloned the repo, check that you are in the right branch (checkout if not)
+   1. install your dependencies: `npm install`
+   1. create/edit `.env` file with your db credentials (you set in [MariaDB](#install-and-configure-mariadb-database-server)):
+
       ```apacheconf
        DB_HOST=127.0.0.1
        DB_USER=<your-db-user>
        DB_PASS=<your-db-user_password>
        DB_NAME=<your-db-name>
       ```
-   1. run your application:
-      ```console
-      $ node app.js
+
+   1. start your application: `node app.js` or `npm start`
+   1. test: open a browser and visit `https://<your-ip-address-or-hostname>/app/`
+   1. to kill the app, use `CTRL+C`, or if no more hanging in your terminal session, try `pkill node` or use `top`
+   1. to have your app running "forever", including restart on crash, use e.g. [pm2](https://pm2.keymetrics.io/):
+
+      ```bash
+      sudo npm install -g pm2
+      pm2 start app.js --name <MY-SERVER>
       ```
-   1. test, open a browser and visit `http://<ip-address>/app/`
-   1. to kill the app, use `CTRL+C`, or if no more hanging in your terminal session, try `$ pkill node` or use `$ top`
-   1. to have your app running forever, including restart on crash, use e.g. [pm2](https://pm2.keymetrics.io/):
-      ```console
-      $ sudo npm install -g pm2
-      $ pm2 start app.js
-      ```
+
    1. if you want that the app reload on change (e.g. on next `git pull`), use the `--watch` flag.
-   1. other "pure" linux option could use [systemd](https://nodesource.com/blog/running-your-node-js-app-with-systemd-part-1/) (`systemctl`).
-      <
+   1. (optional) "pure" linux option could be using [systemd](https://nodesource.com/blog/running-your-node-js-app-with-systemd-part-1/) for creating a system process.

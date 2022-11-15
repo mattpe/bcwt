@@ -1,5 +1,7 @@
 # BCWT - Week 3
 
+**Zoom link: https://metropolia.zoom.us/j/61394284737?pwd=OHNlcFNoZDdVMUJuMFRaUVNwZWRadz09**
+
 ## Front-end JavaScript recap & tasks
 
 1. [Document Object Model](./front-end-1-dom.md)

@@ -28,7 +28,7 @@ Check Oma for returning instructions.
      - Add user
        - name: minimum length 3 characters, required
        - email: valid email address
-       - password: minimum length 8 characters, at least one capital letter
+       - password: minimum length 8 characters
      - Add cat
        - name: required
        - birthdate: date, required
@@ -46,7 +46,7 @@ Check Oma for returning instructions.
      - Add user
        - name: minimum length 3 characters, required
        - email: valid email address
-       - password: minimum length 8 characters, at least one capital letter
+       - password: minimum length 8 characters
      - Add cat
        - name: required
        - birthdate: date, required
@@ -109,5 +109,5 @@ Check Oma for returning instructions.
 
 1. Creating a remote server
    - Option 1 (recommended): [Create a virtual server on Azure cloud environment](week3-virtual-server-azure.md) (you need to activate a student account for this)
-   - Option 2: [Install Educloud virtual computer](week3-virtual-server-educloud.md)
+   - Option 2: (no teacher's example/support available for this) [Install Educloud virtual computer](week3-virtual-server-educloud.md)
    - Deploy your app on the server (note: if using Educlouad computer from outside school's network, make sure to use [metropolia vpn](https://vpn.metropolia.fi))

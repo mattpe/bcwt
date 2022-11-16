@@ -1,7 +1,5 @@
 # BCWT - Week 3
 
-**Zoom link: https://metropolia.zoom.us/j/61394284737?pwd=OHNlcFNoZDdVMUJuMFRaUVNwZWRadz09**
-
 [Teacher's example repo](https://github.com/mattpe/bcwt-assignments-examples22/tree/week3)
 
 ## Front-end JavaScript recap & tasks
@@ -45,8 +43,8 @@ Check Oma for returning instructions.
    - Study [express-validator](https://express-validator.github.io/docs/)
      - [List of all validators](https://github.com/validatorjs/validator.js#validators)
      - [MDN Example](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/forms#Using_express-validator)
-   - Add `novalidate` attribute to `<form>` elements to disable front-end validation. Remove it after you have tested the server-side validation.
-   - Validate the same properties on the server side as with above forms:
+   - Add `novalidate` attribute to `<form>` elements to disable the front-end validation. Remove it after you have tested the server-side validation.
+   - Validate the same properties on the server side as with the forms above:
      - Add user
        - name: minimum length 3 characters, required
        - email: valid email address
@@ -57,7 +55,7 @@ Check Oma for returning instructions.
        - weight: number, required
        - select owner: required
        - file: required, accept only images (jpg, gif, png)
-         - file needs to be validated wiht Multer's [fileFilter](https://github.com/expressjs/multer#filefilter)
+         - file needs to be validated with Multer's [fileFilter](https://github.com/expressjs/multer#filefilter)
      - Modify cat:
        - same as Add cat
 1. Server side data sanitization

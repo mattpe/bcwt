@@ -62,54 +62,7 @@ Check Oma for returning instructions.
    - Study [express-validator sanitization](https://express-validator.github.io/docs/sanitization.html)
    - Some of the fields could be still used to perform [XSS and SQL injections](https://keirstenbrager.tech/sql-vs-xxs-injection-attacks-explained/). Think which they could be and sanitize those fields.
 
-## Cookies and Sessions
+## Creating a remote server
 
-- Study [Maintaining state in web applications](week3-state-management.md)
-
-1. Setup
-
-   - Navigate to your course folder in terminal or Git Bash
-     - Create `state-management` folder to your course folder.
-     - Download [starter files as zip](./week3-state-starter.zip), extract and copy all files to `state-management` folder
-     - Run `npm install` and `nodemon app.js` to test `localhost:3000`
-     - Commit changes to code regularly
-
-1. Cookies
-
-   - Create the following routes for GET method:
-     - `/setCookie`
-       - recieves a path variable `clr`
-       - sets a new cookie `color` which gets the value of `clr` path variable
-     - `/getCookie`
-       - reads the value of `color` cookie and sends it to the client
-     - `/deleteCookie`
-       - delete `color` cookie
-   - Open 'Application' tab in Developer Tools to see cookies in browser
-   - Test in browser: `localhost:3000/setCookie/someColor` and `localhost:3000/deleteCookie`
-
-1. Session
-
-   - Add the following code to `app.js` after `const port = 3000;` (in row 4)
-
-   ```javascript
-   const username = "foo";
-   const password = "bar";
-   ```
-
-   - Create the following routes for GET method:
-     - `/form`
-       - render `views/form.pug`
-     - `/secret`
-       - render `views/secret.pug`
-   - Create the following route for POST method:
-     - `/login`
-       - recieves `username` and `password` from `req.body`
-       - if recieved `username` and `password` match the username and password variables create session variable `logged` and set it to `true` and [redirect](https://expressjs.com/en/api.html#res.redirect) to `/secret`. Else set session variable `logged` to `false` and redirect to `/form`
-     - In `/secret` route check if session variable `logged` is not true, then redirect to `/form`.
-     - Open 'Application' tab in Developer Tools to see cookies in browser
-     - Test in browser: `localhost:3000/form` and `localhost:3000/secret`
-
-1. Creating a remote server
-   - Option 1 (recommended): [Create a virtual server on Azure cloud environment](week3-virtual-server-azure.md) (you need to activate a student account for this)
-   - Option 2: (no teacher's example/support available for this) [Install Educloud virtual computer](week3-virtual-server-educloud.md)
-   - Deploy your app on the server (note: if using Educlouad computer from outside school's network, make sure to use [metropolia vpn](https://vpn.metropolia.fi))
+- Option 1 (recommended): [Create a virtual server on Azure cloud environment](week3-virtual-server-azure.md) (you need to activate a student account for this)
+- (Option 2: no teacher's example/support available for this) [Install Educloud virtual computer](week3-virtual-server-educloud.md)

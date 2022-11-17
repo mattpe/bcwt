@@ -15,11 +15,10 @@ Course material for JavaScript development, Node.js & Express tasks.
   - Database connection, CRUD operations: Create, Read, Update and Delete
 - [Week 3](week3.md)
   - (Recap:) Front-end JS
-  - Remote server
   - Data validation
-  - Cookies
-  - Session
+  - Remote server
 - [Week 4](week4.md)
+  - State management
   - Authentication
   - JWT
 - [Week 5](week5.md)

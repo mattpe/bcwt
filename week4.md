@@ -1,13 +1,61 @@
 # BCWT - Week 4
 
-Now we start to make our REST API to follow the [second version of the API Documentation](week4-apiDoc-v0.2.md)
+Now we start to implementing our REST API to follow the [second version of the API Documentation](week4-apiDoc-v0.2.md)
+
+## State Management with Cookies and Sessions
+
+- Study [Maintaining state in web applications](week4-state-management.md)
+
+1. Task: Setup
+
+   - Navigate to your course folder in terminal or Git Bash
+     - Create a new Git branch `week4`
+     - Create `state-management` folder to your course folder.
+     - Download [starter files as zip](./week4-state-starter.zip), extract and copy all files to `state-management` folder
+     - Run `npm install` and `nodemon app.js` to test `localhost:3000`
+     - Commit changes to code regularly
+
+1. Task: Cookies
+
+   - Create the following routes for GET method:
+     - `/setCookie`
+       - recieves a path variable `clr`
+       - sets a new cookie `color` which gets the value of `clr` path variable
+     - `/getCookie`
+       - reads the value of `color` cookie and sends it to the client
+     - `/deleteCookie`
+       - delete `color` cookie
+   - Open 'Application' tab in Developer Tools to see cookies in browser
+   - Test in browser: `localhost:3000/setCookie/someColor` and `localhost:3000/deleteCookie`
+
+1. Task: Session
+
+   - Add the following code to `app.js` after `const port = 3000;` (in row 4)
+
+   ```javascript
+   const username = "foo";
+   const password = "bar";
+   ```
+
+   - Create the following routes for GET method:
+     - `/form`
+       - render `views/form.pug`
+     - `/secret`
+       - render `views/secret.pug`
+   - Create the following route for POST method:
+     - `/login`
+       - recieves `username` and `password` from `req.body`
+       - if recieved `username` and `password` match the username and password variables create session variable `logged` and set it to `true` and [redirect](https://expressjs.com/en/api.html#res.redirect) to `/secret`. Else set session variable `logged` to `false` and redirect to `/form`
+     - In `/secret` route check if session variable `logged` is not true, then redirect to `/form`.
+     - Open 'Application' tab in Developer Tools to see cookies in browser
+     - Test in browser: `localhost:3000/form` and `localhost:3000/secret`
 
 ## Authentication with [passport.js](http://www.passportjs.org/docs/downloads/html/)
 
-1. Setup
+### Setup
 
-   - Continue last week's `state-management` exercise. Make sure you have committed all files (`git status`) and then create a new branch `passport`
-   - Install _passport_ and _passport-local_ packages: `npm i passport passport-local`
+- Continue the `state-management` exercise. Make sure you have committed all files (`git status`) and then create a new branch `passport`
+- Install _passport_ and _passport-local_ packages: `npm i passport passport-local`
 
 ### [Local Strategy](http://www.passportjs.org/docs/username-password/)
 

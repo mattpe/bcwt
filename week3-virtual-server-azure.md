@@ -29,7 +29,7 @@ Help for Linux usage:
    - NOTE: you have 100 USD of student credits to spend in total (for a one year)
    - Allow access to SSH, HTTP and HTTPS ports
 
-   [Basic example setup](img/azure-vm-settings.png)
+   ![Basic example setup](img/azure-vm-settings.png)
 
    - Finally hit the _CREATE_ button and after successful deployment of the virtual machine go to the resources's _Overview_ page and configure the _DNS name_.
    - Note: VM is paid by hour and only when the VM is running. In development use it's a good idea to stop the VM when you don't need it (start/stop buttons are found in Azure portal).

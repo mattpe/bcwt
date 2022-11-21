@@ -12,21 +12,21 @@ Now we start to implementing our REST API to follow the [second version of the A
      - Create a new Git branch `week4`
      - Create `state-management` folder to your course folder.
      - Download [starter files as zip](./week4-state-starter.zip), extract and copy all files to `state-management` folder
-     - Run `npm install` and `nodemon app.js` to test `localhost:3000`
-     - Commit changes to code regularly
+     - Run `npm install` and `npm start` to start app.js with nodemon and test `http://localhost:3000`
+     - Remember to commit the changes to the code regularly
 
 1. Task: Cookies
 
    - Create the following routes for GET method:
      - `/setCookie`
-       - recieves a path variable `clr`
+       - receives a path variable `clr`
        - sets a new cookie `color` which gets the value of `clr` path variable
      - `/getCookie`
        - reads the value of `color` cookie and sends it to the client
      - `/deleteCookie`
        - delete `color` cookie
    - Open 'Application' tab in Developer Tools to see cookies in browser
-   - Test in browser: `localhost:3000/setCookie/someColor` and `localhost:3000/deleteCookie`
+   - Test in browser: `localhost:3000/setCookie/<someColor>` and `localhost:3000/deleteCookie`
 
 1. Task: Session
 
@@ -44,8 +44,8 @@ Now we start to implementing our REST API to follow the [second version of the A
        - render `views/secret.pug`
    - Create the following route for POST method:
      - `/login`
-       - recieves `username` and `password` from `req.body`
-       - if recieved `username` and `password` match the username and password variables create session variable `logged` and set it to `true` and [redirect](https://expressjs.com/en/api.html#res.redirect) to `/secret`. Else set session variable `logged` to `false` and redirect to `/form`
+       - receives `username` and `password` from `req.body`
+       - if received `username` and `password` match the username and password variables create session variable `logged` and set it to `true` and [redirect](https://expressjs.com/en/api.html#res.redirect) to `/secret`. Else set session variable `logged` to `false` and redirect to `/form`
      - In `/secret` route check if session variable `logged` is not true, then redirect to `/form`.
      - Open 'Application' tab in Developer Tools to see cookies in browser
      - Test in browser: `localhost:3000/form` and `localhost:3000/secret`
@@ -184,7 +184,7 @@ Now we start to implementing our REST API to follow the [second version of the A
 
 1. Setup
 
-   - Continue the app started on week 2. You should be now in `week3` branch. Make sure you have committed all files (`git status`) then create new branch `week4`
+   - Continue the _server_ app started on week 2. You should be now in a branch having the latest _server_ app code . Make sure you have committed all files (`git status`) then create a new branch `token`
    - Install passport, passport-local, passport-jwt and jsonwebtoken `npm i passport passport-local passport-jwt jsonwebtoken`
 
 1. Create a function getUserLogin to `./models/userModel.js`

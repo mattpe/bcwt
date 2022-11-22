@@ -294,21 +294,19 @@ Now we start to implementing our REST API to follow the [second version of the A
 
    ```javascript
    // userController.js
-   const checkToken = (req, res, next) => {
-     if (!req.user) {
-       next(new Error("token not valid"));
-     } else {
-       res.json({ user: req.user });
-     }
+   const checkToken = (req, res) => {
+     res.json({user: req.user});
    };
 
    // userRoute.js
-   router.get("/token", checkToken);
+   router.get("/token", userController.checkToken);
    ```
 
    - Logout by deleting the token from browser's session storage (developer tools/application)
 
-1. Now that we have login etc. it's better not to send the owner id from the front end. Modify catRoute.js, catController.js and catModel.js so that you get owner's id from req.user
+1. Now that we have login etc. it's better not to send the owner id from the front end. Modify `catRoute.js`, `catController.js` and `catModel.js` so that you get owner's id from `req.user`
+1. Refer to the [second version of the API Documentation](week4-apiDoc-v0.2.md) and implement all endpoints accordingly
+   - Note: new user registration endpoint is moved from `/user` to `/auth/register` 
 
 ### User Roles
 

@@ -30,7 +30,7 @@ Now we start to implementing our REST API to follow the [second version of the A
 
 1. Task: Session
 
-   - Add the following code to `app.js` after `const port = 3000;` (in row 4)
+   - Add the following code to `app.js` after `const port = 3000;` 
 
    ```javascript
    const username = "foo";
@@ -62,7 +62,7 @@ Now we start to implementing our REST API to follow the [second version of the A
 1. Modify `app.js`:
 
    ```javascript
-   // add following to about line 4
+   // add following to around line 4
    const passport = require("./utils/pass");
 
    // add following after const port = 3000;
@@ -195,7 +195,7 @@ Now we start to implementing our REST API to follow the [second version of the A
      try {
        console.log(params);
        const [rows] = await promisePool.execute(
-           'SELECT - FROM wop_user WHERE email = ?;',
+           'SELECT * FROM wop_user WHERE email = ?;',
            params);
        return rows;
      } catch (e) {
@@ -238,9 +238,6 @@ Now we start to implementing our REST API to follow the [second version of the A
    module.exports = router;
    ```
 
-1. Require `./utils/pass.js` as passport and `./routes/authRoute.js` as authRoute in `app.js`
-1. Add `app.use(passport.initialize());` and `app.use('/auth', authRoute);` before cat and user routes.
-1. Add `passport.authenticate('jwt', {session: false})` [middleware](https://medium.com/front-end-weekly/learn-using-jwt-with-passport-authentication-9761539c4314#dfa8) to `/cat` and `/user` routes.
 1. Add new folder `utils` and create new file `./utils/pass.js`
 
    ```javascript
@@ -281,12 +278,15 @@ Now we start to implementing our REST API to follow the [second version of the A
    - instead of `cb`, use `done` as the name for the callback function
    - use the local strategy for username password login in the code above as an example
 
+1. Require `./utils/pass.js` as passport and `./routes/authRoute.js` as authRoute in `app.js`
+1. Add `app.use(passport.initialize());` and `app.use('/auth', authRoute);` before cat and user routes.
+1. Add `passport.authenticate('jwt', {session: false})` [middleware](https://medium.com/front-end-weekly/learn-using-jwt-with-passport-authentication-9761539c4314#dfa8) to `/cat` and `/user` routes.
 1. Test with postman
 
-   - start with login: POST, localhost:3000/auth/login
+   - start with login: `POST http://localhost:3000/auth/login` with correct login credentials
    - after login is succesful, copy the token from response
-   - test token with GET, localhost:3000/cat and localhost:3000/user
-     - add token to Authorization tab, choose TYPE/Bearer Token
+   - test token with `GET http://localhost:3000/cat` and `GET http://localhost:3000/user`
+     - paste token to _Authorization_ tab, choose _Type: Bearer Token_
 
 1. Test also with the UI in folder `wop-ui/ui3`
 

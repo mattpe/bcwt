@@ -317,7 +317,7 @@ Tip: Advanced solution would be adding a new table 'wop_user_role' including use
 #### Tasks
 
 1. Regular users can only delete and edit their own cats
-   - modify the SQL queries for deleting and modifying in catModel.js so that queries will also check that owner matches the `user_id` property in `req.user` object `req.user` is decoded from token by passport and needs to come as a parameter from `catController.js`.
+   - modify the SQL queries for deleting and modifying in `catModel.js` so that queries will also check that owner matches the `user_id` property in the `req.user` object. `req.user` is decoded from the token by passport and needs to be passed as a parameter from `catController.js` to `catModel.js`.
 2. Administrator users can delete and edit everyone's cats
    - now you need two SQL queries in your modify and delete functions: one for regular users that checks that `user_id` in `req.user` matches the `owner` (query A) the other is for admin and it does not check the owner (query B).
    - add conditional statements to catModel.js which define whether to use query A or query B

@@ -32,7 +32,7 @@ You could create and sign the certificate for SSL by yourself. It still encrypts
 
 #### Login
 
-1. `utils/pass.js` should be currently something like this:
+1. `utils/passport.js` should be currently something like this:
 
 ```javascript
 passport.use(
@@ -40,7 +40,7 @@ passport.use(
     const params = [username];
     try {
       const [user] = await getUserLogin(params);
-      console.log("Local strategy", user); // result is binary row
+      console.log('Local strategy', user); // result is binary row
       if (user === undefined) {
         // user not found
         return done(null, false);
@@ -48,7 +48,7 @@ passport.use(
       // TODO: use bcrypt to check of passwords don't match
       if (password !== user.password) {
         // passwords dont match
-        console.log("here");
+        console.log('here');
         return done(null, false);
       }
       // delete user.password; // remove password propety from user object if it's still there
@@ -68,20 +68,18 @@ passport.use(
      try {
        console.log(params);
        const [rows] = await promisePool.execute(
-         "SELECT * FROM wop_user WHERE email = ?;",
+         'SELECT * FROM wop_user WHERE email = ?;',
          params
        );
        return rows;
      } catch (e) {
-       console.log("error", e.message);
+       console.log('error', e.message);
      }
    };
    ```
 
 1. Test login with `wop-ui/ui4`
-
 1. Logout by deleting the token from browser's session storage (developer tools/application)
-
 1. You should have at least two users in your database. Change the passwords in the database to these:
 
    - $2a$10$5RzpyimIeuzNqW7G8seBiOzBiWBvrSWroDomxMa0HzU6K2ddSgixS
@@ -89,8 +87,7 @@ passport.use(
    - $2a$10$H7bXhRqd68DjwFIVkw3G1OpfIdRWIRb735GvvzCBeuMhac/ZniGba
      - this is a hashed version of qwer
 
-1. Require bcryptjs in `utils/pass.js` and modify the if statement under TODO to use [compareSync](https://github.com/dcodeIO/bcrypt.js#comparesyncs-hash) or better `await compare(...)` to check password
-
+1. Require bcryptjs in `utils/passport.js` and modify the if statement under TODO to use [compareSync](https://github.com/dcodeIO/bcrypt.js#comparesyncs-hash) or better `await compare(...)` to check password
 1. Test login with `wop-ui/ui4`
 
 #### Register
@@ -100,23 +97,23 @@ passport.use(
    - we'll move adding users (registration) to `/routes/authRoute.js`:
 
    ```javascript
-   "use strict";
-   const express = require("express");
+   'use strict';
+   const express = require('express');
    const router = express.Router();
-   const { body, sanitizeBody } = require("express-validator");
-   const authController = require("../controllers/authController");
+   const { body, sanitizeBody } = require('express-validator');
+   const authController = require('../controllers/authController');
 
-   router.post("/login", authController.login);
-   router.get("/logout", authController.logout);
+   router.post('/login', authController.login);
+   router.get('/logout', authController.logout);
    router.post(
-     "/register",
+     '/register',
      [
-       body("name", "minimum 3 characters").isLength({ min: 3 }),
-       body("username", "email is not valid").isEmail(),
-       body("password", "at least one upper case letter").matches(
-         "(?=.*[A-Z]).{8,}"
+       body('name', 'minimum 3 characters').isLength({ min: 3 }),
+       body('username', 'email is not valid').isEmail(),
+       body('password', 'at least one upper case letter').matches(
+         '(?=.*[A-Z]).{8,}'
        ),
-       sanitizeBody("name").escape(),
+       sanitizeBody('name').escape(),
      ],
      authController.user_create_post
    );
@@ -134,7 +131,7 @@ passport.use(
      const errors = validationResult(req); // TODO require validationResult, see userController
 
      if (!errors.isEmpty()) {
-       console.log("user create error", errors);
+       console.log('user create error', errors);
        res.send(errors.array());
      } else {
        // TODO: bcrypt password
@@ -149,14 +146,14 @@ passport.use(
        if (result.insertId) {
          res.json({ message: `User added`, user_id: result.insertId });
        } else {
-         res.status(400).json({ error: "register error" });
+         res.status(400).json({ error: 'register error' });
        }
      }
    };
 
    const logout = (req, res) => {
      req.logout();
-     res.json({ message: "logout" });
+     res.json({ message: 'logout' });
    };
    ```
 
@@ -173,14 +170,14 @@ passport.use(
 1. Add new folder `thumbnails`, put it in version control; but not its content as you did with [uploads folder](week2.md#middleware)
 1. Add to `app.js`:
    ```javascript
-   app.use("/thumbnails", express.static("thumbnails"));
+   app.use('/thumbnails', express.static('thumbnails'));
    ```
 1. Install [sharp](https://github.com/lovell/sharp): `npm i sharp`
 1. Add new file `utils/resize.js`:
 
    ```javascript
-   "use strict";
-   const sharp = require("sharp");
+   'use strict';
+   const sharp = require('sharp');
 
    const makeThumbnail = async (file, thumbname) => {
      // file = full path to image (req.file.path), thumbname = filename (req.file.filename)
@@ -208,12 +205,12 @@ passport.use(
    const addCat = async (params) => {
      try {
        const [rows] = await promisePool.execute(
-         "INSERT INTO wop_cat (name, age, weight, owner, filename, coords) VALUES (?, ?, ?, ?, ?, ?);",
+         'INSERT INTO wop_cat (name, age, weight, owner, filename, coords) VALUES (?, ?, ?, ?, ?, ?);',
          params
        );
        return rows;
      } catch (e) {
-       console.log("error", e.message);
+       console.log('error', e.message);
      }
    };
    ```
@@ -253,8 +250,8 @@ passport.use(
 1. Add new file `utils/imageMeta.js`:
 
    ```javascript
-   "use strict";
-   const ExifImage = require("exif").ExifImage;
+   'use strict';
+   const ExifImage = require('exif').ExifImage;
 
    const getCoordinates = (imgFile) => {
      // imgFile = full path to uploaded image
@@ -277,7 +274,7 @@ passport.use(
        parseFloat(gpsData[0]) +
        parseFloat(gpsData[1] / 60) +
        parseFloat(gpsData[2] / 3600);
-     return hem === "S" || hem === "W" ? (d *= -1) : d;
+     return hem === 'S' || hem === 'W' ? (d *= -1) : d;
    };
 
    module.exports = {
@@ -292,6 +289,7 @@ passport.use(
 ### Deployment to virtual server
 
 1. Deploy final app to your virtual server
+
    - once your app works on your localhost machine, remember to update all `.js` files in `whatever_public/js/` around line 2 to `const url = 'https://your_ip/app/';`
    - git commit/push on your local machine and pull on server (or copy all files excl. `node_modules/` to the server using scp), make sure to be in right folder
    - don't upload node_modules (should normally be in `.gitignore`)

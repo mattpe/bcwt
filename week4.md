@@ -30,7 +30,7 @@ Now we start to implementing our REST API to follow the [second version of the A
 
 1. Task: Session
 
-   - Add the following code to `app.js` after `const port = 3000;` 
+   - Add the following code to `app.js` after `const port = 3000;`
 
    ```javascript
    const username = "foo";
@@ -94,7 +94,7 @@ Now we start to implementing our REST API to follow the [second version of the A
    });
    ```
 
-1. Add new folder `utils` and create new file `./utils/pass.js`
+1. Add new folder `utils` and create new file `./utils/passport.js`
 
    ```javascript
    "use strict";
@@ -238,7 +238,7 @@ Now we start to implementing our REST API to follow the [second version of the A
    module.exports = router;
    ```
 
-1. Add new folder `utils` and create new file `./utils/pass.js`
+1. Add new folder `utils` and create new file `./utils/passport.js`
 
    ```javascript
    "use strict";
@@ -278,7 +278,7 @@ Now we start to implementing our REST API to follow the [second version of the A
    - instead of `cb`, use `done` as the name for the callback function
    - use the local strategy for username password login in the code above as an example
 
-1. Require `./utils/pass.js` as passport and `./routes/authRoute.js` as authRoute in `app.js`
+1. Require `./utils/passport.js` as passport and `./routes/authRoute.js` as authRoute in `app.js`
 1. Add `app.use(passport.initialize());` and `app.use('/auth', authRoute);` before cat and user routes.
 1. Add `passport.authenticate('jwt', {session: false})` [middleware](https://medium.com/front-end-weekly/learn-using-jwt-with-passport-authentication-9761539c4314#dfa8) to `/cat` and `/user` routes.
 1. Test with postman
@@ -306,17 +306,19 @@ Now we start to implementing our REST API to follow the [second version of the A
 
 1. Now that we have login etc. it's better not to send the owner id from the front end. Modify `catRoute.js`, `catController.js` and `catModel.js` so that you get owner's id from `req.user`
 1. Refer to the [second version of the API Documentation](week4-apiDoc-v0.2.md) and implement all endpoints accordingly
-   - Note: new user registration endpoint is moved from `/user` to `/auth/register` 
+   - Note: new user registration endpoint is moved from `/user` to `/auth/register`
 
 ### User Roles
 
-Quite often you might want to have different user roles in your app such as administrator and regular user. One way to achieve this is to add one column to the user table in your database. In our wop_user table there is already a column 'role' of type integer. The idea is that administrator role is 0 and regular user is 1. Other roles would be 2, 3 etc. Of course the role column could also be a string like 'admin', 'user', 'moderator' etc.
+Quite often you might want to have different user roles in your app such as administrator and regular user. One way to achieve this is to add one column to the user table in your database. In our wop_user table there is already a column 'role' of type integer. The idea is that _administrator_ role is _0_ and _regular user_ is _1_. Other roles would be 2, 3 etc. Of course the role column could also be a string like 'admin', 'user', 'moderator' etc.
+
+Tip: Advanced solution would be adding a new table 'wop_user_role' including user role names and descriptions to the database and use the 'wop_user.role' column as a _foreign key_ referencing to _id_ of the user role table.
 
 #### Tasks
 
-1. Users can only delete and edit their own cats
-   - modify the SQL queries for deleting and modifying in catModel.js so that queries will also check that owner matches the user_id in req.user. req.user needs to come as a parameter from catController.js.
-2. Administrator can delete and edit everyone's cats
-   - now you need two SQL queries in your modify and delete functions: one for regular users that checks that user_id in req.user matches the owner (query A) the other is for admin and it does not check the owner (query B).
+1. Regular users can only delete and edit their own cats
+   - modify the SQL queries for deleting and modifying in catModel.js so that queries will also check that owner matches the `user_id` property in `req.user` object `req.user` is decoded from token by passport and needs to come as a parameter from `catController.js`.
+2. Administrator users can delete and edit everyone's cats
+   - now you need two SQL queries in your modify and delete functions: one for regular users that checks that `user_id` in `req.user` matches the `owner` (query A) the other is for admin and it does not check the owner (query B).
    - add conditional statements to catModel.js which define whether to use query A or query B
 3. How can you achieve similar functionality for users?

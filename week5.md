@@ -25,7 +25,7 @@ You could create and sign the certificate for SSL by yourself. It still encrypts
 
 1. Setup bcrypt
 
-   - Continue the app started on week 2. You should be now in `week4` branch. Make sure you have committed all files (`git status`) then create new branch `week5`
+   - Continue the app started on week 2. You should be now in your `token` branch. Make sure you have committed all files (`git status`) then create new branch `week5`
    - Install [bcryptjs](https://www.npmjs.com/package/bcryptjs): `npm i bcryptjs` ([bcrypt](https://www.npmjs.com/package/bcrypt) is another option)
 
 1. Use `wop-ui/ui4` as front-end
@@ -52,7 +52,7 @@ passport.use(
         return done(null, false);
       }
       // delete user.password; // remove password propety from user object if it's still there
-      return done(null, { ...user }); // use spread syntax to create shallow copy to get rid of binary row type
+      return done(null, {...user}); // use spread syntax to create shallow copy to get rid of binary row type
     } catch (err) {
       // general error
       return done(err);
@@ -80,14 +80,12 @@ passport.use(
 
 1. Test login with `wop-ui/ui4`
 1. Logout by deleting the token from browser's session storage (developer tools/application)
-1. You should have at least two users in your database. Change the passwords in the database to these:
+1. You should have at least two users in your database. Change the clear text passwords in the database to these hashed versions:
 
-   - $2a$10$5RzpyimIeuzNqW7G8seBiOzBiWBvrSWroDomxMa0HzU6K2ddSgixS
-     - this is a hashed version of 1234
-   - $2a$10$H7bXhRqd68DjwFIVkw3G1OpfIdRWIRb735GvvzCBeuMhac/ZniGba
-     - this is a hashed version of qwer
+   - `$2a$10$5RzpyimIeuzNqW7G8seBiOzBiWBvrSWroDomxMa0HzU6K2ddSgixS` (this is a hashed version of `1234`)
+   - `$2a$10$H7bXhRqd68DjwFIVkw3G1OpfIdRWIRb735GvvzCBeuMhac/ZniGba` (this is a hashed version of `qwer`)
 
-1. Require bcryptjs in `utils/passport.js` and modify the if statement under TODO to use [compareSync](https://github.com/dcodeIO/bcrypt.js#comparesyncs-hash) or better `await compare(...)` to check password
+1. Require `bcryptjs` in `utils/passport.js` and modify the if statement under TODO to use [compareSync](https://github.com/dcodeIO/bcrypt.js#comparesyncs-hash) or better `await compare(...)` to check password
 1. Test login with `wop-ui/ui4`
 
 #### Register
@@ -100,7 +98,7 @@ passport.use(
    'use strict';
    const express = require('express');
    const router = express.Router();
-   const { body, sanitizeBody } = require('express-validator');
+   const {body, sanitizeBody} = require('express-validator');
    const authController = require('../controllers/authController');
 
    router.post('/login', authController.login);
@@ -108,25 +106,23 @@ passport.use(
    router.post(
      '/register',
      [
-       body('name', 'minimum 3 characters').isLength({ min: 3 }),
+       body('name', 'minimum 3 characters').isLength({min: 3}),
        body('username', 'email is not valid').isEmail(),
        body('password', 'at least one upper case letter').matches(
          '(?=.*[A-Z]).{8,}'
        ),
        sanitizeBody('name').escape(),
      ],
-     authController.user_create_post
+     authController.register
    );
 
    module.exports = router;
    ```
 
-   - note the addition on third middelware `login` in `/register` route. Why is it there?
-
-1. Delete `user_create_post` function from `controllers/userController.js` and add following to `controllers/authController.js`:
+1. Remoe `createUser` function from `controllers/userController.js` (or keep and update as an administrator level feature) and add/adapt something like following to `controllers/authController.js`:
 
    ```javascript
-   const user_create_post = async (req, res, next) => {
+   const register = async (req, res, next) => {
      // Extract the validation errors from a request.
      const errors = validationResult(req); // TODO require validationResult, see userController
 
@@ -134,46 +130,48 @@ passport.use(
        console.log('user create error', errors);
        res.send(errors.array());
      } else {
-       // TODO: bcrypt password
-
+       // TODO: use bcrypt for creatign a password hash
        const params = [
          req.body.name,
          req.body.username,
-         req.body.password, // TODO: save hash instead of the actual password
+         // TODO: save the hash instead of the actual password
+         req.body.password, 
        ];
 
        const result = await addUser(params);
        if (result.insertId) {
-         res.json({ message: `User added`, user_id: result.insertId });
+         res.json({message: `User added`, user_id: result.insertId});
        } else {
-         res.status(400).json({ error: 'register error' });
+         res.status(400).json({error: 'register error'});
        }
      }
    };
 
    const logout = (req, res) => {
      req.logout();
-     res.json({ message: 'logout' });
+     res.json({message: 'logout'});
    };
    ```
 
    - remember to update the requires and exports of both files
    - now users can be added (registered) without logging in first
-   - Complete the TODOs in the code above
+   - Complete the TODOs in the code above (refer to [bcryptjs docs](https://github.com/dcodeIO/bcrypt.js#usage))
    - Create a new user by using the register form in `wop-ui/ui4`
    - Test logout button and login again
 
-## Creating thumbnails
+## Creating image thumbnails
 
 1. Use `wop-ui/ui4` as front-end for testing
    - ask mapbox key from the teacher or create your own
 1. Add new folder `thumbnails`, put it in version control; but not its content as you did with [uploads folder](week2.md#middleware)
 1. Add to `app.js`:
+
    ```javascript
    app.use('/thumbnails', express.static('thumbnails'));
    ```
+
 1. Install [sharp](https://github.com/lovell/sharp): `npm i sharp`
-1. Add new file `utils/resize.js`:
+1. Add new file `utils/image.js`:
 
    ```javascript
    'use strict';
@@ -192,65 +190,19 @@ passport.use(
 1. Complete TODO in the code above. Call `makeThumbnail` function in `catController` before you add the cat to database.
 1. Use UI in `wop-ui/ui4` and upload a new cat
 
-## Metadata from image
+## Extracting image metadata (exif)
 
 1. Study [Creating a Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise#Creating_a_Promise)
 1. Take a couple of photos with your phone. Make sure that location services are enabled so that the gps data is stored in the images.
 1. Email the images to yourself
 1. Add new field `coords` of type text to `wop_cat` table
 1. Add this as the value for `coords` to existing cats in the table: [24.74,60.24]
-1. Modify `addCat` function in `models/catModel.js`:
-
-   ```javascript
-   const addCat = async (params) => {
-     try {
-       const [rows] = await promisePool.execute(
-         'INSERT INTO wop_cat (name, age, weight, owner, filename, coords) VALUES (?, ?, ?, ?, ?, ?);',
-         params
-       );
-       return rows;
-     } catch (e) {
-       console.log('error', e.message);
-     }
-   };
-   ```
-
-1. Modify `cat create post` in `catController.js`:
-
-   ```javascript
-   const cat_create_post = async (req, res) => {
-    ...
-       try {
-         // make thumbnail
-         resize.makeThumbnail(req.file.path, req.file.filename);
-         // get coordinates
-         const coords = await imageMeta.getCoordinates(req.file.path);
-         console.log('coords', coords);
-         // add to db
-         const params = [
-           req.body.name,
-           req.body.age,
-           req.body.weight,
-           req.body.owner,
-           req.file.filename,
-           coords,
-         ];
-         const cat = await catModel.addCat(params);
-         await res.json({message: 'upload ok'});
-       }
-       catch (e) {
-         console.log('exif error', e);
-         res.status(400).json({message: 'error'});
-       }
-     ...
-   };
-   ```
-
 1. Install [node-exif](https://github.com/gomfunkel/node-exif#readme): `npm i exif`
-1. Add new file `utils/imageMeta.js`:
+1. Add exif functions to `utils/image.js`:
 
    ```javascript
-   'use strict';
+   ...
+   ...
    const ExifImage = require('exif').ExifImage;
 
    const getCoordinates = (imgFile) => {
@@ -278,32 +230,82 @@ passport.use(
    };
 
    module.exports = {
+    ...
      getCoordinates,
    };
    ```
 
-1. Require `utils/imageMeta.js` as `imageMeta` in `catController.js`
-1. Complete TODO in `utils/imageMeta.js`
+1. Complete TODO in `utils/image.js`
+1. Require `image/getCoordinates` in `catController.js`
+1. Modify `addCat` function in `models/catModel.js` by adding coords to sql query:
+
+   ```javascript
+   const addCat = async (params) => {
+     try {
+       const [rows] = await promisePool.execute(
+         'INSERT INTO wop_cat (name, age, weight, owner, filename, coords) VALUES (?, ?, ?, ?, ?, ?);',
+         params
+       );
+       return rows;
+     } catch (e) {
+       console.log('error', e.message);
+     }
+   };
+   ```
+
+1. Modify `createCat` in `catController.js` accordingly:
+
+   ```javascript
+   const createCat = async (req, res) => {
+    ...
+       try {
+         // make thumbnail
+         image.makeThumbnail(req.file.path, req.file.filename);
+         // get coordinates
+         const coords = await image.getCoordinates(req.file.path);
+         console.log('coords', coords);
+         // add to db
+         const params = [
+           req.body.name,
+           req.body.age,
+           req.body.weight,
+           req.body.owner,
+           req.file.filename,
+           coords,
+         ];
+         const cat = await catModel.addCat(params);
+         await res.json({message: 'upload ok'});
+       }
+       catch (e) {
+         console.log('exif error', e);
+         res.status(400).json({message: 'error'});
+       }
+     ...
+   };
+   ```
+
 1. Use UI in `wop-ui/ui4` and upload a new cat
 
 ### Deployment to virtual server
 
-1. Deploy final app to your virtual server
+Deploy your final app to your virtual server
 
-   - once your app works on your localhost machine, remember to update all `.js` files in `whatever_public/js/` around line 2 to `const url = 'https://your_ip/app/';`
-   - git commit/push on your local machine and pull on server (or copy all files excl. `node_modules/` to the server using scp), make sure to be in right folder
-   - don't upload node_modules (should normally be in `.gitignore`)
-   - after pulling (if any conflict, just delete the conflicting files (e.g. `$ rm pacakge-lock.js`) and pull again), make sure to be in right branch (`$ git branch`), checkout if not, then run `npm install`
-   - check that `thumbnails` folder got created with the git pull (in case it is in `.gitignore`, then create it `mkdir thumbnails`)
-   - make sure that database is up to date (`mysql -u dbuser -p catdb` (adapt your database user and database name))
+1. [recap the VM setup instructions](./week3-virtual-server-azure.md)
+1. once your app works on your localhost machine, remember to update all `.js` files in `whatever_public/js/` around line 2 to `const url = 'https://your_ip/app/';`
+1. git commit/push on your local machine and pull on server (or copy all files excl. `node_modules/` to the server using scp), make sure to be in right folder
+    - Setting up GigHub authentication for direct cloning/pulling repositories on Ubuntu server: <https://cis106.com/guides/Ubuntu%20Github%20Setup/>
+1. don't upload node_modules (should normally be in `.gitignore`)
+1. after pulling (if any conflict, just delete the conflicting files (e.g. `$ rm pacakge-lock.js`) and pull again), make sure to be in right branch (`$ git branch`), checkout if not, then run `npm install`
+1. check that `thumbnails` folder got created with the git pull (in case it is in `.gitignore`, then create it `mkdir thumbnails`)
+1. make sure that database is up to date (`mysql -u dbuser -p catdb` (adapt your database user and database name))
 
-     ```sql
-     ALTER TABLE wop_cat ADD coords text;
-     UPDATE wop_user SET password = 'SomeHashOfThePassword...' WHERE user_id = 2; # and same for jane (user_id = 3)
-     ```
+  ```sql
+  ALTER TABLE wop_cat ADD coords text;
+  UPDATE wop_user SET password = 'SomeHashOfThePassword...' WHERE user_id = 2; # and same for jane (user_id = 3)
+  ```
 
-   - edit .env (add the `PROXY_PASS` and `NODE_ENV`) and run `node app.js` or with [pm2](https://www.npmjs.com/package/pm2) `pm2 restart app.js`
-   - visit `https://your_ip/~wantedUsername/wop-ui/ui4`, test that it redirects to https and that you can login and add cats
+1. remember to update `.env` file if needed and run `node app.js` or with [pm2](https://www.npmjs.com/package/pm2) `pm2 start/restart app.js`
+1. visit `https://your-server-address/wop-ui/ui4`, test that it redirects to https and that you can login and add cats
 
 ### Single Page App
 

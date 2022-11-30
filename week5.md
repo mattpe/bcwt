@@ -295,9 +295,9 @@ Deploy your final app to your virtual server
 1. git commit/push on your local machine and pull on server (or copy all files excl. `node_modules/` to the server using scp), make sure to be in right folder
     - Instructions for direct Git cloning/pulling repositories on Ubuntu server: [Setting up GitHub SSH authentication](https://cis106.com/guides/Ubuntu%20Github%20Setup/) 
 1. don't upload node_modules (should normally be in `.gitignore`)
-1. after pulling (if any conflict, just delete the conflicting files (e.g. `$ rm pacakge-lock.js`) and pull again), make sure to be in right branch (`$ git branch`), checkout if not, then run `npm install`
+1. after pulling (if any conflict, just delete the conflicting files (e.g. `$ rm pacakge-lock.js`) and pull again), make sure to be in right branch (`$ git branch --all`), checkout if not (e.g. `git checkout week5`), then run `npm install`
 1. check that `thumbnails` folder got created with the git pull (in case it is in `.gitignore`, then create it `mkdir thumbnails`)
-1. make sure that database is up to date (`mysql -u dbuser -p catdb` (adapt your database user and database name))
+1. make sure that database is up to date (`mysql -u dbuser -p catdb` (adapt your database user and database name)) or using sudo/root: `sudo mysql -u root`
 
   ```sql
   ALTER TABLE wop_cat ADD coords text;

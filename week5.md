@@ -119,7 +119,7 @@ passport.use(
    module.exports = router;
    ```
 
-1. Remoe `createUser` function from `controllers/userController.js` (or keep and update as an administrator level feature) and add/adapt something like following to `controllers/authController.js`:
+1. Remove `createUser` function from `controllers/userController.js` (or keep it and use as an administrator level feature) and add/adapt following to `controllers/authController.js`:
 
    ```javascript
    const register = async (req, res, next) => {
@@ -293,7 +293,7 @@ Deploy your final app to your virtual server
 1. [recap the VM setup instructions](./week3-virtual-server-azure.md)
 1. once your app works on your localhost machine, remember to update all `.js` files in `whatever_public/js/` around line 2 to `const url = 'https://your_ip/app/';`
 1. git commit/push on your local machine and pull on server (or copy all files excl. `node_modules/` to the server using scp), make sure to be in right folder
-    - Setting up GigHub authentication for direct cloning/pulling repositories on Ubuntu server: <https://cis106.com/guides/Ubuntu%20Github%20Setup/>
+    - Instructions for direct Git cloning/pulling repositories on Ubuntu server: [Setting up GitHub SSH authentication](https://cis106.com/guides/Ubuntu%20Github%20Setup/) 
 1. don't upload node_modules (should normally be in `.gitignore`)
 1. after pulling (if any conflict, just delete the conflicting files (e.g. `$ rm pacakge-lock.js`) and pull again), make sure to be in right branch (`$ git branch`), checkout if not, then run `npm install`
 1. check that `thumbnails` folder got created with the git pull (in case it is in `.gitignore`, then create it `mkdir thumbnails`)

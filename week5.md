@@ -80,9 +80,8 @@ passport.use(
 
 1. Test login with `wop-ui/ui4`
 1. Logout by deleting the token from browser's session storage (developer tools/application)
-1. You should have at least two users in your database. Change the clear text passwords in the database to these hashed versions:
-
-   - `$2a$10$5RzpyimIeuzNqW7G8seBiOzBiWBvrSWroDomxMa0HzU6K2ddSgixS` (this is a hashed version of `1234`)
+1. You should have at least two users in your database. To test login with password hashing replace the clear text passwords in the database with these hashed versions:
+   - `$2a$10$5RzpyimIeuzNqW7G8seBiOzBiWBvrSWroDomxMa0HzU6K2ddSgixS` (this is a hashed version of clear text password `1234`)
    - `$2a$10$H7bXhRqd68DjwFIVkw3G1OpfIdRWIRb735GvvzCBeuMhac/ZniGba` (this is a hashed version of `qwer`)
 
 1. Require `bcryptjs` in `utils/passport.js` and modify the if statement under TODO to use [compareSync](https://github.com/dcodeIO/bcrypt.js#comparesyncs-hash) or better `await compare(...)` to check password
@@ -91,28 +90,22 @@ passport.use(
 #### Register
 
 1. Delete `/user` route for post method in `/routes/userRoute.js`
-
    - we'll move adding users (registration) to `/routes/authRoute.js`:
 
    ```javascript
    'use strict';
    const express = require('express');
    const router = express.Router();
-   const {body, sanitizeBody} = require('express-validator');
+   const {body} = require('express-validator');
    const authController = require('../controllers/authController');
 
    router.post('/login', authController.login);
    router.get('/logout', authController.logout);
    router.post(
      '/register',
-     [
-       body('name', 'minimum 3 characters').isLength({min: 3}),
-       body('username', 'email is not valid').isEmail(),
-       body('password', 'at least one upper case letter').matches(
-         '(?=.*[A-Z]).{8,}'
-       ),
-       sanitizeBody('name').escape(),
-     ],
+     body('name').isLength({ min: 3 }).trim().escape(),
+     body('email').isEmail().normalizeEmail(),
+     body('passwd').isLength({ min: 8 }).trim(),
      authController.register
    );
 
@@ -153,8 +146,8 @@ passport.use(
    };
    ```
 
-   - remember to update the requires and exports of both files
-   - now users can be added (registered) without logging in first
+   - Remember to update the imports (`require`) and `module.exports` of both files
+   - Now users can be added (registered) without logging in first
    - Complete the TODOs in the code above (refer to [bcryptjs docs](https://github.com/dcodeIO/bcrypt.js#usage))
    - Create a new user by using the register form in `wop-ui/ui4`
    - Test logout button and login again
@@ -290,14 +283,13 @@ passport.use(
 
 Deploy your final app to your virtual server
 
-1. [recap the VM setup instructions](./week3-virtual-server-azure.md)
-1. once your app works on your localhost machine, remember to update all `.js` files in `whatever_public/js/` around line 2 to `const url = 'https://your_ip/app/';`
-1. git commit/push on your local machine and pull on server (or copy all files excl. `node_modules/` to the server using scp), make sure to be in right folder
-    - Instructions for direct Git cloning/pulling repositories on Ubuntu server: [Setting up GitHub SSH authentication](https://cis106.com/guides/Ubuntu%20Github%20Setup/) 
-1. don't upload node_modules (should normally be in `.gitignore`)
-1. after pulling (if any conflict, just delete the conflicting files (e.g. `$ rm pacakge-lock.js`) and pull again), make sure to be in right branch (`$ git branch --all`), checkout if not (e.g. `git checkout week5`), then run `npm install`
-1. check that `thumbnails` folder got created with the git pull (in case it is in `.gitignore`, then create it `mkdir thumbnails`)
-1. make sure that database is up to date (`mysql -u dbuser -p catdb` (adapt your database user and database name)) or using sudo/root: `sudo mysql -u root`
+1. Recap [VM setup instructions](./week3-virtual-server-azure.md)
+1. Once your app works on your localhost machine, remember to update all `.js` files in `whatever_public/js/` around line 2 to `const url = 'https://your_ip/app/';`
+1. Git commit/push on your local machine and clone/pull on the server (or copy all files excl. `node_modules/`, `uploads`, and `thumbnails` to the server using scp), make sure to be in right folder
+    - Instructions for direct Git cloning/pulling repositories on Ubuntu server: [Setting up GitHub SSH authentication](https://cis106.com/guides/Ubuntu%20Github%20Setup/). After this you can use the ssh address of the repo for cloning: `git clone git@github.com:USERNAME/REPOSITORIO-NAME.git` 
+1. After pulling (if any conflict, just delete the conflicting files (e.g. `rm package-lock.js`) and pull again), make sure to be in right branch (`git branch --all`), checkout if not (e.g. `git checkout week5`), then run `npm install`
+1. Check that `thumbnails` folder got created with the git pull (in case it is in `.gitignore`, then create it `mkdir thumbnails`)
+1. Make sure that database is up to date (`mysql -u dbuser -p catdb` (adapt your database user and database name)) or use _sudo_ and _root_ user: `sudo mysql -u root`
 
   ```sql
   ALTER TABLE wop_cat ADD coords text;

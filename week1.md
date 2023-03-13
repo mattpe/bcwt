@@ -119,7 +119,7 @@
    });
    ```
 
-   - Test in a web browser: <http://localhost:3000>
+   - Test in a web browser: <http://localhost:3000/catinfo> and <http://localhost:3000>
    - Remember to open browser's development tools always when testing your code in browser!
 
 7. Study [Different Rendering Strategies](https://blog.alexandrudanpop.dev/posts/fe-jargon-you-should-know-ssg-ssr-csr-vdom-22b0/)

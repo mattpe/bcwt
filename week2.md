@@ -11,14 +11,13 @@
 3. Setup
 
    - Navigate to your course folder in terminal or Git Bash
-   - Create `week2` folder to your course folder: `mkdir week2`, (use the same existing GitHub remote repo from week 1)
-      - (or create a new git branch)
-   - Add approriate `.gitignore` (if it does not exist) to `week2` folder and commit changes to code regularly
-   - Download Node application starter [files as zip](./week2-starter.zip) and extract all files and folders into `week2` folder
+   - Create a new branch `week2` to your course folder, use `main` branch as a starting point: `git checkout main; git checkout -b week2` (use the same existing GitHub remote repo from week 1)
+   - Remember to add approriate `.gitignore` to you project and commit changes to your code regularly
+   - Download Node application starter [files as zip](./week2-starter.zip) and extract all files and folders into the project folder
    - Download user interface (front-end) [files as zip](./example-ui.zip) and extract files into your project folder `example-ui`
    - Copy `example-ui` folder also to your _public_html_ in _shell.metropolia.fi_. You can rename the folder if you want. This folder is used later in the course to check access to the REST API.
-   - Run `npm install` in `week2` folder
-   - Run `nodemon app.js` or `node app.js` and test in browser: `localhost:3000/cat`
+   - Run `npm install` in the project folder
+   - Run `nodemon app.js`, `node app.js` or `npm start` and test in browser: `localhost:3000/cat`
 
 4. Study [Routing](https://expressjs.com/en/guide/routing.html) and [app.methods](https://expressjs.com/en/4x/api.html#app.METHOD)
 

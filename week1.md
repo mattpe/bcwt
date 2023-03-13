@@ -99,12 +99,12 @@
 
 6. [Express.js](https://expressjs.com/)
 
-   - Create a `server-one` folder into your course assignments folder.
-   - Create a `package.json` file (`npm init`) in `server-one` folder
+   - Create a git branch `server-one` in your course assignments folder (`git checkout -b server-one`).
+   - Create a `package.json` file (`npm init`) in `server-one` branch
    - Install express `npm install express --save`
-   - Do the [Hello world example](https://expressjs.com/en/starter/hello-world.html) to `server-one` folder
+   - Do the [Hello world example](https://expressjs.com/en/starter/hello-world.html) to `server-one` branch
      - Clean code (`'use strict';`, end lines with semicolon `;`, etc.)
-   - Add `public` folder to `server-one` and copy the content of this [zip file](week1-public.zip) there.
+   - Add `public` folder to project folder and copy the content of this [zip file](week1-public.zip) there.
    - Serve the [static content](https://expressjs.com/en/starter/static-files.html) of `public` folder
    - Add endpoint _catinfo_ to `app.js`:
 
@@ -126,8 +126,8 @@
    1. Note: The project needs to be done using the CSR strategy. Some UI parts can be done with SSR, but check this from teacher before starting to code the project.
 8. [Pug](https://expressjs.com/en/guide/using-template-engines.html)
    - Note: Using a template engine such as Pug or [EJS](https://ejs.co/) follows SSR strategy.
-   - Duplicate `server-one` folder and rename it to `server-two` (or make a git branch)
-   - Create a `views` folder to into `server-two`
+   - Create a new branch based on `server-one` branch and name it to `server-two` (`git checkout server-one`, `git checkout -b server-two`)
+   - Create a `views` folder to into your project folder
    - Make a [pug](https://pugjs.org/api/getting-started.html) template which generates the same HTML as index.html. Delete index.html (or rename it to index_old.html)
    - Test in the browser: <http://localhost:3000>
 

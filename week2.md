@@ -17,7 +17,8 @@
    - Download user interface (front-end) [files as zip](./example-ui.zip) and extract files into your project folder `example-ui`
    - Copy `example-ui` folder also to your _public_html_ in _shell.metropolia.fi_. You can rename the folder if you want. This folder is used later in the course to check access to the REST API.
    - Run `npm install` in the project folder
-   - Run `nodemon app.js`, `node app.js` or `npm start` and test in browser: `localhost:3000/cat`
+   - Install `nodemon` as a development dependency and add `start` script to `package.json` (note that the main file is now `app.js`)
+   - Run `npm start` and test in browser: `localhost:3000/cat`
 
 4. Study [Routing](https://expressjs.com/en/guide/routing.html) and [app.methods](https://expressjs.com/en/4x/api.html#app.METHOD)
 

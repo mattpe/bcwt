@@ -112,16 +112,16 @@
 
 9. User route
 
-- Use cat router and controller as an example and create new router and controller for `user` routes. The model already exists in `./models` folder
-- Add all the same features as in cat route:
+   - Use cat router and controller as an example and create new router and controller for `user` routes. The model already exists in `./models` folder
+   - Add all the same features as in cat route:
 
-  - `localhost:3000/user` lists all users
-  - `localhost:3000/user/1` returns one user by id.
-  - _extra:_ delete password poperty from user's data before sending.
+     - `localhost:3000/user` lists all users
+     - `localhost:3000/user/1` returns one user by id.
+     - _extra:_ delete password poperty from user's data before sending.
 
-- Test with Postman.
+   - Test with Postman.
 
-10. Remember to do `git` add & commit
+10. Remember to do `git add` & `git commit -m ...`
 
 ## Middleware
 
@@ -134,8 +134,8 @@
 
    - Note that the earlier versions of Express required the use of body-parser middleware. [More info here](https://medium.com/@mmajdanski/express-body-parser-and-why-may-not-need-it-335803cd048c).
    - `example-ui/ui1/front.html` contains a form that sends userdata with POST method to `http://localhost:3000/user` endpoint.
-   - Add new function 'user_post' to `./controllers/userController.js`. The function should log the user data sent by the form to the console.
-   - Modify `/` route for post method in `./routes/userRoute.js`. The route should execute 'user_post' function. Test with Postman and with the form in `example-ui/ui1/front.html`
+   - Add new function `postUser` to `./controllers/userController.js`. The function should log the user data sent by the form to the console.
+   - Modify `/` route for post method in `./routes/userRoute.js`. The route should execute `postUser` function. Test with Postman and with the form in `example-ui/ui1/front.html`
 
 1. Files are sent in HTTP as [multipart/form-data](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST). Because Express does not handle this type by default you need to use third party middleware like [Multer](https://github.com/expressjs/multer)
 
@@ -159,8 +159,8 @@
    - Use the basic usage example in Multer's documentation as an example and add file upload functionality to `./routes/catRoute.js`. Use `/` for POST method as route.
      - prefer relative path ('./uploads/') instead of absolute path ('/uploads/')
      - [what is the difference](https://medium.com/@colinlmcdonald/absolute-vs-relative-paths-7ffd8e31d49c)
-   - Add new function 'cat_post' to `./controllers/catController.js`. The function should log the data sent by the form (req.data) and file data (req.file) to the console.
-   - Modify `/` route for post method in `./routes/catRoute.js`. The route should execute the multer middleware and 'createCat()' controller function.
+   - Add new function `postCat` to `./controllers/catController.js`. The function should log the data sent by the form (req.data) and file data (req.file) to the console.
+   - Modify `/` route for post method in `./routes/catRoute.js`. The route should execute the multer middleware and `postCat()` controller function.
    - Check `uploads` folder after uploading to see new files.
      - Filenames are automatically hashed.
      - If you want to have more control over filenames use [Diskstorage](https://github.com/expressjs/multer#diskstorage)

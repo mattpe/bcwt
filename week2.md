@@ -79,12 +79,12 @@
 
    const cats = catModel.cats;
 
-   const cat_list_get = (req, res) => {
+   const getCatList = (req, res) => {
      res.json(cats);
    };
 
    module.exports = {
-     cat_list_get,
+     getCatList,
    };
    ```
 
@@ -95,7 +95,7 @@
    const router = express.Router();
    const catController = require("../controllers/catController");
 
-   router.get("/", catController.cat_list_get);
+   router.get("/", catController.getCatList);
 
    module.exports = router;
    ```
@@ -106,7 +106,7 @@
 8. Study [map, reduce, filter](https://css-tricks.com/an-illustrated-and-musical-guide-to-map-reduce-and-filter-array-methods/)
 
    - `/:id` route for GET method in `./routes/catRoutes.js` defines which cat's data should be returned. The `id` path variable should be passed from routes to controller:
-     - Add a new function `cat_get` to `./controllers/catController.js`. The function should send one cat defined with path variable as json formatted object.
+     - Add a new function `getCat` to `./controllers/catController.js`. The function should send one cat defined with path variable as json formatted object.
      - You can use _array.filter_ or _array.reduce_ to return one cat whose id property matches to `req.params.id`.
    - `localhost:3000/cat/1` should now send a single cat as a response. Test with Postman.
 
@@ -249,7 +249,7 @@
    ```javascript
    // ./controllers/catController.js
    ...
-   const cat_list_get = async (req, res) => {
+   const getCatList = async (req, res) => {
      const cats = await catModel.getAllCats();
      res.json(cats);
    };
@@ -264,7 +264,7 @@
     - Create a function getCat to `./models/catModel.js`
     - The function should make a prepared statement which executes this query: `SELECT * FROM wop_cat WHERE cat_id = X`
       - X is the path variable from route `/:id` of `./routes/catRoute.js`
-    - Modify cat_get function in `./controllers/catController.js` so that it sends the path variable 'id' to getCat function of `./models/catModel.js` and then sends the data of single cat as json. Use cat_list_get function as an example.
+    - Modify `getCat` function in `./controllers/catController.js` so that it sends the path variable 'id' to getCat function of `./models/catModel.js` and then sends the data of single cat as json. Use getCatList function as an example.
 
 11. Make user route to use database as well
 
@@ -327,7 +327,7 @@
     ```javascript
     router
       .route("/")
-      .get(catController.cat_list_get)
+      .get(catController.getCatList)
       .post(/* catController... */)
       .put(/* catController... */);
 

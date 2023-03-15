@@ -30,7 +30,7 @@
 
 5. Study [route parameters](https://expressjs.com/en/guide/routing.html#route-parameters)
 
-   - Use [Path variable](https://medium.com/@fullsour/when-should-you-use-path-variable-and-query-parameter-a346790e8a6d) to get a cat with a specific id from `./models/catModel.js`
+   - Use [Path variable](https://medium.com/@fullsour/when-should-you-use-path-variable-and-query-parameter-a346790e8a6d) to get a cat with a specific id:
      - Add new route `cat/:id` which responds to GET method
      - If the request is `cat/3`, the response should be `You reqested a cat whose id is 3`
 
@@ -101,7 +101,7 @@
    ```
 
    - Modify `./controllers/catController.js` and `/` route for GET method in `./routes/catRoutes.js` by using the examples above.
-   - `localhost:3000/cat` should now send a json formatted array of cats as a response. Test with Postman.
+   - `localhost:3000/cat` should now send a json formatted array of cats (from `./models/catModel.js`) as a response. Test with Postman.
 
 8. Study [map, reduce, filter](https://css-tricks.com/an-illustrated-and-musical-guide-to-map-reduce-and-filter-array-methods/)
 

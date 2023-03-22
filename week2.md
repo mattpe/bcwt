@@ -176,11 +176,9 @@
 
    ```sql
    CREATE DATABASE catdb;
-   CREATE USER 'dbuser' IDENTIFIED BY 'test123';
-   GRANT USAGE ON *.* TO 'dbuser'@localhost IDENTIFIED BY 'test123';
-   GRANT ALL ON catdb.* TO 'dbuser'@'localhost';
+   CREATE USER 'username'@'localhost' IDENTIFIED BY 'password';
+   GRANT ALL PRIVILEGES ON `catdb`.* TO 'username'@'localhost';
    FLUSH PRIVILEGES;
-   exit
    ```
 
 5. Download the [cat-db-starter.sql](./cat-db-starter.sql) SQL script

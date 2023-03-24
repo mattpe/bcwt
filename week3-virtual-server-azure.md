@@ -32,7 +32,7 @@ Help for Linux usage:
    ![Basic example setup](img/azure-vm-settings.png)
 
    - Finally hit the _CREATE_ button and after successful deployment of the virtual machine go to the resources's _Overview_ page and configure the _DNS name_.
-   - Note: VM is paid by hour and only when the VM is running. In development use it's a good idea to stop the VM when you don't need it (start/stop buttons are found in Azure portal).
+   - Note: VM is paid by hour when the VM is running. In development use it's a good idea to stop the VM when you don't need it (start/stop buttons are found in Azure portal).
 
 1. Use SSH connection for managing your VM (`ssh username@PUBLIC_IP/YOUR_DOMAIN_NAME` in terminal/git bash or use e.g. [Putty](https://www.putty.org/))
 
@@ -107,11 +107,9 @@ Help for Linux usage:
 
    ```sql
    CREATE DATABASE catdb;
-   CREATE USER 'dbuser' IDENTIFIED BY 'test123';
-   GRANT USAGE ON *.* TO 'dbuser'@localhost IDENTIFIED BY 'test123';
-   GRANT ALL ON catdb.* TO 'dbuser'@'localhost';
+   CREATE USER 'username'@'localhost' IDENTIFIED BY 'password';
+   GRANT ALL PRIVILEGES ON `catdb`.* TO 'username'@'localhost';
    FLUSH PRIVILEGES;
-   exit
    ```
 
    (in case you would need outside access (e.g. during project, separate database server from app server), replace `localhost` with `'%'` in the two GRANT queries and remember that the settings you did with `mysql_secure_installation` may prevent this).
@@ -171,10 +169,17 @@ Help for Linux usage:
    sudo systemctl restart apache2
    ```
 
+1. Setup Git and connect to your remote repository
+
+   1. [Install Git on Ubuntu 22.04](https://www.digitalocean.com/community/tutorials/how-to-install-git-on-ubuntu-22-04)
+   1. [Generate a new SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
+   1. [Add SSH key to your GitHub account](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
+   1. [Test connection](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/testing-your-ssh-connection)
+
 1. Install and run your node application:
 
    1. make sure you are in your home folder: `cd`
-   1. clone or copy your back-end app to your home folder on the server (exluding the contents of `node_modules` & `uploads` folders)
+   1. `git clone` or copy your back-end app to your home folder on the server (exluding the contents of `node_modules` & `uploads` folders)
    1. go to the app directory: `cd <my-app>`
    1. if you cloned the repo, check that you are in the right branch (checkout if not)
    1. install your dependencies: `npm install`

@@ -184,7 +184,7 @@ Now we start to implementing our REST API to follow the [second version of the A
 
 1. Setup
 
-   - Continue the _server_ app started on week 2. You should be now in a branch having the latest _server_ app code . Make sure you have committed all files (`git status`) then create a new branch `token`
+   - Continue the _server_ app started on week 2 (`week3` or `database` branch). You should be now in a branch having the latest _server_ app code . Make sure you have committed all files (`git status`) then create a new branch `token`
    - Install passport, passport-local, passport-jwt and jsonwebtoken `npm i passport passport-local passport-jwt jsonwebtoken`
 
 1. Create a function getUserLogin to `./models/userModel.js`

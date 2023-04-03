@@ -9,7 +9,7 @@ Now we start to implementing our REST API to follow the [second version of the A
 1. Task: Setup
 
    - Navigate to your course folder in terminal or Git Bash
-     - Create a new Git branch `week4`
+     - Create a new Git branch `state-management`
      - Create `state-management` folder to your course folder.
      - Download [starter files as zip](./week4-state-starter.zip), extract and copy all files to `state-management` folder
      - Run `npm install` and `npm start` to start app.js with nodemon and test `http://localhost:3000`

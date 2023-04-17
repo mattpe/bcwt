@@ -183,7 +183,7 @@ passport.use(
 1. Complete TODO in the code above. Call `makeThumbnail` function in `catController` before you add the cat to database.
 1. Use UI in `wop-ui/ui4` and upload a new cat
 
-## Extracting image metadata (exif)
+## Extracting image metadata (exif) (optional)
 
 1. Study [Creating a Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise#Creating_a_Promise)
 1. Take a couple of photos with your phone. Make sure that location services are enabled so that the gps data is stored in the images.
